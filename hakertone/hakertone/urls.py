@@ -21,7 +21,8 @@ import app.views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('',app.views.index, name='index')
+    path('',app.views.index, name='index'),
+    path('group_board',app.views.group_board, name='group_board')
     
 
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
