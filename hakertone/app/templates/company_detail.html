@@ -66,7 +66,7 @@
             </div>
 
         </div>
-        <div class="block" style="width: 25em; height:3em;">
+        <div class="block mb-3" style="width: 25em; height:3em; clear:both">
             <div class="purchase block">
                 <span>구매하기</span>
             </div>
@@ -100,9 +100,37 @@
                 <span>신고하기></span>
              </div>
         </div>
-        <div class="block">
-            
-        </div>
+        <div class="block review mt-5" style="width: 25em; height:30em;clear:both; ">
+            <div class="block">
+                <div class="inline-block title-review" style="float: left;">
+                    <span>고객들의 리뷰</span>
+                </div>
+                <div class="inline-block whole" style="float: right;">
+                    <span>전체보기</span>
+                </div>
+            </div>
+            <div class="block pt-3" style="width: 25em; clear:both;">
+                {%for i in review.all %}
+                {% if i.company_id == company_detail.id %}
+                <div class="block pb-2" style="width: 25em; height:7em;clear:both">
+                    <div class="block mt-2 mb-3" style="clear: both;">
+                        <p class="review-contents">{{i.contents}}</p>
+                    </div>
+                    <div class="block" >
+                        <div class="inline-block" style="float: left;">
+                            <span style="margin-bottom: 1em;">
+                                <img style="border-radius: 50%;" src="https://i.pinimg.com/474x/83/fc/4c/83fc4c6dca8298dc8e03ba63d35a9cae.jpg" width="25em;" height="25em;">
+                            </span>
+                            <span class="reviewer">{{i.writer}}고객</span>
+                        </div>
+                        <div class="inline-block grade ml-3" style="float: left;">
+                            <span>{{i.grade}}/5.0</span>
+                        </div>
+                    </div>
+                </div>
+                {%endif%}
+                {%endfor%}
+            </div>
 
 
     </div>
