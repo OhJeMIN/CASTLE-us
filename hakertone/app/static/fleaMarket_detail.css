@@ -15,8 +15,8 @@ a:hover {
   cursor: pointer;
 }
 
-.parchase-btn:focus,
-.parchase-btn:active {
+.purchase-btn:focus,
+.purchase-btn:active {
   background-color: #42cfcf !important;
   border-color: #42cfcf !important;
   box-shadow: 0 0 0 0.1rem #42cfcf !important;
@@ -121,7 +121,7 @@ a:hover {
   border-color: #42cfcf;
   background-color: white;
 }
-.parchase-btn {
+.purchase-btn {
   border-color: #84e2e2;
   padding: 0.5rem 4rem;
   margin-left: 0.3rem;
@@ -129,7 +129,7 @@ a:hover {
   color: white;
   font-size: 1.2rem;
 }
-.parchase-btn:hover {
+.purchase-btn:hover {
   background-color: #42cfcf;
   border-color: #42cfcf;
 }
@@ -204,7 +204,7 @@ a:hover {
     flex-direction: column;
     justify-content: center;
   }
-  .parchase-btn,
+  .purchase-btn,
   .enquire-btn {
     margin: 0.4rem 0;
   }

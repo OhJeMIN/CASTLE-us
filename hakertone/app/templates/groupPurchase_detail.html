@@ -1,20 +1,20 @@
 {%extends 'base.html'%}
 {%block contents%}
 {%load static%}
-<link rel="stylesheet" href="{%static 'groupParchase_detail.css'%}">
+<link rel="stylesheet" href="{%static 'groupPurchase_detail.css'%}">
 <div class="container">
     <!-- detail-body -->
     <div class="detail-body">
         <!-- detail-info -->
         <div class="detail-info">
-            {%if groupParchase.proceeding == 1 %}
+            {%if groupPurchase.proceeding == 1 %}
                 <span class="process">진행중</span>
             {%else%}
                 <span class="process">진행종료</span>
             {%endif%}
-            <h1 class="detail-title">{{groupParchase.title}}</h1>
-            <span class="user">{{groupParchase.writer}}</span>
-            <span class="time"><i class="far fa-clock"></i>{{groupParchase.date}}</span>
+            <h1 class="detail-title">{{groupPurchase.title}}</h1>
+            <span class="user">{{groupPurchase.writer}}</span>
+            <span class="time"><i class="far fa-clock"></i>{{groupPurchase.date}}</span>
         </div>
         <!-- carousel -->
         <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
@@ -45,7 +45,7 @@
         </div>
         <!-- detail-content -->
         <p class="detail-content">
-            {{groupParchase.contents}}
+            {{groupPurchase.contents}}
         </p>
     </div>
 </div>
@@ -60,14 +60,14 @@
         </div>
         <div class="input-comment">
             <i class="far fa-grin"></i>
-            <form class="input-group" method="GET" id="createComment" action ="{%url 'groupParchase_comment_new'%}">
+            <form class="input-group" method="GET" id="createComment" action ="{%url 'groupPurchase_comment_new'%}">
                 <input class="form-control" type="text" placeholder="댓글을 남겨 보세요." name="contents">
-                <input type="text" value = "{{groupParchase.id}}" name="groupParchase_id" style="display: none;">
+                <input type="text" value = "{{groupPurchase.id}}" name="groupPurchase_id" style="display: none;">
                 <button type="submit" class="btn saveBtn" form="createComment">등록</button>
             </form>
         </div>
         {%for i in allComments.all%}
-            {%if i.Group_buying_id == groupParchase.id%}
+            {%if i.Group_buying_id == groupPurchase.id%}
             <div class="comment">
                 <img src="../media/images/아기의자.jpg" alt="user-image" class="user-image">
                 <div class="comment-name-content" style="display: block;">

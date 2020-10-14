@@ -51,33 +51,33 @@ def fleaMaket_detail_new(request):
     return redirect('/fleaMarket_detail/'+str(fleaMarket.id))
 
 
-def groupParchase_detail(request, id):
-    groupParchase = get_object_or_404(Group_buying,pk=id)
+def groupPurchase_detail(request, id):
+    groupPurchase = get_object_or_404(Group_buying,pk=id)
     allComments = Group_buying_comment.objects
-    return render(request, 'groupParchase_detail.html', {'groupParchase': groupParchase, 'allComments': allComments})
+    return render(request, 'groupPurchase_detail.html', {'groupPurchase': groupPurchase, 'allComments': allComments})
 
-def groupParchase_detail_new(request):
-    groupParchase = Group_buying()
-    groupParchase.title = request.POST['title']
-    groupParchase.img = request.POST.get('img')
-    groupParchase.proceeding = request.POST['proceeding']
-    groupParchase.contents = request.POST['contents']
-    groupParchase.writer = request.user.id #로그인 한 id
-    groupParchase.save()
-    return redirect('/groupParchase_detail/'+ str(groupParchase.id))
+def groupPurchase_detail_new(request):
+    groupPurchase = Group_buying()
+    groupPurchase.title = request.POST['title']
+    groupPurchase.img = request.POST.get('img')
+    groupPurchase.proceeding = request.POST['proceeding']
+    groupPurchase.contents = request.POST['contents']
+    groupPurchase.writer = request.user.id #로그인 한 id
+    groupPurchase.save()
+    return redirect('/groupPurchase_detail/'+ str(groupPurchase.id))
 
-def groupParchase_comment_new(request):
-    groupParchaseComment = Group_buying_comment()
-    groupParchaseComment.Group_buying_id = request.GET['groupParchase_id'] #어떤 글의 댓글인지 group_buying id 값
-    groupParchaseComment.user_info_id = request.user.id #누가 쓴 댓글인지 user_info id값
-    groupParchaseComment.contents = request.GET['contents']
-    groupParchaseComment.save()
-    return redirect('/groupParchase_detail/'+ str(groupParchaseComment.Group_buying_id))
+def groupPurchase_comment_new(request):
+    groupPurchaseComment = Group_buying_comment()
+    groupPurchaseComment.Group_buying_id = request.GET['groupPurchase_id'] #어떤 글의 댓글인지 group_buying id 값
+    groupPurchaseComment.user_info_id = request.user.id #누가 쓴 댓글인지 user_info id값
+    groupPurchaseComment.contents = request.GET['contents']
+    groupPurchaseComment.save()
+    return redirect('/groupPurchase_detail/'+ str(groupPurchaseComment.Group_buying_id))
 
 def fleaMarket_form(request):
     return render(request, 'fleaMarket_form.html')
 
-def groupParchase_form(request):
+def groupPurchase_form(request):
     form = Group_buyingPost()
-    return render(request, 'groupParchase_form.html', {'form': form})
+    return render(request, 'groupPurchase_form.html', {'form': form})
 

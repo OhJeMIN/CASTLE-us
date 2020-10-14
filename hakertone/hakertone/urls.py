@@ -32,15 +32,15 @@ urlpatterns = [
     path('Pcompany',app.views.Pcompany, name='Pcompany'),   
 
     path('fleaMarket_detail/<int:id>', app.views.fleaMarket_detail, name='fleaMarket_detail'),
-    path('groupParchase_detail/<int:id>', app.views.groupParchase_detail, name='groupParchase_detail'),
+    path('groupPurchase_detail/<int:id>', app.views.groupPurchase_detail, name='groupPurchase_detail'),
 
     path('fleaMarket_form', app.views.fleaMarket_form, name='fleaMarket_form'),
-    path('groupParchase_form', app.views.groupParchase_form, name = 'groupParchase_form'),
+    path('groupPurchase_form', app.views.groupPurchase_form, name = 'groupPurchase_form'),
 
     path('fleaMarket_detail_new', app.views.fleaMaket_detail_new, name='fleaMarket_detail_new'),
-    path('groupParchase_detail_new', app.views.groupParchase_detail_new, name = 'groupParchase_detail_new'),
+    path('groupPurchase_detail_new', app.views.groupPurchase_detail_new, name = 'groupPurchase_detail_new'),
     
-    path('groupParchase_comment_new', app.views.groupParchase_comment_new, name= 'groupParchase_comment_new'), 
+    path('groupPurchase_comment_new', app.views.groupPurchase_comment_new, name= 'groupPurchase_comment_new'), 
 
     
 
