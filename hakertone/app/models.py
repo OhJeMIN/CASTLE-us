@@ -18,12 +18,13 @@ class Group_buying(models.Model):
     proceeding = models.IntegerField()
     contents = models.TextField()
     date = models.DateTimeField(auto_now_add=True)
-    writer = models.TextField()
+    writer = models.IntegerField()
 
 class Group_buying_comment(models.Model):
     Group_buying_id = models.IntegerField()
     user_info_id =  models.IntegerField()
     contents = models.TextField()
+    date = models.DateTimeField(auto_now_add=True)
     
 class Flee_market(models.Model):
     title = models.TextField()
@@ -34,7 +35,7 @@ class Flee_market(models.Model):
     proceeding = models.IntegerField()
     date = models.DateTimeField(auto_now_add=True)
     price = models.IntegerField()
-    writer = models.TextField()
+    writer = models.IntegerField()
 
 class Company_buying(models.Model):
     company_id = models.IntegerField()
@@ -47,7 +48,7 @@ class Company_buying(models.Model):
 
 class Review(models.Model):
     company_id = models.IntegerField()
-    writer = models.CharField(max_length=100)
+    writer = models.IntegerField()
     grade = models.FloatField()
     contents = models.TextField()
 
