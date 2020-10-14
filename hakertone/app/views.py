@@ -15,3 +15,22 @@ def company_detail (request, id):
     userinfo = User_info.objects
     review = Review.objects
     return render(request, 'company_detail.html', {'company_detail':company_detail, 'company':company, 'userinfo':userinfo, 'review':review})
+
+def register(request):
+    return render(request, 'register1.html')
+
+def register2(request):
+    return render(request, 'register2.html')
+
+def register3(request):
+    return render(request, 'register3.html')
+
+def Lcompany(request):
+    return render(request, 'Lcompany.html')
+
+def Ccompany(request):
+    return render(request, 'Ccompany.html')
+
+def Pcompany(request):
+    return render(request, 'Pcompany.html')
+

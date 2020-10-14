@@ -23,7 +23,14 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('',app.views.index, name='index'),
     path('group_board',app.views.group_board, name='group_board'),
-    path('company_detail/<int:id>', app.views.company_detail, name='company_detail')
+    path('company_detail/<int:id>', app.views.company_detail, name='company_detail'),
+    path('register',app.views.register, name='register'),
+    path('register2',app.views.register2, name='register2'),    
+    path('register3',app.views.register3, name='register3'),    
+    path('Lcompany',app.views.Lcompany, name='Lcompany'),
+    path('Ccompany',app.views.Ccompany, name='Ccompany'),   
+    path('Pcompany',app.views.Pcompany, name='Pcompany'),    
+
     
 
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
