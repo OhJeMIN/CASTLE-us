@@ -29,7 +29,18 @@ urlpatterns = [
     path('register3',app.views.register3, name='register3'),    
     path('Lcompany',app.views.Lcompany, name='Lcompany'),
     path('Ccompany',app.views.Ccompany, name='Ccompany'),   
-    path('Pcompany',app.views.Pcompany, name='Pcompany'),    
+    path('Pcompany',app.views.Pcompany, name='Pcompany'),   
+
+    path('fleaMarket_detail/<int:id>', app.views.fleaMarket_detail, name='fleaMarket_detail'),
+    path('groupParchase_detail/<int:id>', app.views.groupParchase_detail, name='groupParchase_detail'),
+
+    path('fleaMarket_form', app.views.fleaMarket_form, name='fleaMarket_form'),
+    path('groupParchase_form', app.views.groupParchase_form, name = 'groupParchase_form'),
+
+    path('fleaMarket_detail_new', app.views.fleaMaket_detail_new, name='fleaMarket_detail_new'),
+    path('groupParchase_detail_new', app.views.groupParchase_detail_new, name = 'groupParchase_detail_new'),
+    
+    path('groupParchase_comment_new', app.views.groupParchase_comment_new, name= 'groupParchase_comment_new'), 
 
     
 
