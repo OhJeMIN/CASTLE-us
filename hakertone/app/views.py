@@ -46,7 +46,7 @@ def fleaMaket_detail_new(request):
     fleaMarket.contents = request.GET['contents']
     fleaMarket.proceeding = request.GET['proceeding']
     fleaMarket.price = request.GET['price']
-    fleaMarket.writer = User.objects.get(username= request.user.get_username())
+    fleaMarket.writer = request.user.id
     fleaMarket.save()
     return redirect('/fleaMarket_detail/'+str(fleaMarket.id))
 

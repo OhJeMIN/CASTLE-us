@@ -1,0 +1,232 @@
+* {
+  margin: 0;
+}
+.container {
+  padding: 0 15rem;
+}
+.btn:focus {
+  box-shadow: none !important;
+}
+.submit-btn:focus,
+.submit-btn:active {
+  background-color: #42cfcf !important;
+  border-color: #42cfcf !important;
+  box-shadow: 0 0 0 0.1rem #42cfcf !important;
+  color: white !important;
+  font-weight: bold;
+}
+.custom-file-label {
+  border-color: #aceeee !important;
+}
+.custom-file-input:focus {
+  box-shadow: 0 0 0 0.1remred !important;
+}
+
+input {
+  border-color: #ccf0f0 !important;
+}
+input:focus,
+input:active {
+  outline: none !important;
+  border-radius: 5px;
+  box-shadow: 0 0 0 0.3px #42cfcf !important;
+}
+
+.form-body {
+  margin-bottom: 1rem;
+}
+
+/* .form-info */
+option {
+  font-size: 0.8rem;
+  background-color: #c4f0f0;
+  color: black;
+}
+
+/* ----------------------select-btn */
+select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -ms-appearance: none;
+  appearance: none;
+  outline: 0;
+  box-shadow: none;
+  border: 0 !important;
+  background: #84e2e2;
+  background-image: none;
+}
+
+/* Custom Select */
+.select {
+  margin: 1.3rem 0;
+  position: relative;
+  display: flex;
+  width: 7rem;
+  line-height: 1.8;
+  background: #84e2e2;
+  overflow: hidden;
+  border-radius: 0.25em;
+}
+select {
+  flex: 1;
+  padding: 0 0.5em;
+  color: #fff;
+  cursor: pointer;
+}
+/* Arrow */
+.select::after {
+  color: white;
+  content: "\25BC";
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 0 0.5em;
+  background: #84e2e2;
+  cursor: pointer;
+  pointer-events: none;
+  -webkit-transition: 0.25s all ease;
+  -o-transition: 0.25s all ease;
+  transition: 0.25s all ease;
+}
+/* Transition */
+.select:hover::after {
+  color: #42cfcf;
+}
+/*---------------*/
+
+/* write-content */
+.write-content {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  font-size: 1.2rem;
+}
+
+/* submit-btn */
+.submit-btn {
+  border-color: #84e2e2;
+  padding: 0.5rem 4rem;
+  background-color: #84e2e2;
+  color: white;
+  font-size: 1.2rem;
+}
+.submit-btn:hover {
+  background-color: #42cfcf;
+  border-color: #42cfcf;
+}
+.write-content {
+  background-color: rgba(132, 226, 226, 0.1);
+  border-color: white;
+  font-size: 1rem;
+}
+.write-content:focus,
+.write-content:active {
+  outline: none !important;
+  border: 1.4px solid #aceeee !important;
+  border-radius: 5px;
+}
+.sub-btn {
+  text-align: center;
+}
+
+label.custom-file-label::after {
+  display: none;
+}
+.input-group {
+  margin-bottom: 1rem;
+}
+.custom-file-label {
+  color: gray;
+}
+.image-btn {
+  background-color: #aceeee;
+  border-color: #aceeee !important;
+}
+.image-btn:hover,
+.image-btn:active {
+  background-color: #84e2e2 !important;
+  color: gray !important;
+}
+.write-image:focus,
+.write-image:active {
+  outline: none !important;
+  box-shadow: 0 0 0 0.3px #42cfcf !important;
+}
+
+/* modal */
+.modal1 {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  border: 1px solid #42cfcf;
+  border-radius: 10px;
+  z-index: 100000;
+  background-color: white;
+  width: 25rem;
+}
+.modal1.active {
+  transform: translate(-50%, -50%) scale(1);
+}
+.modal-header1 {
+  padding: 0 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #42cfcf;
+}
+.modal-header1 .title {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+.modal-header1 .modal-close-btn {
+  cursor: pointer;
+  border: none;
+  outline: none;
+  background: none;
+  color: #42cfcf;
+  font-weight: bold;
+  font-size: 2rem;
+}
+.modal-body1 {
+  padding: 0.4rem 1rem;
+}
+
+/* .select.active,
+  .input-group.active {
+    z-index: -1;
+  } */
+
+#overlay1 {
+  position: fixed;
+  opacity: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  pointer-events: none;
+}
+#overlay1.active {
+  opacity: 1;
+  pointer-events: all;
+}
+
+@media screen and (max-width: 1024px) {
+  .container {
+    padding: 0 6rem;
+  }
+  .container2 {
+    padding: 0 1rem !important;
+  }
+  .carousel-control-prev {
+    margin-left: 0;
+  }
+  .carousel-control-next {
+    margin-right: 0;
+  }
+}
+@media screen and (max-width: 768px) {
+  .container {
+    padding: 0 1rem;
+  }
+}
