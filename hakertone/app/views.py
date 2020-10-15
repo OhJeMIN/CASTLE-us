@@ -7,7 +7,8 @@ def index(request):
 def group_board(request):
     group_buying = Group_buying.objects
     group_buying_comment = Group_buying_comment.objects
-    return render(request, 'group_board.html',{'group_buying':group_buying, 'group_buying_comment':group_buying_comment})
+    userinfo = User_info.objects
+    return render(request, 'group_board.html',{'group_buying':group_buying, 'group_buying_comment':group_buying_comment,'userinfo':userinfo})
 
 def company_detail (request, id):
     company_detail = get_object_or_404(Company_buying, pk=id)

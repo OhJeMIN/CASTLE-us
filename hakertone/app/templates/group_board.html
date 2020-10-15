@@ -2,108 +2,127 @@
 {%block contents%}
 {% load static %}
 
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>  
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link rel="stylesheet" href="{% static 'hong.css'%}">
-    <style>
-      .search {
-        width: 100%;
-        position: relative;
-        display: flex;
-      }
-      
-      .searchTerm {
-        width: 100%;
-        border: 1px solid #00B4CC;
-        border-right: none;
-        padding: 5px;
-        height: 20px;
-        border-radius: 5px 0 0 5px;
-        outline: none;
-        color: #9DBFAF;
-      }
-      
-      .searchTerm:focus{
-        color: #00B4CC;
-      }
-      
-      .searchButton {
-        width: 40px;
-        height: 36px;
-        border: 1px solid #00B4CC;
-        background: #ffffff;
-        text-align: center;
-        color: #00B4CC;
-        border-radius: 0 5px 5px 0;
-        cursor: pointer;
-        font-size: 20px;
-        border-left: 0px;
-      }
-      
-     
-      
-    </style>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+  integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+  integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+  integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+  integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<link rel="stylesheet" href="{% static 'hong.css'%}">
+<style>
+  .search {
+    width: 100%;
+    position: relative;
+    display: flex;
+  }
+
+  .searchTerm {
+    width: 100%;
+    border: 1px solid #00B4CC;
+    border-right: none;
+    padding: 5px;
+    height: 20px;
+    border-radius: 5px 0 0 5px;
+    outline: none;
+    color: #9DBFAF;
+  }
+
+  .searchTerm:focus {
+    color: #00B4CC;
+  }
+
+  .searchButton {
+    width: 40px;
+    height: 36px;
+    border: 1px solid #00B4CC;
+    background: #ffffff;
+    text-align: center;
+    color: #00B4CC;
+    border-radius: 0 5px 5px 0;
+    cursor: pointer;
+    font-size: 20px;
+    border-left: 0px;
+  }
+</style>
 
 
 <div class="main mt-5 block mx-auto">
-  <div class="category block"style="margin-left:-4em;" >
+  <div class="category block" style="margin-left:-4em;">
     <div class="가구 inline-block">
-      <img class="block" src="https://post-phinf.pstatic.net/MjAxNzA1MTlfMjgg/MDAxNDk1MTU2MjAzMjE5.-CM5r2I5YV7prXMUws56JN19oi8hvbpEjRDveJyPknMg.8v11m8_dBBoq2jBvN1IBn-7UyexOTIemgT5fwblEQdYg.PNG/mug_obj_14951562072673908.png?type=w1080"width="70em" height="70em">
+      <img class="block"
+        src="https://post-phinf.pstatic.net/MjAxNzA1MTlfMjgg/MDAxNDk1MTU2MjAzMjE5.-CM5r2I5YV7prXMUws56JN19oi8hvbpEjRDveJyPknMg.8v11m8_dBBoq2jBvN1IBn-7UyexOTIemgT5fwblEQdYg.PNG/mug_obj_14951562072673908.png?type=w1080"
+        width="70em" height="70em">
       <span class="block mt-1">가구</span>
     </div>
     <div class="침구 inline-block">
-      <img class="block" src="https://images.squarespace-cdn.com/content/v1/5caa43cae5f7d161a4592008/1556835527106-ZQSYLLGD1HVJYD98PYBF/ke17ZwdGBToddI8pDm48kLPswmMOqQZ9-Q6KHLjvbpZ7gQa3H78H3Y0txjaiv_0fDoOvxcdMmMKkDsyUqMSsMWxHk725yiiHCCLfrh8O1z5QPOohDIaIeljMHgDF5CVlOqpeNLcJ80NK65_fV7S1UTcpTqfU-ZEsztPyQLxhSSK-PhJjRDDFQG0l3_ZnmWi1QjT9byXZM3ISxo3y1NRptg/MA90_BIMICO-Chambray-OnWhite2-WB1548190993_original.jpg"width="70em" width="70em">
+      <img class="block"
+        src="https://images.squarespace-cdn.com/content/v1/5caa43cae5f7d161a4592008/1556835527106-ZQSYLLGD1HVJYD98PYBF/ke17ZwdGBToddI8pDm48kLPswmMOqQZ9-Q6KHLjvbpZ7gQa3H78H3Y0txjaiv_0fDoOvxcdMmMKkDsyUqMSsMWxHk725yiiHCCLfrh8O1z5QPOohDIaIeljMHgDF5CVlOqpeNLcJ80NK65_fV7S1UTcpTqfU-ZEsztPyQLxhSSK-PhJjRDDFQG0l3_ZnmWi1QjT9byXZM3ISxo3y1NRptg/MA90_BIMICO-Chambray-OnWhite2-WB1548190993_original.jpg"
+        width="70em" width="70em">
       <span class="block mt-1">침구</span>
     </div>
     <div class="패브릭 inline-block">
-      <img class="block" src="https://img.danawa.com/prod_img/500000/842/604/img/5604842_1.jpg?shrink=500:500&_v=20180523163029"width="70em" width="70em">
+      <img class="block"
+        src="https://img.danawa.com/prod_img/500000/842/604/img/5604842_1.jpg?shrink=500:500&_v=20180523163029"
+        width="70em" width="70em">
       <span class="block mt-1">패브릭</span>
     </div>
     <div class="조명 inline-block">
-      <img class="block" src="https://www.slist.kr/news/photo/202002/136134_244789_2736.png"width="70em" width="70em">
+      <img class="block" src="https://www.slist.kr/news/photo/202002/136134_244789_2736.png" width="70em" width="70em">
       <span class="block mt-1">조명</span>
     </div>
     <div class="홈데코 inline-block">
-      <img class="block" src="https://cdn.imweb.me/thumbnail/20200609/18e4c1f9f7ae1.png"width="70em" width="70em">
+      <img class="block" src="https://cdn.imweb.me/thumbnail/20200609/18e4c1f9f7ae1.png" width="70em" width="70em">
       <span class="block mt-1">홈데코</span>
     </div>
     <div class="가전 inline-block">
-      <img class="block" src="https://m.sinsadongmyunuri.com/web/product/small/201812/ff77ca4a4a778ac8b48251647a30debf.jpg"width="70em" width="70em">
+      <img class="block"
+        src="https://m.sinsadongmyunuri.com/web/product/small/201812/ff77ca4a4a778ac8b48251647a30debf.jpg" width="70em"
+        width="70em">
       <span class="block mt-1">가전</span>
     </div>
     <div class="수납/정리 inline-block">
-      <img class="block" src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQsUF-w2Nhaukdh3UtXANC5FuY0nX5Z3-jC8g&usqp=CAU"width="70em" width="70em">
+      <img class="block"
+        src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQsUF-w2Nhaukdh3UtXANC5FuY0nX5Z3-jC8g&usqp=CAU"
+        width="70em" width="70em">
       <span class="block mt-1">수납/정리</span>
     </div>
     <div class="생활용품 inline-block">
-      <img class="block" src="https://ai.esmplus.com/gded/p/0/20190227/11/15512357704927f7e045.png"width="70em" width="70em">
+      <img class="block" src="https://ai.esmplus.com/gded/p/0/20190227/11/15512357704927f7e045.png" width="70em"
+        width="70em">
       <span class="block mt-1">생활용품</span>
     </div>
     <div class="주방 inline-block">
-      <img class="block" src="https://www.costco.co.kr/medias/sys_master/images/he5/h17/11397479464990.jpg"width="70em" width="70em">
+      <img class="block" src="https://www.costco.co.kr/medias/sys_master/images/he5/h17/11397479464990.jpg" width="70em"
+        width="70em">
       <span class="block mt-1">주방</span>
     </div>
     <div class="DIY/공구 inline-block">
-      <img class="block" src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRoQPZRBnWPn5_YFcgKisz7rC_YJkDAd362Jg&usqp=CAU"width="70em" width="70em">
+      <img class="block"
+        src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRoQPZRBnWPn5_YFcgKisz7rC_YJkDAd362Jg&usqp=CAU"
+        width="70em" width="70em">
       <span class="block mt-1">DIY/공구</span>
     </div>
     <div class="인테리어 inline-block">
-      <img class="block" src="https://img1.cgtrader.com/items/698382/815d3cc042/large/photorealistic-modern-kitchen-furniture-3d-model-fbx.png"width="70em" width="70em">
+      <img class="block"
+        src="https://img1.cgtrader.com/items/698382/815d3cc042/large/photorealistic-modern-kitchen-furniture-3d-model-fbx.png"
+        width="70em" width="70em">
       <span class="block mt-1">인테리어</span>
     </div>
     <div class="반려동물 inline-block">
-      <img class="block" src="data:image/jpeg;base64,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"width="70em" width="70em">
+      <img class="block"
+        src="data:image/jpeg;base64,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"
+        width="70em" width="70em">
       <span class="block mt-1">반려동물</span>
     </div>
   </div>
 
   <div class="search-main block mt-5">
     <div class="search-container block mt-2" style="float: left; width:100%">
-      <form action="/", method="GET" >
+      <form action="/" , method="GET">
         <div>
           <div class="search block" style="width: 20%;">
             <input type="text" class="searchTerm" placeholder=" " style="height: 2.25em; ">
@@ -113,13 +132,13 @@
           </div>
         </div>
       </form>
-      
+
     </div>
-   
-    
+
+
     <div class="main-board block">
       <div class="block" style="height:71em;">
-        
+
         {%for i in group_buying.all%}
         <a href="/blabla/{{i.id}}" class="href_delete">
           <div class="block mt-5" style="width:100%;height:11em;">
@@ -128,12 +147,17 @@
               <div class="title block" style="width: 100%; height: 30%; float:left; text-align:left;">
                 <h4 style="font-weight: bolder;">{{i.title}}</h4>
               </div>
-              <div class="contentss block" style="width: 100%; height:28%;float:left; text-align:left; overflow:hidden;">
-                <p >{{i.contents}}</p>
+              <div class="contentss block"
+                style="width: 100%; height:28%;float:left; text-align:left; overflow:hidden;">
+                <p>{{i.contents}}</p>
               </div>
-              <div class="infogonggu block mt-3" style="width: width:100%; height:30%; float:left; text-align:left;">
+              <div class="infogonggu block mt-3" style="width:100%; height:30%; float:left; text-align:left;">
                 <div class="writer inline-block" style="float: left; font-weight:bold">
-                  <p>{{i.writer}}</p>
+                  {% for j in userinfo.all %}
+                  {%if i.writer == j.id %}
+                  <p>{{j.nickname}}</p>
+                  {%endif%}
+                  {%endfor%}
                 </div>
                 <div class="time inline-block ml-3" style="float: left; font-weight:light;">
                   <p>{{i.date}}</p>
@@ -141,7 +165,7 @@
                 <div class="comment inline-block ml-3" style="float: left; font-weight:light;">
                   {% for j in group_buying_comment.all %}
                   {% if j.group_buying_id == i.id %}
-                    <p>댓글 {{j.id}}</p>
+                  <p>댓글 {{j.id}}</p>
                   {%endif%}
                   {% endfor %}
                 </div>
@@ -156,29 +180,29 @@
                   </div>
                   {% endif %}
                 </div>
-                
+
               </div>
             </div>
-            
+
             <div class="inline-block" style="width:30%; float:right; ">
               <img src="{{i.img.url}}" width="200em;" height="90%;" style="vertical-align: center; margin-top:2.4em;">
             </div>
-            
+
           </div>
         </a>
         {% endfor %}
-       
+
       </div>
       <hr>
-      
+
     </div>
 
     <div class="pagination block">
-      
+
       <div class="pagination">
         <a href="#">&laquo;</a>
-        <a href="#"class="active">1</a>
-        <a href="#" >2</a>
+        <a href="#" class="active">1</a>
+        <a href="#">2</a>
         <a href="#">3</a>
         <a href="#">4</a>
         <a href="#">5</a>
