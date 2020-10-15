@@ -53,8 +53,9 @@ def fleaMaket_detail_new(request):
 
 def groupPurchase_detail(request, id):
     groupPurchase = get_object_or_404(Group_buying,pk=id)
+    user_info = User_info.objects.all()
     allComments = Group_buying_comment.objects
-    return render(request, 'groupPurchase_detail.html', {'groupPurchase': groupPurchase, 'allComments': allComments})
+    return render(request, 'groupPurchase_detail.html', {'groupPurchase': groupPurchase, 'allComments': allComments, 'user_info': user_info})
 
 def groupPurchase_detail_new(request):
     groupPurchase = Group_buying()

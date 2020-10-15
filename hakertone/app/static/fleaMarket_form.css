@@ -152,65 +152,6 @@ label.custom-file-label::after {
   box-shadow: 0 0 0 0.3px #42cfcf !important;
 }
 
-/* modal */
-.modal1 {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%) scale(0);
-  border: 1px solid #42cfcf;
-  border-radius: 10px;
-  z-index: 100000;
-  background-color: white;
-  width: 25rem;
-}
-.modal1.active {
-  transform: translate(-50%, -50%) scale(1);
-}
-.modal-header1 {
-  padding: 0 1rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  border-bottom: 1px solid #42cfcf;
-}
-.modal-header1 .title {
-  font-size: 1.5rem;
-  font-weight: bold;
-}
-.modal-header1 .modal-close-btn {
-  cursor: pointer;
-  border: none;
-  outline: none;
-  background: none;
-  color: #42cfcf;
-  font-weight: bold;
-  font-size: 2rem;
-}
-.modal-body1 {
-  padding: 0.4rem 1rem;
-}
-
-/* .select.active,
-  .input-group.active {
-    z-index: -1;
-  } */
-
-#overlay1 {
-  position: fixed;
-  opacity: 0;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: rgba(0, 0, 0, 0.5);
-  pointer-events: none;
-}
-#overlay1.active {
-  opacity: 1;
-  pointer-events: all;
-}
-
 @media screen and (max-width: 1024px) {
   .container {
     padding: 0 6rem;

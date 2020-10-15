@@ -13,6 +13,12 @@
                 <span class="process">진행종료</span>
             {%endif%}
             <h1 class="detail-title">{{groupPurchase.title}}</h1>
+
+            <!-- {%for i in user_info%}
+                {%if i.user_id == groupPurchase.writer%}
+                <span class="user">{{i.nickname}}</span>
+                {%endif%}
+            {%endfor%} -->
             <span class="user">{{groupPurchase.writer}}</span>
             <span class="time"><i class="far fa-clock"></i>{{groupPurchase.date}}</span>
         </div>
