@@ -1,3 +1,4 @@
+<!-- 작성자 nickname나오게 하기 -->
 {%extends 'base.html'%}
 {%block contents%}
 {%load static%}
@@ -19,6 +20,7 @@
                 <span class="user">{{i.nickname}}</span>
                 {%endif%}
             {%endfor%} -->
+
             <span class="user">{{groupPurchase.writer}}</span>
             <span class="time"><i class="far fa-clock"></i>{{groupPurchase.date}}</span>
         </div>
@@ -76,7 +78,7 @@
             {%if i.Group_buying_id == groupPurchase.id%}
             <div class="comment">
                 <img src="../media/images/smile.png" alt="user-image" class="user-image">
-                <div class="comment-name-content" style="display: block;">
+                <div class="comment-name-content" style="display: block; width: 100%">
                     <h4 class="comment-name">{{i.user_info_id}}</h4>
                     <p class="comment-content">
                         {{i.contents}}

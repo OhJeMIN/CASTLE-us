@@ -1,6 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import User_info, Company, Group_buying, Group_buying_comment, Flee_market, Review,Company_buying
 from .forms import Group_buyingPost, Flee_marketPost
+import random
 
 def index(request):
     return render(request, 'index.html')
@@ -39,7 +40,12 @@ def Pcompany(request):
 
 def fleaMarket_detail(request, id):
     fleaMarket = get_object_or_404(Flee_market, pk =id)
-    return render(request, 'fleaMarket_detail.html', {'fleaMarket': fleaMarket})
+    fleaMarketAll = Flee_market.objects.all()
+    fleaMarketAllList = []
+    for i in fleaMarketAll:
+        fleaMarketAllList.append(i.id)
+    randomNum = random.sample(fleaMarketAllList, 4)
+    return render(request, 'fleaMarket_detail.html', {'n':randomNum,'fleaMarket': fleaMarket, 'fleaMarketAll': fleaMarketAll})
 
 def fleaMaket_detail_new(request):
     fleaMarket = Flee_market()
@@ -56,7 +62,7 @@ def fleaMaket_detail_new(request):
 def groupPurchase_detail(request, id):
     groupPurchase = get_object_or_404(Group_buying,pk=id)
     user_info = User_info.objects.all()
-    allComments = Group_buying_comment.objects
+    allComments = Group_buying_comment.objects.all()
     return render(request, 'groupPurchase_detail.html', {'groupPurchase': groupPurchase, 'allComments': allComments, 'user_info': user_info})
 
 def groupPurchase_detail_new(request):

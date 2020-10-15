@@ -3,7 +3,7 @@
 {%load static%}
 <link rel="stylesheet" href="{%static 'fleaMarket_form.css'%}">
 <div class="container" style="padding: 0 10rem;">
-    <form method="POST" enctype="multipart/form-data" action = "{%url 'fleaMarket_detail_new'%}">
+    <form method="POST" enctype='multipart/form-data' action = "{%url 'fleaMarket_detail_new'%}">
         {% csrf_token %}
             {{ form.media }}
             {{ form.as_p }}

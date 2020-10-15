@@ -1,3 +1,4 @@
+<!-- 이 상품과 함께봤어요 for 해결하기 -->
 {%extends 'base.html'%}
 {%block contents%}
 {% load static %}
@@ -60,62 +61,28 @@
     <div class="recommendation">
         <h3 class="recommendation-title">이 상품과 함께 봤어요</h3>
         <div class="recommendation-product">
-            <a href="">
-                <div class="card product-card" style="width: 13rem;">
-                    <img src="../media/images/스토케.jpg" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <span class="product-company">생활백서</span>
-                        <h5 class="product-name">올인원 스윙 빨래바구니 2단/3단</h5>
-                        <div class="product-percent-price">
-                            <strong class="product-percent">44%</strong>
-                            <strong class="product-price">18,900 외</strong>
+            <!-- {{fleaMarketAll}} -> QuerySet
+            {{n}}
+            {{fleaMarketAll.1.id}}
+            {{fleaMarketAll.2.id}} -->
+            <!-- {%for i in n%}
+                {{i}}<br>
+                <a href="/fleaMarket_detail/{{i}}">
+                    <div class="card product-card" style="width: 13rem;">
+                        <img src="../media/images/스토케.jpg" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <span class="product-company">{{fleaMarketAll.i.id}}</span>
+                            <h5 class="product-name">{{fleaMarketAll.i.title}}</h5>
+                            <div class="product-percent-price">
+                                <strong class="product-percent">44%</strong>
+                                <strong class="product-price">{{fleaMarketAll.i.price}}</strong>
+                            </div>
+                            <span class="time product-time"><i class="far fa-clock"></i>{{fleaMarket.i.date}}</span>
                         </div>
-                        <span class="time product-time"><i class="far fa-clock"></i>10/15/22:32</span>
                     </div>
-                </div>
-            </a>
-            <a href="">
-                <div class="card product-card" style="width: 13rem;">
-                    <img src="../media/images/스토케.jpg" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <span class="product-company">생활백서</span>
-                        <h5 class="product-name">올인원 스윙 빨래바구니 2단/3단</h5>
-                        <div class="product-percent-price">
-                            <strong class="product-percent">44%</strong>
-                            <strong class="product-price">18,900 외</strong>
-                        </div>
-                        <span class="time product-time"><i class="far fa-clock"></i>10/15/22:32</span>
-                    </div>
-                </div>
-            </a>
-            <a href="">
-                <div class="card product-card" style="width: 13rem;">
-                    <img src="../media/images/스토케.jpg" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <span class="product-company">생활백서</span>
-                        <h5 class="product-name">올인원 스윙 빨래바구니 2단/3단</h5>
-                        <div class="product-percent-price">
-                            <strong class="product-percent">44%</strong>
-                            <strong class="product-price">18,900 외</strong>
-                        </div>
-                        <span class="time product-time"><i class="far fa-clock"></i>10/15/22:32</span>
-                    </div>
-                </div>
-            </a>
-            <a href="">
-                <div class="card product-card" style="width: 13rem;">
-                    <img src="../media/images/스토케.jpg" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <span class="product-company">생활백서</span>
-                        <h5 class="product-name">올인원 스윙 빨래바구니 2단/3단</h5>
-                        <div class="product-percent-price">
-                            <strong class="product-percent">44%</strong>
-                            <strong class="product-price">18,900 외</strong>
-                        </div>
-                        <span class="time product-time"><i class="far fa-clock"></i>10/15/22:32</span>
-                    </div>
-                </div>
-            </a>
+                </a>
+            {%endfor%} -->
+            
         </div>
     </div>
 </div>
