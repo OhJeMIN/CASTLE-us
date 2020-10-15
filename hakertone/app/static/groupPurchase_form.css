@@ -16,19 +16,14 @@
   outline: none;
 }
 
-.pricefield,
 .proceedingfield {
   display: block !important;
-}
-.pricefield,
-.proceedingfield {
   width: 30% !important;
 }
+
 label {
   font-weight: bold;
 }
-.imgfield,
-.img1field,
-.img2field {
+.imgfield {
   display: block;
 }

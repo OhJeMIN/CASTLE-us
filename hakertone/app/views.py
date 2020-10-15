@@ -1,5 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import User_info, Company, Group_buying, Group_buying_comment, Flee_market, Review,Company_buying
+from .forms import Group_buyingPost, Flee_marketPost
 
 def index(request):
     return render(request, 'index.html')
@@ -7,7 +8,8 @@ def index(request):
 def group_board(request):
     group_buying = Group_buying.objects
     group_buying_comment = Group_buying_comment.objects
-    return render(request, 'group_board.html',{'group_buying':group_buying, 'group_buying_comment':group_buying_comment})
+    userinfo = User_info.objects
+    return render(request, 'group_board.html',{'group_buying':group_buying, 'group_buying_comment':group_buying_comment,'userinfo':userinfo})
 
 def company_detail (request, id):
     company_detail = get_object_or_404(Company_buying, pk=id)
@@ -41,11 +43,11 @@ def fleaMarket_detail(request, id):
 
 def fleaMaket_detail_new(request):
     fleaMarket = Flee_market()
-    fleaMarket.title = request.GET['title']
-    fleaMarket.img = request.GET['img']
-    fleaMarket.contents = request.GET['contents']
-    fleaMarket.proceeding = request.GET['proceeding']
-    fleaMarket.price = request.GET['price']
+    fleaMarket.title = request.POST['title']
+    fleaMarket.img = request.POST.get('img')
+    fleaMarket.contents = request.POST['contents']
+    fleaMarket.proceeding = request.POST['proceeding']
+    fleaMarket.price = request.POST['price']
     fleaMarket.writer = request.user.id
     fleaMarket.save()
     return redirect('/fleaMarket_detail/'+str(fleaMarket.id))
@@ -76,7 +78,8 @@ def groupPurchase_comment_new(request):
     return redirect('/groupPurchase_detail/'+ str(groupPurchaseComment.Group_buying_id))
 
 def fleaMarket_form(request):
-    return render(request, 'fleaMarket_form.html')
+    form = Flee_marketPost()
+    return render(request, 'fleaMarket_form.html', {'form': form})
 
 def groupPurchase_form(request):
     form = Group_buyingPost()

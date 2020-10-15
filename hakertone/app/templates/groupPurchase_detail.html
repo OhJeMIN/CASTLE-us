@@ -31,13 +31,13 @@
             </ol>
             <div class="carousel-inner">
                 <div class="carousel-item active">
-                    <img src="../media/images/아기의자.jpg" class="d-block w-100" alt="...">
+                    <img src="../media/{{groupPurchase.img}}" class="d-block w-100" alt="...">
                 </div>
                 <div class="carousel-item">
-                    <img src="../media/images/아기의자.jpg" class="d-block w-100" alt="...">
+                    <img src="../media/{{groupPurchase.img}}" class="d-block w-100" alt="...">
                 </div>
                 <div class="carousel-item">
-                    <img src="../media/images/아기의자.jpg" class="d-block w-100" alt="...">
+                    <img src="../media/{{groupPurchase.img}}" class="d-block w-100" alt="...">
                 </div>
             </div>
             <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
@@ -51,7 +51,7 @@
         </div>
         <!-- detail-content -->
         <p class="detail-content">
-            {{groupPurchase.contents}}
+            {{groupPurchase.contents|safe}}
         </p>
     </div>
 </div>
@@ -60,7 +60,7 @@
     <div class="comments-part">
         <div class="comments-head">
             <h1 class="comments-title">댓글</h1>
-
+            
             <!-- <span class="count-comments">{{allComments.count}}</span> -->
             
         </div>
@@ -75,14 +75,14 @@
         {%for i in allComments.all%}
             {%if i.Group_buying_id == groupPurchase.id%}
             <div class="comment">
-                <img src="../media/images/아기의자.jpg" alt="user-image" class="user-image">
+                <img src="../media/images/smile.png" alt="user-image" class="user-image">
                 <div class="comment-name-content" style="display: block;">
                     <h4 class="comment-name">{{i.user_info_id}}</h4>
                     <p class="comment-content">
                         {{i.contents}}
                     </p>
                     <div class="comment-etc">
-                        <span class="write-time">2시간 전</span> <!--date 필드를 추가-->
+                        <span class="write-time">{{groupPurchase.date}}</span>
                         <div class="comment-etc2">
                             <span class="like"><a><i class="fas fa-heart"></i>좋아요</a></span>
                         <span class="create-comments"><a>답글 달기</a></span>

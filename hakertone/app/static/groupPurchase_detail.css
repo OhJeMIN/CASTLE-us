@@ -117,7 +117,7 @@ a:hover {
   color: white;
   right: 0.5rem;
   border-radius: 10px;
-  padding: 0 1.2rem;
+  padding: 0.25rem 1.2rem;
   font-size: 1.1rem;
 }
 .saveBtn:active,
@@ -187,6 +187,9 @@ a:hover {
 }
 .fa-arrow-alt-circle-right {
   font-size: 1.3rem;
+}
+.input-group {
+  align-items: center !important;
 }
 
 @media screen and (max-width: 1200px) {

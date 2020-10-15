@@ -18,6 +18,7 @@ from django.urls import path
 from django.conf import settings
 from django.conf.urls.static import static
 import app.views
+from django.conf.urls import include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -42,6 +43,6 @@ urlpatterns = [
     
     path('groupPurchase_comment_new', app.views.groupPurchase_comment_new, name= 'groupPurchase_comment_new'), 
 
-    
+    path('ckeditor/', include('ckeditor_uploader.urls')),
 
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -2,54 +2,16 @@
 {%block contents%}
 {%load static%}
 <link rel="stylesheet" href="{%static 'fleaMarket_form.css'%}">
-<div class="container">
-        <!-- form-body -->
-        <form action="{%url 'fleaMarket_detail_new'%}" class="form-body">
-            <div class="select">
-                <select name="proceeding" id="process" required="true">
-                    <option value = "" selected disabled style="background-color: rgb(216, 216, 216);">진행사항</option>
-                    <option value="1">진행중</option>
-                    <option value="2">진행종료</option>
-                </select>
-            </div>
-            <!-- write-title -->
-            <input type="text" class="form-control" placeholder="제목을 입력해주세요" name="title" class="write-title"
-                style="margin-bottom: 1rem; font-weight:550" required>
-            <!-- input-image -->
-            <div class="input-group">
-                <div class="custom-file">
-                  <input type="file" class="custom-file-input" id="write-image" class="write-image" name="img" multiple="">
-                  <label class="custom-file-label" for="write-image">사진을 첨부해주세요</label>
-                </div>
-                <div class="input-group-append">
-                  <button class="btn btn-outline-secondary image-btn" type="button" id="write-image">첨부</button>
-                </div>
-              </div>
-            <!-- write-price -->
-            <input type="text" class="form-control" placeholder="가격을 입력해주세요" name="price" class="write-price"
-                required>
-            <!-- write-content -->
-            <textarea name="contents" class="write-content" rows="8" placeholder="설명을 입력해주세요"
-                style="padding:0 .6rem;width: 100%; resize:none" required></textarea>
-            <div class="sub-btn"><button type="submit" class="btn btn-primary submit-btn" data-modal-target="#modal1">제출하기</button></div>
-        </form>
-    </div>
-    <script>
-        const imageBtn = document.querySelector('.image-btn');
-        const writeImage = document.querySelector('#write-image');
-        const customFileLabel= document.querySelector('.custom-file-label');
-        let imageList =[];
-        imageBtn.addEventListener('click', function(){
-            writeImage.click();
-        })
-        writeImage.addEventListener('change', function(){
-            if(writeImage.value){
-                for(let i=0; i< writeImage.files.length; i++){
-                    imageList[i] = writeImage.files[i].name;
-                }
-            }
-            customFileLabel.innerHTML = imageList;
-        })
-
-    </script>
+<div class="container" style="padding: 0 10rem;">
+    <form method="POST" enctype="multipart/form-data" action = "{%url 'fleaMarket_detail_new'%}">
+        {% csrf_token %}
+            {{ form.media }}
+            {{ form.as_p }}
+        <div class="btnBlock">
+            <input type="submit" class="btn btnSave" value="저장"/>
+        </div>
+    </form>
+</div>
 {%endblock%}
+
+<!-- fleaMarket detail img가 안들어가짐(저장하고 나오면 이미지 없음) -->
