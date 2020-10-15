@@ -21,7 +21,9 @@ import app.views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('',app.views.index, name='index')
+    path('',app.views.index, name='index'),
+    path('1',app.views.login, name='login'),
+    path('2',app.views.main, name='main')
     
 
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
