@@ -7,9 +7,15 @@
         {% csrf_token %}
             {{ form.media }}
             {{ form.as_p }}
-            사진1: <input type="file" name="myfile1">
-            사진2: <input type="file" name="myfile2">
-            사진3: <input type="file" name="myfile3">
+            <div>
+                사진1: <input type="file" name="myfile1" style="margin-bottom: 1rem;">
+            </div>
+            <div>
+                사진2: <input type="file" name="myfile2" style="margin-bottom: 1rem;">
+            </div>
+            <div>
+                사진3: <input type="file" name="myfile3" style="margin-bottom: 1rem;">
+            </div>
         <div class="btnBlock">
             <input type="submit" class="btn btnSave" value="저장"/>
         </div>

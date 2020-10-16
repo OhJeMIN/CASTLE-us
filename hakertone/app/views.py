@@ -33,7 +33,8 @@ def Lcompany(request):
 
 def companyBuying(request):
     companyBuying = Company_buying.objects.all()
-    return render(request, 'Company_buying.html', {'companyBuying': companyBuying})
+    companyinfo = Company.objects.all()
+    return render(request, 'Company_buying.html', {'companyBuying': companyBuying, 'companyinfo': companyinfo})
 
 def fleaMarket(request):
     fleaMarket = Flee_market.objects.all()
@@ -42,13 +43,19 @@ def fleaMarket(request):
 
 def fleaMarket_detail(request, id):
     fleaMarket = get_object_or_404(Flee_market, pk =id)
-    fleaMarketAll = Flee_market.objects.all()
     user_info = User_info.objects.all()
-    fleaMarketAllList = []
-    for i in fleaMarketAll:
-        fleaMarketAllList.append(i.id)
-    randomNum = random.sample(fleaMarketAllList, 4)
-    return render(request, 'fleaMarket_detail.html', {'n':randomNum,'fleaMarket': fleaMarket, 'fleaMarketAll': fleaMarketAll, 'user_info': user_info})
+    fleaMarketAll = Flee_market.objects.all()
+    randomNum = []
+    for i in range(1, len(fleaMarketAll)+1):
+        randomNum.append(i)
+    randomNum = random.sample(randomNum, 4)
+    randomObjList = []
+    for i in range(len(randomNum)):
+        for j in range(fleaMarketAll.count()):
+            if randomNum[i] == fleaMarketAll[j].id:
+                randomObjList.append(fleaMarketAll[j])
+    return render(request, 'fleaMarket_detail.html', {'randomObjList':randomObjList,'fleaMarket': fleaMarket, 'fleaMarketAll': fleaMarketAll, 'user_info': user_info})
+
 
 def fleaMaket_detail_new(request):
     fleaMarket = Flee_market()

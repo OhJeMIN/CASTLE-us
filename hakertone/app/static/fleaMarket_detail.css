@@ -149,21 +149,20 @@ a:hover {
   font-size: 1.4rem;
   margin: 1rem 0;
 }
-.product-company {
+.product-writer {
+  text-align: right;
   font-size: 0.8rem;
   margin-bottom: 0.3rem;
 }
 .product-name {
   font-weight: bold;
-  font-size: 1rem;
-  margin: 0;
-}
-.product-percent {
-  color: #84e2e2;
-  font-size: 1.1rem;
-}
-.product-price {
   font-size: 1.2rem;
+  margin: 0.3rem 0;
+}
+
+.product-price {
+  color: #84e2e2;
+  font-size: 1.3rem;
   margin-top: 0.2rem;
   margin-bottom: 1rem;
 }
