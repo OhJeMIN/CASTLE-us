@@ -35,7 +35,8 @@ def Ccompany(request):
     return render(request, 'Ccompany.html')
 
 def fleaMarket(request):
-    return render(request, 'fleaMarket.html')
+    fleaMarket = Flee_market.objects.all()
+    return render(request, 'fleaMarket.html',{'fleaMarket':fleaMarket})
 
 
 def fleaMarket_detail(request, id):
