@@ -44,16 +44,19 @@ def fleaMarket(request):
 def fleaMarket_detail(request, id):
     fleaMarket = get_object_or_404(Flee_market, pk =id)
     fleaMarketAll = Flee_market.objects.all()
+    user_info = User_info.objects.all()
     fleaMarketAllList = []
     for i in fleaMarketAll:
         fleaMarketAllList.append(i.id)
     randomNum = random.sample(fleaMarketAllList, 4)
-    return render(request, 'fleaMarket_detail.html', {'n':randomNum,'fleaMarket': fleaMarket, 'fleaMarketAll': fleaMarketAll})
+    return render(request, 'fleaMarket_detail.html', {'n':randomNum,'fleaMarket': fleaMarket, 'fleaMarketAll': fleaMarketAll, 'user_info': user_info})
 
 def fleaMaket_detail_new(request):
     fleaMarket = Flee_market()
     fleaMarket.title = request.POST['title']
-    fleaMarket.img = request.POST.get('img')
+    fleaMarket.img = request.FILES['myfile1']
+    fleaMarket.img1 = request.FILES['myfile2']
+    fleaMarket.img2 = request.FILES['myfile3']
     fleaMarket.contents = request.POST['contents']
     fleaMarket.proceeding = request.POST['proceeding']
     fleaMarket.price = request.POST['price']

@@ -1,4 +1,4 @@
-<!-- 작성자 nickname나오게 하기 -->
+<!-- 댓글 수 가져오기 -->
 {%extends 'base.html'%}
 {%block contents%}
 {%load static%}
@@ -15,13 +15,12 @@
             {%endif%}
             <h1 class="detail-title">{{groupPurchase.title}}</h1>
 
-            <!-- {%for i in user_info%}
+            {%for i in user_info%}
                 {%if i.user_id == groupPurchase.writer%}
                 <span class="user">{{i.nickname}}</span>
                 {%endif%}
-            {%endfor%} -->
+            {%endfor%}
 
-            <span class="user">{{groupPurchase.writer}}</span>
             <span class="time"><i class="far fa-clock"></i>{{groupPurchase.date}}</span>
         </div>
         <!-- carousel -->
@@ -79,7 +78,14 @@
             <div class="comment">
                 <img src="../media/images/smile.png" alt="user-image" class="user-image">
                 <div class="comment-name-content" style="display: block; width: 100%">
-                    <h4 class="comment-name">{{i.user_info_id}}</h4>
+
+                    {%for j in user_info.all%}
+                        {%if i.user_info_id == j.id%}
+                            <h4 class="comment-name">{{j.nickname}}</h4>
+                        {%endif%}
+                    {%endfor%}
+
+
                     <p class="comment-content">
                         {{i.contents}}
                     </p>
