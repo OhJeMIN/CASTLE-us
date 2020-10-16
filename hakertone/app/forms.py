@@ -7,7 +7,7 @@ class Group_buyingPost(forms.ModelForm):
         fields = ['proceeding', 'title', 'img', 'contents']
         widgets = {
             'title': forms.TextInput(attrs={'class': 'titlefield form-control'}),
-            'img': forms.ClearableFileInput(attrs = {'class': 'imgfield'}),
+            'img': forms.FileInput(attrs = {'class': 'imgfield'}),
             'proceeding': forms.NumberInput(attrs = {'class': 'proceedingfield form-control', 'placeholder': "진행(1)/ 종료(2)"}),
         }
 
@@ -16,6 +16,7 @@ class Group_buyingPost(forms.ModelForm):
             'img': "사진",
             'proceeding': "진행상황"
         }
+
     
 
 class Flee_marketPost(forms.ModelForm):
@@ -25,9 +26,9 @@ class Flee_marketPost(forms.ModelForm):
         widgets = {
             'proceeding': forms.NumberInput(attrs = {'class': 'proceedingfield form-control', 'placeholder': "진행(1)/ 종료(2)"}),
             'title': forms.TextInput(attrs = {'class': 'titlefield form-control'}),
-            'img': forms.ClearableFileInput(attrs = {'class': 'imgfield'}),
-            'img1': forms.ClearableFileInput(attrs = {'class': 'img1field'}),
-            'img2': forms.ClearableFileInput(attrs = {'class': 'img2field'}),
+            'img': forms.FileInput(attrs = {'class': 'imgfield'}),
+            'img1': forms.FileInput(attrs = {'class': 'img1field'}),
+            'img2': forms.FileInput(attrs = {'class': 'img2field'}),
             'price': forms.NumberInput(attrs = {'class': 'pricefield form-control', 'placeholder': "가격(원)을 입력해주세요"}),
         }
 

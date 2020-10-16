@@ -7,6 +7,7 @@
         {% csrf_token %}
             {{ form.media }}
             {{ form.as_p }}
+            사진(저장 o): <input type="file" name="myfile">
             <div class="btnBlock">
                 <input type="submit" class="btn btnSave" value="저장"/>
             </div>

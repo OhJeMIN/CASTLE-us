@@ -30,7 +30,7 @@ urlpatterns = [
     path('register3',app.views.register3, name='register3'),    
     path('Lcompany',app.views.Lcompany, name='Lcompany'),
     path('Ccompany',app.views.Ccompany, name='Ccompany'),   
-    path('Pcompany',app.views.Pcompany, name='Pcompany'),   
+    path('fleaMarket',app.views.fleaMarket, name='fleaMarket'),   
 
     path('fleaMarket_detail/<int:id>', app.views.fleaMarket_detail, name='fleaMarket_detail'),
     path('groupPurchase_detail/<int:id>', app.views.groupPurchase_detail, name='groupPurchase_detail'),

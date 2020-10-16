@@ -34,8 +34,8 @@ def Lcompany(request):
 def Ccompany(request):
     return render(request, 'Ccompany.html')
 
-def Pcompany(request):
-    return render(request, 'Pcompany.html')
+def fleaMarket(request):
+    return render(request, 'fleaMarket.html')
 
 
 def fleaMarket_detail(request, id):
@@ -68,7 +68,7 @@ def groupPurchase_detail(request, id):
 def groupPurchase_detail_new(request):
     groupPurchase = Group_buying()
     groupPurchase.title = request.POST['title']
-    groupPurchase.img = request.POST.get('img')
+    groupPurchase.img = request.FILES['myfile']
     groupPurchase.proceeding = request.POST['proceeding']
     groupPurchase.contents = request.POST['contents']
     groupPurchase.writer = request.user.id #로그인 한 id
