@@ -14,7 +14,12 @@
                 <span class="process">진행종료</span>
             {%endif%}
             <h1 class="detail-title">{{fleaMarket.title}}</h1>
-            <span class="user">{{fleaMarket.writer}}</span>
+            {%for i in user_info%}
+                {%if i.user_id == fleaMarket.writer%}
+                    <span class="user">{{i.nickname}}</span>
+                {%endif%}
+            {%endfor%}
+
             <span class="time"><i class="far fa-clock"></i>{{fleaMarket.date}}</span>
         </div>
         <span class="price-info">판매가<strong class="price">{{fleaMarket.price}}</strong>원</span>
