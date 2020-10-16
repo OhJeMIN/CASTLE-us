@@ -52,7 +52,9 @@ def fleaMarket_detail(request, id):
 def fleaMaket_detail_new(request):
     fleaMarket = Flee_market()
     fleaMarket.title = request.POST['title']
-    fleaMarket.img = request.POST.get('img')
+    fleaMarket.img = request.FILES['myfile1']
+    fleaMarket.img1 = request.FILES['myfile2']
+    fleaMarket.img2 = request.FILES['myfile3']
     fleaMarket.contents = request.POST['contents']
     fleaMarket.proceeding = request.POST['proceeding']
     fleaMarket.price = request.POST['price']

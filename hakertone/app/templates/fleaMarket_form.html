@@ -7,11 +7,12 @@
         {% csrf_token %}
             {{ form.media }}
             {{ form.as_p }}
+            사진1: <input type="file" name="myfile1">
+            사진2: <input type="file" name="myfile2">
+            사진3: <input type="file" name="myfile3">
         <div class="btnBlock">
             <input type="submit" class="btn btnSave" value="저장"/>
         </div>
     </form>
 </div>
 {%endblock%}
-
-<!-- fleaMarket detail img가 안들어가짐(저장하고 나오면 이미지 없음) -->
