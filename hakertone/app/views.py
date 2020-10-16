@@ -31,8 +31,9 @@ def register3(request):
 def Lcompany(request):
     return render(request, 'Lcompany.html')
 
-def Ccompany(request):
-    return render(request, 'Ccompany.html')
+def Company_buying(request):
+    Company_buying = Company_buying.objects.all()  
+    return render(request, 'Company_buying.html',{'Company_buying':Company_buying})
 
 def fleaMarket(request):
     fleaMarket = Flee_market.objects.all()
