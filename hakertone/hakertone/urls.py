@@ -23,8 +23,9 @@ from django.conf.urls import include
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('',app.views.index, name='index'),
-    path('1',app.views.login, name='login'),
-    path('2',app.views.main, name='main'),
+    path('login', app.views.login, name='login'),
+    path('logout', app.views.logout, name='logout'),
+    path('main',app.views.main, name='main'),
     path('group_board',app.views.group_board, name='group_board'),
     path('company_detail/<int:id>', app.views.company_detail, name='company_detail'),
     path('register',app.views.register, name='register'),

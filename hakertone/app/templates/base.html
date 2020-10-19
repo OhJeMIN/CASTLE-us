@@ -18,8 +18,6 @@
     border : solid;
     color:#84e2e2!important;
     background-color: white;
-    
-    
   }
  
 </style>
@@ -57,13 +55,10 @@
           </ul>
           <ul class="navbar-nav mr-5">
               <li>
-                <li class="nav-item active mr-3">
-                    <a class="nav-link" href="#"  id="navv">로그인</a>
-                  </li>
-              </li>
-              <li>
-                <li class="nav-item mr-3">
-                    <a class="nav-link" href="#" id="navv">회원가입</a>
+                <li class="nav-item mr-3 mt-2">
+                  <form id="logout" method="POST" action="{% url 'logout' %}">
+                    {% csrf_token %} <input id="navvv" type="submit" value="로그아웃">
+                  </form> 
                   </li>
               </li>
               <li>

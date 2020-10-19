@@ -2,15 +2,43 @@ from django.shortcuts import render, get_object_or_404, redirect
 from .models import User_info, Company, Group_buying, Group_buying_comment, Flee_market, Review,Company_buying
 from .forms import Group_buyingPost, Flee_marketPost
 import random
+from django.contrib.auth.models import User
+from django.contrib import auth
 
 def index(request):
     return render(request, 'index.html')
 
 def login(request):
+    if request.method == 'POST':
+            username = request.POST['username']
+            password = request.POST['password']
+            user = auth.authenticate(request, username=username, password=password)
+            if user is not None:
+                auth.login(request, user)
+                return redirect('/main')
+            else:
+                return render(request, 'login.html', {'error': 'username or password is incorrect.'})
+    else:
+        return render(request, 'login.html')
+
+def logout(request):
+    if request.method == 'POST':
+        auth.logout(request)
+        return redirect('/login')
     return render(request, 'login.html')
 
 def main(request):
-    return render(request, 'main.html')
+    group_buying = Group_buying.objects.all()    
+    randomNum = []
+    for i in range(1, len(group_buying)+1):
+        randomNum.append(i)
+    randomNum = random.sample(randomNum, 4)
+    randomObjList = []
+    for i in range(len(randomNum)):
+        for j in range(group_buying.count()):
+            if randomNum[i] == group_buying[j].id:
+                randomObjList.append(group_buying[j])
+    return render(request, 'main.html',  {'group_buying': randomObjList})
 
 def group_board(request):
     group_buying = Group_buying.objects
@@ -45,7 +73,6 @@ def companyBuying(request):
 def fleaMarket(request):
     fleaMarket = Flee_market.objects.all()
     return render(request, 'fleaMarket.html',{'fleaMarket':fleaMarket})
-
 
 def fleaMarket_detail(request, id):
     fleaMarket = get_object_or_404(Flee_market, pk =id)
