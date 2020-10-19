@@ -8,12 +8,17 @@
         <!-- detail-info -->
         <div class="detail-info">
             {%if fleaMarket.proceeding == 1 %}
-                <span class="process">진행중</span>
+            <span class="process">진행중</span>
             {%else%}
-                <span class="process">진행종료</span>
+            <span class="process" style="background: gray;">진행종료</span>
             {%endif%}
             <h1 class="detail-title">{{fleaMarket.title}}</h1>
-            <span class="user">{{fleaMarket.writer}}</span>
+            {%for i in user_info%}
+            {%if i.user_id == fleaMarket.writer%}
+            <span class="user">{{i.nickname}}</span>
+            {%endif%}
+            {%endfor%}
+
             <span class="time"><i class="far fa-clock"></i>{{fleaMarket.date}}</span>
         </div>
         <span class="price-info">판매가<strong class="price">{{fleaMarket.price}}</strong>원</span>
@@ -46,7 +51,7 @@
         </div>
         <!-- detail-content -->
         <p class="detail-content">
-            {{fleaMarket.contents}}
+            {{fleaMarket.contents|safe}}
         </p>
         <!-- buttons -->
         <div class="buttons">
@@ -58,64 +63,28 @@
 <div class="container container2" style="padding: 0 5rem">
     <!-- recommendation -->
     <div class="recommendation">
-        <h3 class="recommendation-title">이 상품과 함께 봤어요</h3>
+        <h3 class="recommendation-title">이 상품을 추천합니다</h3>
         <div class="recommendation-product">
-            <a href="">
+            {%for i in randomObjList%}
+            <a href="/fleaMarket_detail/{{i.id}}">
                 <div class="card product-card" style="width: 13rem;">
-                    <img src="../media/images/스토케.jpg" class="card-img-top" alt="...">
+                    <img src="../media/{{i.img}}" class="card-img-top" alt="..." style="height: 10rem;">
                     <div class="card-body">
-                        <span class="product-company">생활백서</span>
-                        <h5 class="product-name">올인원 스윙 빨래바구니 2단/3단</h5>
-                        <div class="product-percent-price">
-                            <strong class="product-percent">44%</strong>
-                            <strong class="product-price">18,900 외</strong>
+                        <h5 class="product-name">제목{{i.title}}</h5>
+                        <div style="text-align: right; margin-right: .3rem">
+                            <strong class="product-price">{{i.price}}</strong>
+                            <span>원</span>
                         </div>
-                        <span class="time product-time"><i class="far fa-clock"></i>10/15/22:32</span>
+                        {%for j in user_info.all%}
+                        {%if j.id == i.writer%}
+                        <div class="product-write" style="text-align: right; color: gray">{{j.nickname}}</div>
+                        {%endif%}
+                        {%endfor%}
+                        <span class="time product-time"><i class="far fa-clock"></i>{{i.date}}</span>
                     </div>
                 </div>
             </a>
-            <a href="">
-                <div class="card product-card" style="width: 13rem;">
-                    <img src="../media/images/스토케.jpg" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <span class="product-company">생활백서</span>
-                        <h5 class="product-name">올인원 스윙 빨래바구니 2단/3단</h5>
-                        <div class="product-percent-price">
-                            <strong class="product-percent">44%</strong>
-                            <strong class="product-price">18,900 외</strong>
-                        </div>
-                        <span class="time product-time"><i class="far fa-clock"></i>10/15/22:32</span>
-                    </div>
-                </div>
-            </a>
-            <a href="">
-                <div class="card product-card" style="width: 13rem;">
-                    <img src="../media/images/스토케.jpg" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <span class="product-company">생활백서</span>
-                        <h5 class="product-name">올인원 스윙 빨래바구니 2단/3단</h5>
-                        <div class="product-percent-price">
-                            <strong class="product-percent">44%</strong>
-                            <strong class="product-price">18,900 외</strong>
-                        </div>
-                        <span class="time product-time"><i class="far fa-clock"></i>10/15/22:32</span>
-                    </div>
-                </div>
-            </a>
-            <a href="">
-                <div class="card product-card" style="width: 13rem;">
-                    <img src="../media/images/스토케.jpg" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <span class="product-company">생활백서</span>
-                        <h5 class="product-name">올인원 스윙 빨래바구니 2단/3단</h5>
-                        <div class="product-percent-price">
-                            <strong class="product-percent">44%</strong>
-                            <strong class="product-price">18,900 외</strong>
-                        </div>
-                        <span class="time product-time"><i class="far fa-clock"></i>10/15/22:32</span>
-                    </div>
-                </div>
-            </a>
+            {%endfor%}
         </div>
     </div>
 </div>

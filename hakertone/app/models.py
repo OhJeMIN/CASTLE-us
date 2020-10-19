@@ -1,5 +1,5 @@
 from django.db import models
-
+from ckeditor_uploader.fields import RichTextUploadingField
 class User_info(models.Model):
    user_id = models.IntegerField() 
    nickname = models.CharField(max_length=100)
@@ -16,7 +16,7 @@ class Group_buying(models.Model):
     title = models.TextField()
     img = models.ImageField(upload_to='images/')
     proceeding = models.IntegerField()
-    contents = models.TextField()
+    contents = RichTextUploadingField(blank=True, null=True)
     date = models.DateTimeField(auto_now_add=True)
     writer = models.IntegerField()
     category = models.IntegerField()
@@ -32,7 +32,7 @@ class Flee_market(models.Model):
     img = models.ImageField(upload_to='images/')
     img1 = models.ImageField(upload_to='images/')
     img2 = models.ImageField(upload_to='images/')
-    contents = models.TextField()
+    contents = RichTextUploadingField(blank=True, null=True)
     proceeding = models.IntegerField()
     date = models.DateTimeField(auto_now_add=True)
     price = models.IntegerField()

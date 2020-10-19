@@ -121,11 +121,21 @@
                             <span style="margin-bottom: 1em;">
                                 <img style="border-radius: 50%;" src="https://i.pinimg.com/474x/83/fc/4c/83fc4c6dca8298dc8e03ba63d35a9cae.jpg" width="25em;" height="25em;">
                             </span>
+<<<<<<< HEAD
                             {%for j in userinfo.all%}
                             {%if j.id == i.writer%}
                             <span class="reviewer">{{j.nickname}} 고객님</span>
                             {%endif%}
                             {%endfor%}
+=======
+
+                            {%for j in userinfo.all%}
+                                {%if j.id == i.writer%}
+                                    <span class="reviewer">{{j.nickname}} 고객님</span>
+                                {%endif%}
+                            {%endfor%}
+                            
+>>>>>>> 34b645efd892aad37ef3c29f6e3466d11ef63e53
                         </div>
                         <div class="inline-block grade ml-3" style="float: left;">
                             <span>{{i.grade}}/5.0</span>

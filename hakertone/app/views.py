@@ -1,8 +1,16 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import User_info, Company, Group_buying, Group_buying_comment, Flee_market, Review,Company_buying
+from .forms import Group_buyingPost, Flee_marketPost
+import random
 
 def index(request):
     return render(request, 'index.html')
+
+def login(request):
+    return render(request, 'login.html')
+
+def main(request):
+    return render(request, 'main.html')
 
 def group_board(request):
     group_buying = Group_buying.objects
@@ -29,24 +37,41 @@ def register3(request):
 def Lcompany(request):
     return render(request, 'Lcompany.html')
 
-def Ccompany(request):
-    return render(request, 'Ccompany.html')
+def companyBuying(request):
+    companyBuying = Company_buying.objects.all()
+    companyinfo = Company.objects.all()
+    return render(request, 'Company_buying.html', {'companyBuying': companyBuying, 'companyinfo': companyinfo})
 
-def Pcompany(request):
-    return render(request, 'Pcompany.html')
+def fleaMarket(request):
+    fleaMarket = Flee_market.objects.all()
+    return render(request, 'fleaMarket.html',{'fleaMarket':fleaMarket})
 
 
 def fleaMarket_detail(request, id):
     fleaMarket = get_object_or_404(Flee_market, pk =id)
-    return render(request, 'fleaMarket_detail.html', {'fleaMarket': fleaMarket})
+    user_info = User_info.objects.all()
+    fleaMarketAll = Flee_market.objects.all()
+    randomNum = []
+    for i in range(1, len(fleaMarketAll)+1):
+        randomNum.append(i)
+    randomNum = random.sample(randomNum, 4)
+    randomObjList = []
+    for i in range(len(randomNum)):
+        for j in range(fleaMarketAll.count()):
+            if randomNum[i] == fleaMarketAll[j].id:
+                randomObjList.append(fleaMarketAll[j])
+    return render(request, 'fleaMarket_detail.html', {'randomObjList':randomObjList,'fleaMarket': fleaMarket, 'fleaMarketAll': fleaMarketAll, 'user_info': user_info})
+
 
 def fleaMaket_detail_new(request):
     fleaMarket = Flee_market()
-    fleaMarket.title = request.GET['title']
-    fleaMarket.img = request.GET['img']
-    fleaMarket.contents = request.GET['contents']
-    fleaMarket.proceeding = request.GET['proceeding']
-    fleaMarket.price = request.GET['price']
+    fleaMarket.title = request.POST['title']
+    fleaMarket.img = request.FILES['myfile1']
+    fleaMarket.img1 = request.FILES['myfile2']
+    fleaMarket.img2 = request.FILES['myfile3']
+    fleaMarket.contents = request.POST['contents']
+    fleaMarket.proceeding = request.POST['proceeding']
+    fleaMarket.price = request.POST['price']
     fleaMarket.writer = request.user.id
     fleaMarket.save()
     return redirect('/fleaMarket_detail/'+str(fleaMarket.id))
@@ -55,13 +80,13 @@ def fleaMaket_detail_new(request):
 def groupPurchase_detail(request, id):
     groupPurchase = get_object_or_404(Group_buying,pk=id)
     user_info = User_info.objects.all()
-    allComments = Group_buying_comment.objects
+    allComments = Group_buying_comment.objects.all()
     return render(request, 'groupPurchase_detail.html', {'groupPurchase': groupPurchase, 'allComments': allComments, 'user_info': user_info})
 
 def groupPurchase_detail_new(request):
     groupPurchase = Group_buying()
     groupPurchase.title = request.POST['title']
-    groupPurchase.img = request.POST.get('img')
+    groupPurchase.img = request.FILES['myfile']
     groupPurchase.proceeding = request.POST['proceeding']
     groupPurchase.contents = request.POST['contents']
     groupPurchase.writer = request.user.id #로그인 한 id
@@ -77,7 +102,8 @@ def groupPurchase_comment_new(request):
     return redirect('/groupPurchase_detail/'+ str(groupPurchaseComment.Group_buying_id))
 
 def fleaMarket_form(request):
-    return render(request, 'fleaMarket_form.html')
+    form = Flee_marketPost()
+    return render(request, 'fleaMarket_form.html', {'form': form})
 
 def groupPurchase_form(request):
     form = Group_buyingPost()
