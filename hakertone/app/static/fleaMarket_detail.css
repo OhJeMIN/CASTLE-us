@@ -141,7 +141,6 @@ a:hover {
 }
 .recommendation-product {
   display: flex;
-  justify-content: space-between;
   flex-wrap: wrap;
 }
 .recommendation-title {
@@ -176,6 +175,7 @@ a:hover {
   margin: 1rem 0;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   transition: 0.3s;
+  margin-right: 2rem;
 }
 
 .product-card .card-body {
@@ -183,6 +183,15 @@ a:hover {
 }
 .product-card:hover {
   box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+}
+.proceeding {
+  display: inline-block;
+  background-color: #b5ecec;
+  color: white;
+  border-radius: 50%;
+  padding: 0.1rem 0.6rem;
+  font-weight: bold;
+  margin-top: 1rem;
 }
 
 @media screen and (max-width: 1200px) {

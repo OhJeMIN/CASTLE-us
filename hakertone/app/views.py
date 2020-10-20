@@ -79,10 +79,13 @@ def fleaMarket_detail(request, id):
     user_info = User_info.objects.all()
     fleaMarketAll = Flee_market.objects.all()
     randomNum = []
+    randomObjList = []
     for i in range(1, len(fleaMarketAll)+1):
         randomNum.append(i)
-    randomNum = random.sample(randomNum, 4)
-    randomObjList = []
+
+    if(len(randomNum) > 4):
+        randomNum = random.sample(randomNum, 4)
+
     for i in range(len(randomNum)):
         for j in range(fleaMarketAll.count()):
             if randomNum[i] == fleaMarketAll[j].id:
@@ -92,12 +95,15 @@ def fleaMarket_detail(request, id):
 
 def fleaMaket_detail_new(request):
     fleaMarket = Flee_market()
+    category = request.POST['category']
+    proceeding = request.POST['proceeding']
     fleaMarket.title = request.POST['title']
     fleaMarket.img = request.FILES['myfile1']
     fleaMarket.img1 = request.FILES['myfile2']
     fleaMarket.img2 = request.FILES['myfile3']
     fleaMarket.contents = request.POST['contents']
-    fleaMarket.proceeding = request.POST['proceeding']
+    fleaMarket.proceeding = int(proceeding)
+    fleaMarket.category = int(category)
     fleaMarket.price = request.POST['price']
     fleaMarket.writer = request.user.id
     fleaMarket.save()

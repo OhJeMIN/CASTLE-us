@@ -32,3 +32,12 @@ label {
 .img2field {
   display: block;
 }
+label {
+  display: block;
+}
+select {
+  margin-bottom: 1rem;
+  border-radius: 5px;
+  border: 1px solid rgb(207, 207, 207);
+  padding: 0.2rem 0;
+}
