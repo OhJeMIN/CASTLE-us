@@ -108,15 +108,25 @@ def groupPurchase_detail(request, id):
     groupPurchase = get_object_or_404(Group_buying,pk=id)
     user_info = User_info.objects.all()
     allComments = Group_buying_comment.objects.all()
-    return render(request, 'groupPurchase_detail.html', {'groupPurchase': groupPurchase, 'allComments': allComments, 'user_info': user_info})
+    count  = 0
+    if(len(allComments) == 0):
+        count = 0
+    else:
+        for i in range(len(allComments)):
+            if(allComments[i].Group_buying_id == id):
+                count = count + 1
+    return render(request, 'groupPurchase_detail.html', {'count': count,'groupPurchase': groupPurchase, 'allComments': allComments, 'user_info': user_info})
 
 def groupPurchase_detail_new(request):
+    proceeding = request.POST['proceeding']
+    category = request.POST['category']
     groupPurchase = Group_buying()
     groupPurchase.title = request.POST['title']
     groupPurchase.img = request.FILES['myfile']
-    groupPurchase.proceeding = request.POST['proceeding']
+    groupPurchase.proceeding = int(proceeding)
     groupPurchase.contents = request.POST['contents']
     groupPurchase.writer = request.user.id #로그인 한 id
+    groupPurchase.category = int(category)
     groupPurchase.save()
     return redirect('/groupPurchase_detail/'+ str(groupPurchase.id))
 
