@@ -1,0 +1,24 @@
+{%extends 'base.html'%}
+{%block contents%}
+{%load static%}
+<link rel="stylesheet" href="{%static 'fleaMarket_form.css'%}">
+<div class="container" style="padding: 0 10rem;">
+    <form method="POST" enctype='multipart/form-data' action = "{%url 'fleaMarket_detail_new'%}">
+        {% csrf_token %}
+            {{ form.media }}
+            {{ form.as_p }}
+            <div>
+                사진1: <input type="file" name="myfile1" style="margin-bottom: 1rem;">
+            </div>
+            <div>
+                사진2: <input type="file" name="myfile2" style="margin-bottom: 1rem;">
+            </div>
+            <div>
+                사진3: <input type="file" name="myfile3" style="margin-bottom: 1rem;">
+            </div>
+        <div class="btnBlock">
+            <input type="submit" class="btn btnSave" value="저장"/>
+        </div>
+    </form>
+</div>
+{%endblock%}

@@ -1,0 +1,149 @@
+{%extends 'base.html' %}
+{%block contents%}
+{% load static %}
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+    integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+    crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+    crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+    integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+    crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<link rel="stylesheet" href="{% static 'hong.css'%}">
+
+<div class="main mt-5 block mx-auto">
+    <div class="inline-block" style="float: left; width:60%">
+        <div class="block" style="float: left;">
+            <img src="{{company_detail.main_img.url}}" width="600em" height="350em">
+        </div>
+        <div class="block ml-4 mt-3"
+            style="float:left; text-align:left; overflow:hidden; width:80%; font-size:larger;font-weight:bolder">
+            <P>{{company_detail.contents}}</P>
+        </div>
+        <div class="block mt-5" style="float: left;">
+            <img src="{{company_detail.detail_img1.url}}" width="600em" height="700em">
+        </div>
+        <div class="block mt-3" style="float: left;">
+            <img src="{{company_detail.detail_img2.url}}" width="600em" height="700em">
+        </div>
+    </div>
+    <div class="inline-block" style="float: right;">
+        <div class="block" style="width: 25em; height:12em; padding-top:2em;">
+            {%for i in company.all %}
+            {% if i.id == company_detail.company_id %}
+            <img src="{{i.img.url}}" width="150em;" height="150em;" class="circle">
+            {%endif%}
+            {%endfor%}
+        </div>
+        <div class="block" style="width: 25em; height:3em; padding-top:1em;font:larger;">
+            {%for i in company.all %}
+            {% if i.id == company_detail.company_id %}
+            <div class="block tt md-3">
+                <span>{{i.name}}</span>
+            </div>
+            {%endif%}
+            {%endfor%}
+        </div>
+        <div class="block" style="width: 25em; height:3em; padding-top:1em;font:larger;">
+            <div class="block">
+                <span>
+                    <img src="https://smallimg.pngkey.com/png/small/785-7855876_check-mark-icon-blue.png" width="20em"
+                        height="20em;">
+                </span>
+                <span style="color: rgb(21, 98, 150); font-weight:bolder">인증전문가</span>
+            </div>
+        </div>
+        <div class="block" style="width: 25em; height:3em;;">
+
+            <div class="block ">
+                <span>최근계약</span> <span style="font-weight: bolder;">{{company_detail.contract}}</span>
+            </div>
+
+        </div>
+        <div class="block mb-3" style="width: 25em; height:3em; clear:both">
+            <div class="purchase block">
+                <span>구매하기</span>
+            </div>
+        </div>
+        <div class="block" style="width: 27em; height:4em; padding-left:0.2em;">
+            <div class="inline-block fakebtn" style="margin-left: 0.2em;">
+                <span>
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRXkynyzIr5nQpyAnnsyGaTv1LvK_nuqFe5Yw&usqp=CAU" width="25em;" height="25em;">
+                </span>
+                <span>85</span>
+            </div>
+            <div class="inline-block fakebtn">
+                <span>
+                    <img src="https://toloshny.com/blog/wp-content/uploads/2019/08/three-dots-redirect.png.png" width="25em;" height="25em;">
+                </span>
+                <span>문의</span>
+            </div>
+            <div class="inline-block fakebtn">
+                
+                <span>공유하기</span>
+            </div>
+        </div>
+        <div class="block fakebtn2">
+            <div class="inline-block" style="margin-left: -1em;  margin-right:0.5em;padding-top:-3em;">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTvpIhRw0eGeDydfNeOGjYxVsqxitSL7KPFvA&usqp=CAU" width="25em;" height="25em;" style="padding-bottom: 0.3em;;">
+            </div>
+            <div class="inline-block ml-2" >
+               <span>프로젝트에 문제가 있나요?</span>
+            </div>
+            <div class="inline-block mr-4" style="float: right;">
+                <span>신고하기></span>
+             </div>
+        </div>
+        <div class="block review mt-5" style="width: 25em; height:30em;clear:both; ">
+            <div class="block">
+                <div class="inline-block title-review" style="float: left;">
+                    <span>고객들의 리뷰</span>
+                </div>
+                <div class="inline-block whole" style="float: right;">
+                    <span>전체보기</span>
+                </div>
+            </div>
+            <div class="block pt-3" style="width: 25em; clear:both;">
+                {%for i in review.all %}
+                {% if i.company_id == company_detail.id %}
+                <div class="block pb-2" style="width: 25em; height:7em;clear:both">
+                    <div class="block mt-2 mb-3" style="clear: both;">
+                        <p class="review-contents">{{i.contents}}</p>
+                    </div>
+                    <div class="block" >
+                        <div class="inline-block" style="float: left;">
+                            <span style="margin-bottom: 1em;">
+                                <img style="border-radius: 50%;" src="https://i.pinimg.com/474x/83/fc/4c/83fc4c6dca8298dc8e03ba63d35a9cae.jpg" width="25em;" height="25em;">
+                            </span>
+
+                            {%for j in userinfo.all%}
+                                {%if j.id == i.writer%}
+                                    <span class="reviewer">{{j.nickname}} 고객님</span>
+                                {%endif%}
+                            {%endfor%}
+                            
+                        </div>
+                        <div class="inline-block grade ml-3" style="float: left;">
+                            <span>{{i.grade}}/5.0</span>
+                        </div>
+                    </div>
+                </div>
+                {%endif%}
+                {%endfor%}
+            </div>
+
+
+    </div>
+
+</div>
+
+</div>
+
+
+{%endblock%}

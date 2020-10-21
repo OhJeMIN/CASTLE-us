@@ -1,0 +1,29 @@
+.btnBlock {
+  text-align: center;
+  margin-top: 2rem;
+}
+.btnSave {
+  width: 30%;
+  background-color: #84e2e2;
+  color: white;
+  font-weight: bold;
+  font-size: 1.3rem;
+}
+.btnSave:hover,
+.btnSave:active {
+  background-color: #70d1d1;
+  color: white;
+  outline: none;
+}
+
+.proceedingfield {
+  display: block !important;
+  width: 30% !important;
+}
+
+label {
+  font-weight: bold;
+}
+.imgfield {
+  display: block;
+}

@@ -1,0 +1,231 @@
+* {
+  margin: 0;
+}
+.container {
+  margin-top: 1rem;
+  margin-top: 1rem;
+  padding: 0 16rem;
+}
+a {
+  color: black;
+}
+a:hover {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.purchase-btn:focus,
+.purchase-btn:active {
+  background-color: #42cfcf !important;
+  border-color: #42cfcf !important;
+  box-shadow: 0 0 0 0.1rem #42cfcf !important;
+  color: white !important;
+  font-weight: bold;
+}
+
+.enquire-btn:focus,
+.enquire-btn:active {
+  background-color: white !important;
+  border-color: #42cfcf !important;
+  outline: none !important;
+  box-shadow: 0 0 0 0.1rem #42cfcf !important;
+  color: #42cfcf !important;
+  font-weight: bold;
+}
+
+.detail-body {
+  margin-bottom: 1rem;
+}
+
+/* .detail-info */
+.process {
+  background-color: #84e2e2;
+  color: white;
+  padding: 0 0.5rem;
+  font-size: 1.3rem;
+}
+.detail-title {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-top: 0.8rem;
+}
+.user {
+  font-size: 1.1rem;
+  color: gray;
+  display: block;
+}
+.time {
+  font-size: 1rem;
+  color: gray;
+}
+.fa-clock {
+  margin-right: 0.2rem;
+}
+.price-info {
+  font-size: 1.4rem;
+  font-weight: bold;
+  float: right;
+  margin-right: 0.5rem;
+  margin-bottom: 1rem;
+}
+.price {
+  color: #84e2e2;
+  margin-left: 0.5rem;
+}
+
+/* carousel */
+#carouselExampleIndicators {
+  margin-top: 1rem;
+}
+.carousel img {
+  height: 24rem !important;
+}
+
+.carousel-control-prev-icon {
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%2384e2e2' viewBox='0 0 8 8'%3E%3Cpath d='M5.25 0l-4 4 4 4 1.5-1.5-2.5-2.5 2.5-2.5-1.5-1.5z'/%3E%3C/svg%3E") !important;
+}
+
+.carousel-control-next-icon {
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%2384e2e2' viewBox='0 0 8 8'%3E%3Cpath d='M2.75 0l-1.5 1.5 2.5 2.5-2.5 2.5 1.5 1.5 4-4-4-4z'/%3E%3C/svg%3E") !important;
+}
+.carousel li {
+  background-color: #84e2e2;
+}
+.carousel-control-prev {
+  margin-left: -5rem;
+}
+.carousel-control-next {
+  margin-right: -5rem;
+}
+
+/* detail-content */
+.detail-content {
+  margin: 2rem 0;
+  font-size: 1.2rem;
+}
+.buttons {
+  text-align: center;
+  margin-top: 5rem;
+}
+.enquire-btn {
+  padding: 0.5rem 4rem;
+  border-color: #84e2e2;
+  margin-right: 0.3rem;
+  background-color: white;
+  color: #84e2e2;
+  font-size: 1.2rem;
+}
+.enquire-btn:hover {
+  color: #42cfcf;
+  border-color: #42cfcf;
+  background-color: white;
+}
+.purchase-btn {
+  border-color: #84e2e2;
+  padding: 0.5rem 4rem;
+  margin-left: 0.3rem;
+  background-color: #84e2e2;
+  color: white;
+  font-size: 1.2rem;
+}
+.purchase-btn:hover {
+  background-color: #42cfcf;
+  border-color: #42cfcf;
+}
+
+/* recommendation */
+
+.recommendation {
+  margin: 4rem 0;
+}
+.recommendation-product {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+.recommendation-title {
+  font-weight: bold;
+  font-size: 1.4rem;
+  margin: 1rem 0;
+}
+.product-writer {
+  text-align: right;
+  font-size: 0.8rem;
+  margin-bottom: 0.3rem;
+}
+.product-name {
+  font-weight: bold;
+  font-size: 1.2rem;
+  margin: 0.3rem 0;
+}
+
+.product-price {
+  color: #84e2e2;
+  font-size: 1.3rem;
+  margin-top: 0.2rem;
+  margin-bottom: 1rem;
+}
+.product-time {
+  float: right;
+  font-size: 0.8rem;
+}
+.product-card {
+  border-color: white;
+  display: inline-block;
+  margin: 1rem 0;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  transition: 0.3s;
+}
+
+.product-card .card-body {
+  padding: 0.3rem;
+}
+.product-card:hover {
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+}
+
+@media screen and (max-width: 1200px) {
+  .container {
+    padding: 0 10rem !important;
+  }
+  .container2 {
+    padding: 0 2rem !important;
+  }
+  .carousel-control-prev {
+    margin-left: 0;
+  }
+  .carousel-control-next {
+    margin-right: 0;
+  }
+  .buttons {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .purchase-btn,
+  .enquire-btn {
+    margin: 0.4rem 0;
+  }
+  .recommendation .recommendation-title {
+    font-size: 1.8rem;
+  }
+  .recommendation-product {
+    align-items: center;
+    justify-content: space-around;
+  }
+  .product-card {
+    width: 15rem !important;
+  }
+}
+@media screen and (max-width: 988px) {
+  .container {
+    padding: 0 2rem !important;
+  }
+  .container2 {
+    padding: 0 1rem !important;
+  }
+  .product-card {
+    width: 15rem !important;
+  }
+}
