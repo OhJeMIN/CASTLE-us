@@ -57,7 +57,17 @@ def register(request):
     return render(request, 'register1.html')
 
 def register2(request):
+    if request.method=='POST':
+        user = User.objects.create_user(request.POST['username'], request.POST['password'], request.POST['firstname'])
+        temp = get_object_or_404(User, username=user.username)
+        info = User_info()
+        info.user_id = temp.id
+        info.nickname = temp.username
+        info.apartment = request.POST['apartment']
+        info.address = request.POST['address']
+        info.save()
     return render(request, 'register2.html')
+    
 
 def register3(request):
     return render(request, 'register3.html')
@@ -152,3 +162,10 @@ def groupPurchase_form(request):
     form = Group_buyingPost()
     return render(request, 'groupPurchase_form.html', {'form': form})
 
+def createUser(request):
+    user = User()
+    user.user_name = request.POST['user_name']
+    user.password = request.POST['password']
+    user.email = reuqest.POST['email']
+    user.save()
+    return redirect()

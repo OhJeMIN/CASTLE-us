@@ -31,7 +31,6 @@ urlpatterns = [
     path('register2',app.views.register2, name='register2'),    
     path('register3',app.views.register3, name='register3'),    
     path('Lcompany',app.views.Lcompany, name='Lcompany'),
-    
     path('companyBuying',app.views.companyBuying, name='companyBuying'),   
     path('fleaMarket',app.views.fleaMarket, name='fleaMarket'),   
 

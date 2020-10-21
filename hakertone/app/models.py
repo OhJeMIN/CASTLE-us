@@ -19,7 +19,6 @@ class Group_buying(models.Model):
     contents = RichTextUploadingField(blank=True, null=True)
     date = models.DateTimeField(auto_now_add=True)
     writer = models.IntegerField()
-    category = models.IntegerField()
 
 class Group_buying_comment(models.Model):
     Group_buying_id = models.IntegerField()
@@ -37,7 +36,6 @@ class Flee_market(models.Model):
     date = models.DateTimeField(auto_now_add=True)
     price = models.IntegerField()
     writer = models.IntegerField()
-    category = models.IntegerField()
 
 class Company_buying(models.Model):
     company_id = models.IntegerField()
@@ -47,7 +45,6 @@ class Company_buying(models.Model):
     detail_img2 = models.ImageField(upload_to='images/')
     remark = models.IntegerField()
     contents = models.TextField()
-    title = models.TextField()
 
 class Review(models.Model):
     company_id = models.IntegerField()
