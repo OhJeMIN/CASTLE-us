@@ -13,6 +13,34 @@
             {%else%}
                 <span class="process">진행종료</span>
             {%endif%}
+            <br>
+            {%if groupPurchase.category == 1%}
+                <span class="proceeding">가구</span>
+            {%elif groupPurchase.category == 2%}
+                <span class="proceeding">침구</span>
+            {%elif groupPurchase.category == 3%}
+                <span class="proceeding">패브릭</span>
+            {%elif groupPurchase.category == 4%}
+                <span class="proceeding">조명</span>
+            {%elif groupPurchase.category == 5%}
+                <span class="proceeding">홈데코</span>
+            {%elif groupPurchase.category == 6%}
+                <span class="proceeding">가전</span>
+            {%elif groupPurchase.category == 7%}
+                <span class="proceeding">수납/정리</span>
+            {%elif groupPurchase.category == 8%}
+                <span class="proceeding">생활용품</span>
+            {%elif groupPurchase.category == 9%}
+                <span class="proceeding">주방</span>
+            {%elif groupPurchase.category == 10%}
+                <span class="proceeding">DIY/공구</span>
+            {%elif groupPurchase.category == 11%}
+                <span class="proceeding">인테리어</span>
+            {%else%}
+                <span class="proceeding">반려동물</span>
+            {%endif%}
+
+
             <h1 class="detail-title">{{groupPurchase.title}}</h1>
 
             {%for i in user_info%}
@@ -62,7 +90,7 @@
         <div class="comments-head">
             <h1 class="comments-title">댓글</h1>
             
-            <!-- <span class="count-comments">{{allComments.count}}</span> -->
+            <span class="count-comments">{{count}}</span>
             
         </div>
         <div class="input-comment">

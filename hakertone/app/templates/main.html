@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 
 {% block contents %}
+{% load static %}
 <head>
   <style>
     .sicon {
@@ -158,239 +159,26 @@
         </div>
       </div>
       <div class="container">
-        <div class="row d-flex justify-content-end mr-2">
-          <div class="form-group m-0">
-            <select class="form-control col-md-auto product_kind border-0"style="font-size: x-small;
-            color:rgb(165, 165, 165);" id="exampleFormControlSelect1">
-              <option>인기순</option>
-              <option>최신순</option>
-            </select>
-          </div>
-        </div>
         <div class="row ">
-          
+          {% for i in group_buying %}
           <div class="col mt-4 d-flex justify-content-center p-0">
             <div class="card ml-3 mr-3 border-0 justify-content-center m-0">
               <div class="jb-wrap">
                 <img
-                src="https://dt40dm21pj8em.cloudfront.net/uploads/froala/file/9252/%EA%B0%80%EA%B5%AC%EB%94%94%EC%9E%90%EC%9D%B8%201.jpg"
+                src="{{i.img}}"
                 class="card-img-top FFVAD rounded" alt="...">
                 <span class="badge jb-text  text-white">6일 남음</span>
             </div>
               <div class="card-body p-0 pt-1 mt-5 pt-5">
                 <p class="m-0 product_kind ">아이와비</p>
-                <p class="m-0 company_product_title">낮에는 쇼파 밤에는 침대! 좁은 공간에서도 실용적인 패브릭 접이식 소파베드!</p>
+                <p class="m-0 company_product_title">{{i.title}}}</p>
                 <p class="m-0 product_kind mt-2"><span>패션 잡화</span> | <span>6일 남음</span></p>
                   <p class="m-0 product_grade"><span style="color:#84E2E2">★</span><span class="mr-1">4.8</span><span class="text-muted">리뷰150</span></p>
-                  
               </div>
           </div>
           </div>
-          
-          <div class="col mt-4 d-flex justify-content-center p-0">
-            <div class="card ml-3 mr-3 border-0 justify-content-center m-0">
-              <div class="jb-wrap">
-                <img
-                src="https://dt40dm21pj8em.cloudfront.net/uploads/froala/file/9252/%EA%B0%80%EA%B5%AC%EB%94%94%EC%9E%90%EC%9D%B8%201.jpg"
-                class="card-img-top FFVAD rounded" alt="...">
-                <span class="badge jb-text  text-white">6일 남음</span>
-            </div>
-              <div class="card-body p-0 pt-1 mt-5 pt-5">
-                <p class="m-0 product_kind ">아이와비</p>
-                <p class="m-0 company_product_title">낮에는 쇼파 밤에는 침대! 좁은 공간에서도 실용적인 패브릭 접이식 소파베드!</p>
-                <p class="m-0 product_kind mt-2"><span>패션 잡화</span> | <span>6일 남음</span></p>
-                  <p class="m-0 product_grade"><span style="color:#84E2E2">★</span><span class="mr-1">4.8</span><span class="text-muted">리뷰150</span></p>
-                  
-              </div>
-          </div>
-          </div>
-          <div class="col mt-4 d-flex justify-content-center p-0">
-            <div class="card ml-3 mr-3 border-0 justify-content-center m-0">
-              <div class="jb-wrap">
-                <img
-                src="https://dt40dm21pj8em.cloudfront.net/uploads/froala/file/9252/%EA%B0%80%EA%B5%AC%EB%94%94%EC%9E%90%EC%9D%B8%201.jpg"
-                class="card-img-top FFVAD rounded" alt="...">
-                <span class="badge jb-text  text-white">6일 남음</span>
-            </div>
-              <div class="card-body p-0 pt-1 mt-5 pt-5">
-                <p class="m-0 product_kind ">아이와비</p>
-                <p class="m-0 company_product_title">낮에는 쇼파 밤에는 침대! 좁은 공간에서도 실용적인 패브릭 접이식 소파베드!</p>
-                <p class="m-0 product_kind mt-2"><span>패션 잡화</span> | <span>6일 남음</span></p>
-                  <p class="m-0 product_grade"><span style="color:#84E2E2">★</span><span class="mr-1">4.8</span><span class="text-muted">리뷰150</span></p>
-                  
-              </div>
-          </div>
-          </div>
-          
-          <div class="col mt-4 d-flex justify-content-center p-0">
-            <div class="card ml-3 mr-3 border-0 justify-content-center m-0">
-              <div class="jb-wrap">
-                <img
-                src="https://dt40dm21pj8em.cloudfront.net/uploads/froala/file/9252/%EA%B0%80%EA%B5%AC%EB%94%94%EC%9E%90%EC%9D%B8%201.jpg"
-                class="card-img-top FFVAD rounded" alt="...">
-                <span class="badge jb-text  text-white">6일 남음</span>
-            </div>
-              <div class="card-body p-0 pt-1 mt-5 pt-5">
-                <p class="m-0 product_kind ">아이와비</p>
-                <p class="m-0 company_product_title">낮에는 쇼파 밤에는 침대! 좁은 공간에서도 실용적인 패브릭 접이식 소파베드!</p>
-                <p class="m-0 product_kind mt-2"><span>패션 잡화</span> | <span>6일 남음</span></p>
-                  <p class="m-0 product_grade"><span style="color:#84E2E2">★</span><span class="mr-1">4.8</span><span class="text-muted">리뷰150</span></p>
-                  
-              </div>
-          </div>
-          </div>
-          
-          
+          {% endfor %}
         </div>
-        <div class="row mt-3">
-          <div class="col mt-4 d-flex justify-content-center p-0">
-            <div class="card ml-3 mr-3 border-0 justify-content-center m-0">
-              <div class="jb-wrap">
-                <img
-                src="https://dt40dm21pj8em.cloudfront.net/uploads/froala/file/9252/%EA%B0%80%EA%B5%AC%EB%94%94%EC%9E%90%EC%9D%B8%201.jpg"
-                class="card-img-top FFVAD rounded" alt="...">
-                <span class="badge jb-text  text-white">6일 남음</span>
-            </div>
-              <div class="card-body p-0 pt-1 mt-5 pt-5">
-                <p class="m-0 product_kind ">아이와비</p>
-                <p class="m-0 company_product_title">낮에는 쇼파 밤에는 침대! 좁은 공간에서도 실용적인 패브릭 접이식 소파베드!</p>
-                <p class="m-0 product_kind mt-2"><span>패션 잡화</span> | <span>6일 남음</span></p>
-                  <p class="m-0 product_grade"><span style="color:#84E2E2">★</span><span class="mr-1">4.8</span><span class="text-muted">리뷰150</span></p>
-                  
-              </div>
-          </div>
-          </div>
-          
-          <div class="col mt-4 d-flex justify-content-center p-0">
-            <div class="card ml-3 mr-3 border-0 justify-content-center m-0">
-              <div class="jb-wrap">
-                <img
-                src="https://dt40dm21pj8em.cloudfront.net/uploads/froala/file/9252/%EA%B0%80%EA%B5%AC%EB%94%94%EC%9E%90%EC%9D%B8%201.jpg"
-                class="card-img-top FFVAD rounded" alt="...">
-                <span class="badge jb-text  text-white">6일 남음</span>
-            </div>
-              <div class="card-body p-0 pt-1 mt-5 pt-5">
-                <p class="m-0 product_kind ">아이와비</p>
-                <p class="m-0 company_product_title">낮에는 쇼파 밤에는 침대! 좁은 공간에서도 실용적인 패브릭 접이식 소파베드!</p>
-                <p class="m-0 product_kind mt-2"><span>패션 잡화</span> | <span>6일 남음</span></p>
-                  <p class="m-0 product_grade"><span style="color:#84E2E2">★</span><span class="mr-1">4.8</span><span class="text-muted">리뷰150</span></p>
-                  
-              </div>
-          </div>
-          </div>
-          <div class="col mt-4 d-flex justify-content-center p-0">
-            <div class="card ml-3 mr-3 border-0 justify-content-center m-0">
-              <div class="jb-wrap">
-                <img
-                src="https://dt40dm21pj8em.cloudfront.net/uploads/froala/file/9252/%EA%B0%80%EA%B5%AC%EB%94%94%EC%9E%90%EC%9D%B8%201.jpg"
-                class="card-img-top FFVAD rounded" alt="...">
-                <span class="badge jb-text  text-white">6일 남음</span>
-            </div>
-              <div class="card-body p-0 pt-1 mt-5 pt-5">
-                <p class="m-0 product_kind ">아이와비</p>
-                <p class="m-0 company_product_title">낮에는 쇼파 밤에는 침대! 좁은 공간에서도 실용적인 패브릭 접이식 소파베드!</p>
-                <p class="m-0 product_kind mt-2"><span>패션 잡화</span> | <span>6일 남음</span></p>
-                  <p class="m-0 product_grade"><span style="color:#84E2E2">★</span><span class="mr-1">4.8</span><span class="text-muted">리뷰150</span></p>
-                  
-              </div>
-          </div>
-          </div>
-          
-          <div class="col mt-4 d-flex justify-content-center p-0">
-            <div class="card ml-3 mr-3 border-0 justify-content-center m-0">
-              <div class="jb-wrap">
-                <img
-                src="https://dt40dm21pj8em.cloudfront.net/uploads/froala/file/9252/%EA%B0%80%EA%B5%AC%EB%94%94%EC%9E%90%EC%9D%B8%201.jpg"
-                class="card-img-top FFVAD rounded" alt="...">
-                <span class="badge jb-text  text-white">6일 남음</span>
-            </div>
-              <div class="card-body p-0 pt-1 mt-5 pt-5">
-                <p class="m-0 product_kind ">아이와비</p>
-                <p class="m-0 company_product_title">낮에는 쇼파 밤에는 침대! 좁은 공간에서도 실용적인 패브릭 접이식 소파베드!</p>
-                <p class="m-0 product_kind mt-2"><span>패션 잡화</span> | <span>6일 남음</span></p>
-                  <p class="m-0 product_grade"><span style="color:#84E2E2">★</span><span class="mr-1">4.8</span><span class="text-muted">리뷰150</span></p>
-                  
-              </div>
-          </div>
-          </div>
-          
-          
-        </div>
-        <div class="row mt-3">
-          <div class="col mt-4 d-flex justify-content-center p-0">
-            <div class="card ml-3 mr-3 border-0 justify-content-center m-0">
-              <div class="jb-wrap">
-                <img
-                src="https://dt40dm21pj8em.cloudfront.net/uploads/froala/file/9252/%EA%B0%80%EA%B5%AC%EB%94%94%EC%9E%90%EC%9D%B8%201.jpg"
-                class="card-img-top FFVAD rounded" alt="...">
-                <span class="badge jb-text  text-white">6일 남음</span>
-            </div>
-              <div class="card-body p-0 pt-1 mt-5 pt-5">
-                <p class="m-0 product_kind ">아이와비</p>
-                <p class="m-0 company_product_title">낮에는 쇼파 밤에는 침대! 좁은 공간에서도 실용적인 패브릭 접이식 소파베드!</p>
-                <p class="m-0 product_kind mt-2"><span>패션 잡화</span> | <span>6일 남음</span></p>
-                  <p class="m-0 product_grade"><span style="color:#84E2E2">★</span><span class="mr-1">4.8</span><span class="text-muted">리뷰150</span></p>
-                  
-              </div>
-          </div>
-          </div>
-          
-          <div class="col mt-4 d-flex justify-content-center p-0">
-            <div class="card ml-3 mr-3 border-0 justify-content-center m-0">
-              <div class="jb-wrap">
-                <img
-                src="https://dt40dm21pj8em.cloudfront.net/uploads/froala/file/9252/%EA%B0%80%EA%B5%AC%EB%94%94%EC%9E%90%EC%9D%B8%201.jpg"
-                class="card-img-top FFVAD rounded" alt="...">
-                <span class="badge jb-text  text-white">6일 남음</span>
-            </div>
-              <div class="card-body p-0 pt-1 mt-5 pt-5">
-                <p class="m-0 product_kind ">아이와비</p>
-                <p class="m-0 company_product_title">낮에는 쇼파 밤에는 침대! 좁은 공간에서도 실용적인 패브릭 접이식 소파베드!</p>
-                <p class="m-0 product_kind mt-2"><span>패션 잡화</span> | <span>6일 남음</span></p>
-                  <p class="m-0 product_grade"><span style="color:#84E2E2">★</span><span class="mr-1">4.8</span><span class="text-muted">리뷰150</span></p>
-                  
-              </div>
-          </div>
-          </div>
-          <div class="col mt-4 d-flex justify-content-center p-0">
-            <div class="card ml-3 mr-3 border-0 justify-content-center m-0">
-              <div class="jb-wrap">
-                <img
-                src="https://dt40dm21pj8em.cloudfront.net/uploads/froala/file/9252/%EA%B0%80%EA%B5%AC%EB%94%94%EC%9E%90%EC%9D%B8%201.jpg"
-                class="card-img-top FFVAD rounded" alt="...">
-                <span class="badge jb-text  text-white">6일 남음</span>
-            </div>
-              <div class="card-body p-0 pt-1 mt-5 pt-5">
-                <p class="m-0 product_kind ">아이와비</p>
-                <p class="m-0 company_product_title">낮에는 쇼파 밤에는 침대! 좁은 공간에서도 실용적인 패브릭 접이식 소파베드!</p>
-                <p class="m-0 product_kind mt-2"><span>패션 잡화</span> | <span>6일 남음</span></p>
-                  <p class="m-0 product_grade"><span style="color:#84E2E2">★</span><span class="mr-1">4.8</span><span class="text-muted">리뷰150</span></p>
-                  
-              </div>
-          </div>
-          </div>
-          
-          <div class="col mt-4 d-flex justify-content-center p-0">
-            <div class="card ml-3 mr-3 border-0 justify-content-center m-0">
-              <div class="jb-wrap">
-                <img
-                src="https://dt40dm21pj8em.cloudfront.net/uploads/froala/file/9252/%EA%B0%80%EA%B5%AC%EB%94%94%EC%9E%90%EC%9D%B8%201.jpg"
-                class="card-img-top FFVAD rounded" alt="...">
-                <span class="badge jb-text  text-white">6일 남음</span>
-            </div>
-              <div class="card-body p-0 pt-1 mt-5 pt-5">
-                <p class="m-0 product_kind ">아이와비</p>
-                <p class="m-0 company_product_title">낮에는 쇼파 밤에는 침대! 좁은 공간에서도 실용적인 패브릭 접이식 소파베드!</p>
-                <p class="m-0 product_kind mt-2"><span>패션 잡화</span> | <span>6일 남음</span></p>
-                  <p class="m-0 product_grade"><span style="color:#84E2E2">★</span><span class="mr-1">4.8</span><span class="text-muted">리뷰150</span></p>
-                  
-              </div>
-          </div>
-          </div>
-          
-        </div>
-        
-       
       </div>
 </body>
 {% endblock %}

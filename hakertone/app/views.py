@@ -2,15 +2,43 @@ from django.shortcuts import render, get_object_or_404, redirect
 from .models import User_info, Company, Group_buying, Group_buying_comment, Flee_market, Review,Company_buying
 from .forms import Group_buyingPost, Flee_marketPost
 import random
+from django.contrib.auth.models import User
+from django.contrib import auth
 
 def index(request):
     return render(request, 'index.html')
 
 def login(request):
+    if request.method == 'POST':
+            username = request.POST['username']
+            password = request.POST['password']
+            user = auth.authenticate(request, username=username, password=password)
+            if user is not None:
+                auth.login(request, user)
+                return redirect('/main')
+            else:
+                return render(request, 'login.html', {'error': 'username or password is incorrect.'})
+    else:
+        return render(request, 'login.html')
+
+def logout(request):
+    if request.method == 'POST':
+        auth.logout(request)
+        return redirect('/login')
     return render(request, 'login.html')
 
 def main(request):
-    return render(request, 'main.html')
+    group_buying = Group_buying.objects.all()    
+    randomNum = []
+    for i in range(1, len(group_buying)+1):
+        randomNum.append(i)
+    randomNum = random.sample(randomNum, 4)
+    randomObjList = []
+    for i in range(len(randomNum)):
+        for j in range(group_buying.count()):
+            if randomNum[i] == group_buying[j].id:
+                randomObjList.append(group_buying[j])
+    return render(request, 'main.html',  {'group_buying': randomObjList})
 
 def group_board(request):
     group_buying = Group_buying.objects
@@ -46,16 +74,18 @@ def fleaMarket(request):
     fleaMarket = Flee_market.objects.all()
     return render(request, 'fleaMarket.html',{'fleaMarket':fleaMarket})
 
-
 def fleaMarket_detail(request, id):
     fleaMarket = get_object_or_404(Flee_market, pk =id)
     user_info = User_info.objects.all()
     fleaMarketAll = Flee_market.objects.all()
     randomNum = []
+    randomObjList = []
     for i in range(1, len(fleaMarketAll)+1):
         randomNum.append(i)
-    randomNum = random.sample(randomNum, 4)
-    randomObjList = []
+
+    if(len(randomNum) > 4):
+        randomNum = random.sample(randomNum, 4)
+
     for i in range(len(randomNum)):
         for j in range(fleaMarketAll.count()):
             if randomNum[i] == fleaMarketAll[j].id:
@@ -65,12 +95,15 @@ def fleaMarket_detail(request, id):
 
 def fleaMaket_detail_new(request):
     fleaMarket = Flee_market()
+    category = request.POST['category']
+    proceeding = request.POST['proceeding']
     fleaMarket.title = request.POST['title']
     fleaMarket.img = request.FILES['myfile1']
     fleaMarket.img1 = request.FILES['myfile2']
     fleaMarket.img2 = request.FILES['myfile3']
     fleaMarket.contents = request.POST['contents']
-    fleaMarket.proceeding = request.POST['proceeding']
+    fleaMarket.proceeding = int(proceeding)
+    fleaMarket.category = int(category)
     fleaMarket.price = request.POST['price']
     fleaMarket.writer = request.user.id
     fleaMarket.save()
@@ -81,15 +114,25 @@ def groupPurchase_detail(request, id):
     groupPurchase = get_object_or_404(Group_buying,pk=id)
     user_info = User_info.objects.all()
     allComments = Group_buying_comment.objects.all()
-    return render(request, 'groupPurchase_detail.html', {'groupPurchase': groupPurchase, 'allComments': allComments, 'user_info': user_info})
+    count  = 0
+    if(len(allComments) == 0):
+        count = 0
+    else:
+        for i in range(len(allComments)):
+            if(allComments[i].Group_buying_id == id):
+                count = count + 1
+    return render(request, 'groupPurchase_detail.html', {'count': count,'groupPurchase': groupPurchase, 'allComments': allComments, 'user_info': user_info})
 
 def groupPurchase_detail_new(request):
+    proceeding = request.POST['proceeding']
+    category = request.POST['category']
     groupPurchase = Group_buying()
     groupPurchase.title = request.POST['title']
     groupPurchase.img = request.FILES['myfile']
-    groupPurchase.proceeding = request.POST['proceeding']
+    groupPurchase.proceeding = int(proceeding)
     groupPurchase.contents = request.POST['contents']
     groupPurchase.writer = request.user.id #로그인 한 id
+    groupPurchase.category = int(category)
     groupPurchase.save()
     return redirect('/groupPurchase_detail/'+ str(groupPurchase.id))
 

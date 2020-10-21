@@ -12,6 +12,34 @@
             {%else%}
             <span class="process" style="background: gray;">진행종료</span>
             {%endif%}
+
+            <br>
+            {%if fleaMarket.category == 1%}
+                <span class="proceeding">가구</span>
+            {%elif fleaMarket.category == 2%}
+                <span class="proceeding">침구</span>
+            {%elif fleaMarket.category == 3%}
+                <span class="proceeding">패브릭</span>
+            {%elif fleaMarket.category == 4%}
+                <span class="proceeding">조명</span>
+            {%elif fleaMarket.category == 5%}
+                <span class="proceeding">홈데코</span>
+            {%elif fleaMarket.category == 6%}
+                <span class="proceeding">가전</span>
+            {%elif fleaMarket.category == 7%}
+                <span class="proceeding">수납/정리</span>
+            {%elif fleaMarket.category == 8%}
+                <span class="proceeding">생활용품</span>
+            {%elif fleaMarket.category == 9%}
+                <span class="proceeding">주방</span>
+            {%elif fleaMarket.category == 10%}
+                <span class="proceeding">DIY/공구</span>
+            {%elif fleaMarket.category == 11%}
+                <span class="proceeding">인테리어</span>
+            {%else%}
+                <span class="proceeding">반려동물</span>
+            {%endif%}
+
             <h1 class="detail-title">{{fleaMarket.title}}</h1>
             {%for i in user_info%}
             {%if i.user_id == fleaMarket.writer%}
