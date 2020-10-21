@@ -7,7 +7,8 @@ from django.contrib import auth
 
 def index(request):
     return render(request, 'index.html')
-
+def loginPage(request):
+    return render(request, 'login.html')
 def login(request):
     if request.method == 'POST':
             username = request.POST['username']
@@ -66,7 +67,7 @@ def register2(request):
         info.apartment = request.POST['apartment']
         info.address = request.POST['address']
         info.save()
-    return render(request, 'register2.html')
+    return redirect('/main')
     
 
 def register3(request):
@@ -76,13 +77,27 @@ def Lcompany(request):
     return render(request, 'Lcompany.html')
 
 def companyBuying(request):
-    companyBuying = Company_buying.objects.all()
-    companyinfo = Company.objects.all()
-    return render(request, 'Company_buying.html', {'companyBuying': companyBuying, 'companyinfo': companyinfo})
+    query2=request.GET.get('search123')
+    if query2:
+        companyBuying = Company_buying.objects.filter(title__contains=query2)
+        companyinfo = Company.objects.all()
+        return render(request, 'Company_buying.html',{'companyBuying':companyBuying, 'companyinfo':companyinfo})
+    else:
+        companyBuying = Company_buying.objects.all()
+        companyinfo = Company.objects.all()
+        return render(request, 'Company_buying.html', {'companyBuying': companyBuying, 'companyinfo': companyinfo})
+
+
+
 
 def fleaMarket(request):
-    fleaMarket = Flee_market.objects.all()
-    return render(request, 'fleaMarket.html',{'fleaMarket':fleaMarket})
+    query=request.GET.get('search')
+    if query:
+        fleaMarket = Flee_market.objects.filter(title__contains=query)
+        return render(request, 'fleaMarket.html',{'fleaMarket':fleaMarket})
+    else:
+        fleaMarket = Flee_market.objects.all()
+        return render(request, 'fleaMarket.html',{'fleaMarket':fleaMarket})
 
 def fleaMarket_detail(request, id):
     fleaMarket = get_object_or_404(Flee_market, pk =id)
@@ -169,3 +184,12 @@ def createUser(request):
     user.email = reuqest.POST['email']
     user.save()
     return redirect()
+
+def fleaMarket_new(request,category):
+    temp=Flee_market.objects.filter(category=category)
+    return render(request, 'fleaMarket.html',{'fleaMarket':temp})
+
+
+def companyBuying_new(request,category):
+    temp=Company_buying.objects.filter(category=category)
+    return render(request, 'Company_buying.html',{'companyBuying':temp})

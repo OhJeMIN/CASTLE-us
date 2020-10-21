@@ -6,7 +6,7 @@
 <script src="https://kit.fontawesome.com/dbe26b9685.js" crossorigin="anonymous"></script>
 <style>
   #navv:hover,#navbarDropdown:hover{
-    color:#84e2e2;
+    color:black;
     font-weight: bolder;
   }
   #navv:active,#navbarDropdown:active{
@@ -24,7 +24,7 @@
 </head>
 <body>
     
-    <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom-1 border-bottom" style="background-color:white!important; ">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom-1 border-bottom p-0" style="background-color:white!important; ">
         <a class="navbar-brand ml-5 pl-2" href="{%url 'main' %}" style="font-weight : bold;"  id="navv">LOGO</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
@@ -32,7 +32,7 @@
       
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav mr-auto ml-2">
-            <li class="nav-item active ">
+            <li class="nav-item  ">
               <a class="nav-link" href="{%url 'group_board' %}" style="font-weight : bold;"  id="navv">공동구매 <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item ml-2">
@@ -54,16 +54,16 @@
             </li>
           </ul>
           <ul class="navbar-nav mr-5">
-              <li>
-                <li class="nav-item mr-3 mt-2">
+              
+                <li class="nav-item mr-3 mt-3 pt-1">
                   <form id="logout" method="POST" action="{% url 'logout' %}">
-                    {% csrf_token %} <input class="btn btn-outline-secondary border-0" type="submit" value="로그아웃">
+                    {% csrf_token %} <input class="bg-white text-black-50 border-0" style="font-weight : bold; font-size:smaller" type="submit" value="로그아웃">
                   </form> 
                   </li>
-              </li>
-              <li>
-                <li class="nav-item mr-3">
-                    <button  id="navvv"><a class="nav-link"  href="#" style="color: #84e2e2;">공동구매 업체 신청</a>
+        
+             
+                <li class="nav-item mt-2 pt-1">
+                    <button  id="navvv" class="rounded"><a class="nav-link rounded p-1"  href="#" style="color: #84e2e2; font-weight:bold">공동구매 업체 신청</a>
                     </button>
               </li>
           </ul>
