@@ -47,8 +47,32 @@
     font-size: 20px;
     border-left: 0px;
   }
+<<<<<<< HEAD
 
   
+=======
+  .paginator_l{
+    margin-top: .3rem;
+    margin-bottom: 1.2rem;
+    font-size: 1.2rem;
+    color: #00B4CC;
+  }
+
+  .pg1{
+    margin-right: .5rem;
+    color: #00B4CC;
+  }
+  .pg2{
+    margin-left: .5rem;
+    color: #00B4CC;
+  }
+  .pg1:hover,
+  .pg2:hover{
+    color: #00B4CC;
+    font-weight: bold;
+    text-decoration: none;
+  }
+>>>>>>> fd3301da6bc002c2b32c9d57e644f97a81e4db0e
 </style>
 
 
@@ -137,11 +161,13 @@
 
     </div>
 
+ 
+
 
     <div class="main-board block">
       <div class="block" style="height:71em;">
 
-        {%for i in group_buying.all%}
+        {%for i in posts%}
         <a href="/groupPurchase_detail/{{i.id}}" class="href_delete">
           <div class="block mt-5" style="width:100%;height:11em;">
             <div class="inline-block mt-2" style="width:70%; height:100%; float:left;">
@@ -199,20 +225,28 @@
       <hr>
 
     </div>
+   
 
-    <div class="pagination block">
-
-      <div class="pagination">
-        <a href="#">&laquo;</a>
-        <a href="#" class="active">1</a>
-        <a href="#">2</a>
-        <a href="#">3</a>
-        <a href="#">4</a>
-        <a href="#">5</a>
-        <a href="#">6</a>
-        <a href="#">&raquo;</a>
-      </div>
+    <div class="paginator" style="font-weight: bold; font-size: 1.4rem">
+      <span>{{posts.number}}</span>
+      <span>/</span>
+      <span>{{posts.paginator.num_pages}}</span>
     </div>
+
+    {%if posts.has_previous%}
+      <div class="paginator_l">
+        <a href="?page=1" class = "pg1">맨앞으로</a>
+        <a href="?page={{posts.previous_page_number}}" class="pg2">이전으로</a>
+      </div>
+    {%endif%}
+
+    {%if posts.has_next%}
+    <div class = "paginator_l">
+        <a href="?page={{posts.next_page_number}}" class = "pg1">다음으로</a>
+        <a href="?page={{posts.paginator.num_pages}}" class="pg2">마지막으로</a>
+      </div>
+    {%endif%}
+
   </div>
 
 </div>
