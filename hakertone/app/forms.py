@@ -1,6 +1,7 @@
 from django import forms
 from .models import Group_buying, Flee_market
 
+
 class Group_buyingPost(forms.ModelForm):
     class Meta:
         model = Group_buying
@@ -32,3 +33,4 @@ class Flee_marketPost(forms.ModelForm):
             'price': "가격",
             "contents": "상세 설명"
         }
+

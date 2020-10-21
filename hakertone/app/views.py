@@ -97,3 +97,10 @@ def groupPurchase_form(request):
     form = Group_buyingPost()
     return render(request, 'groupPurchase_form.html', {'form': form})
 
+def createUser(request):
+    user = User()
+    user.user_name = request.POST['user_name']
+    user.password = request.POST['password']
+    user.email = reuqest.POST['email']
+    user.save()
+    return redirect()
