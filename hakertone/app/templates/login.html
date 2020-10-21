@@ -1,0 +1,70 @@
+<head>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+      <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+  <script src="https://kit.fontawesome.com/dbe26b9685.js" crossorigin="anonymous"></script>
+  <body>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery.mb.YTPlayer/3.3.1/css/jquery.mb.YTPlayer.min.css">
+    <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mb.YTPlayer/3.3.1/jquery.mb.YTPlayer.min.js"></script>
+    <script>
+      jQuery( function() {
+        jQuery( '#background' ).YTPlayer();
+      } );
+    </script>
+</head>
+<body>
+  <div id="background" class="player" data-property="{
+    videoURL:'https://www.youtube.com/embed/ozzQsneiQFc',
+    mute: true,
+    showControls: false,
+    useOnMobile: true,
+    quality: 'highres',
+    containment: 'body',
+    loop: true,
+    autoPlay: true,
+    stopMovieOnBlur: false,
+    startAt: 0,
+    opacity: 1
+  }"></div>
+
+    <div class="container-fluid mt-5 pt-5">
+        <div class="row">
+          <div class="col-4" style="margin:auto;">
+          </div>
+          <div class="col-4 mt-5 pt-5" >
+            <h2 style="font-weight: bold; text-align: left;">로그인</h2>
+            <form method="POST" action="{% url 'login'%}">
+              {% csrf_token %}
+                <div class="form-group mt-4">
+                  <input name="username" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="이메일 아이디">
+                </div>
+                <div class="form-group">
+                  <input name="password" type="password" class="form-control" id="exampleInputPassword1" placeholder="비밀번호(영문, 숫자 특수문자 포함 8자 이상)">
+                </div>
+                <div class="form-group form-check">
+                  <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                  <div class="row">
+                      <div class="col"><label class="form-check-label" for="exampleCheck1" style="text-align: left;">아이디 저장</label></div>
+                      <div class="col"><a style="text-decoration: none; color :black; text-align: right;" href="#" >아이디 비밀번호 찾기</a><span><i class="fas fa-angle-right"></i></span>
+                      </div>
+                  </div>
+                 
+                </div>
+                <button type="submit" class="btn btn-primary" style="width: 31vw; height: 5vh; background-color:#84e2e2">로그인</button>
+              </form>
+              <div class="row">
+                <div class="col"><hr></div>
+                <div class="col-md-auto">또는</div>
+                <div class="col mb-2"><hr></div>
+              </div>
+              <div style="text-align: center;">아직 와디즈 계정이 없나요?<a class="ml-2" href="#" style="color: #84e2e2;">회원가입</a></div>
+          </div>
+          <div class="col-4" style="margin:auto;">
+          </div>
+        </div>
+      </div>
+</body>
+
+

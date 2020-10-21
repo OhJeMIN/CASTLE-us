@@ -2,15 +2,41 @@
 {%block contents%}
 {%load static%}
 <link rel="stylesheet" href="{%static 'groupPurchase_form.css'%}">
-<div class="container" style="padding: 0 10rem;">
-    <form method="POST" enctype="multipart/form-data" action = "{%url 'groupPurchase_detail_new'%}">
+<div class="container" style="padding: 2rem 10rem;">
+    <form method="POST" enctype="multipart/form-data" action="{%url 'groupPurchase_detail_new'%}">
         {% csrf_token %}
-            {{ form.media }}
-            {{ form.as_p }}
-            사진: <input type="file" name="myfile">
-            <div class="btnBlock">
-                <input type="submit" class="btn btnSave" value="저장"/>
-            </div>
+
+        <label for="proceeding">진행사항:</label>
+        <select id="proceeding" name="proceeding">
+            <option value="" selected disabled hidden>선택</option>
+            <option value="1">진행중</option>
+            <option value="2">종료</option>
+        </select>
+
+        <label for="category">카테고리:</label>
+        <select id="category" name="category">
+            <option value="" selected disabled hidden>선택</option>
+            <option value="1">가구</option>
+            <option value="2">침구</option>
+            <option value="3">패브릭</option>
+            <option value="4">조명</option>
+            <option value="5">홈데코</option>
+            <option value="6">가전</option>
+            <option value="7">수납/정리</option>
+            <option value="8">생활용품</option>
+            <option value="9">주방</option>
+            <option value="10">DIY/공구</option>
+            <option value="11">인테리어</option>
+            <option value="12">반려동물</option>
+        </select>
+
+        {{ form.media }}
+        {{ form.as_p }}
+        <span style="font-weight: bold;">사진:</span>
+        <input type="file" name="myfile">
+        <div class="btnBlock">
+            <input type="submit" class="btn btnSave" value="저장" />
+        </div>
     </form>
 </div>
 {%endblock%}
