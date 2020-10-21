@@ -30,7 +30,7 @@ class Flee_marketPost(forms.ModelForm):
             # 'proceeding': forms.NumberInput(attrs = {'class': 'proceedingfield form-control', 'placeholder': "진행(1)/ 종료(2)"}),
             'title': forms.TextInput(attrs = {'class': 'titlefield form-control'}),
             'price': forms.NumberInput(attrs = {'class': 'pricefield form-control', 'placeholder': "가격(원)을 입력해주세요"}),
-            # 'category': forms.NumberInput(attrs = {'class': 'categoryfield form-control'}),
+            # 'category': forms.NumberInput(att rs = {'class': 'categoryfield form-control'}),
         }
 
         labels = {
