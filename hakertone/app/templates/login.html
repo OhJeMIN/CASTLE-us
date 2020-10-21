@@ -1,4 +1,5 @@
 <head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
       <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
@@ -13,27 +14,25 @@
         jQuery( '#background' ).YTPlayer();
       } );
     </script>
-</head>
-<body>
-  <div id="background" class="player" data-property="{
-    videoURL:'https://www.youtube.com/embed/ozzQsneiQFc',
-    mute: true,
-    showControls: false,
-    useOnMobile: true,
-    quality: 'highres',
-    containment: 'body',
-    loop: true,
-    autoPlay: true,
-    stopMovieOnBlur: false,
-    startAt: 0,
-    opacity: 1
-  }"></div>
+    <style>
+      .bg { psition:relative; }
 
-    <div class="container-fluid mt-5 pt-5">
-        <div class="row">
-          <div class="col-4" style="margin:auto;">
-          </div>
-          <div class="col-4 mt-5 pt-5" >
+      .bg:after { content:""; position:absolute; top:0; right:0; bottom:0; left:0; background-color:rgba(0,0,0,0.5); display:block; z-index:1; }
+      
+      .info { position:absolute; z-index:2; } 
+      *{
+        color: white  ;
+      }
+       
+    </style>
+</head>
+<body >
+  <div>
+    <div id="d" class="bg" style="height: 100vh; width:100vw;">
+      <div class="container-fluid mt-5 pt-5 info">
+        <div class="row  d-flex justify-content-center">
+          
+          <div class="col-3 mt-5 pt-5" >
             <h2 style="font-weight: bold; text-align: left;">로그인</h2>
             <form method="POST" action="{% url 'login'%}">
               {% csrf_token %}
@@ -44,27 +43,44 @@
                   <input name="password" type="password" class="form-control" id="exampleInputPassword1" placeholder="비밀번호(영문, 숫자 특수문자 포함 8자 이상)">
                 </div>
                 <div class="form-group form-check">
-                  <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                  <input type="checkbox" class="form-check-input mt-2" id="exampleCheck1">
                   <div class="row">
-                      <div class="col"><label class="form-check-label" for="exampleCheck1" style="text-align: left;">아이디 저장</label></div>
-                      <div class="col"><a style="text-decoration: none; color :black; text-align: right;" href="#" >아이디 비밀번호 찾기</a><span><i class="fas fa-angle-right"></i></span>
+                      <div class="col"><p class="form-check-label mt-1" for="exampleCheck1" style="text-align: left; font-size:small">아이디 저장</p></div>
+                      <div class="col"><a style="text-decoration: none; color :white; text-align: right; font-size:small" href="#" >아이디 비밀번호 찾기 </a><span>></span>
                       </div>
                   </div>
                  
                 </div>
-                <button type="submit" class="btn btn-primary" style="width: 31vw; height: 5vh; background-color:#84e2e2">로그인</button>
+                <button type="submit" class="btn btn-primary btn-block border-0" style="background-color:#84e2e2; font-weight:bold">로그인</button>
               </form>
-              <div class="row">
-                <div class="col"><hr></div>
-                <div class="col-md-auto">또는</div>
-                <div class="col mb-2"><hr></div>
+              <div class="row d-flex justify-content-center">
+                <div class="col"><hr class="border-white"></div>
+                <div class="col-md-auto mt-1">또는</div>
+                <div class="col mb-2"><hr class="border-white"></div>
               </div>
-              <div style="text-align: center;">아직 와디즈 계정이 없나요?<a class="ml-2" href="#" style="color: #84e2e2;">회원가입</a></div>
+              <div style="text-align: center;">아직 와디즈 계정이 없나요?<a class="ml-2" href="{%url 'register' %}" style="color: #84e2e2;">회원가입</a></div>
           </div>
-          <div class="col-4" style="margin:auto;">
-          </div>
+          
         </div>
       </div>
+    </div>
+    
+  </div>
+  <div id="background" class="player" data-property="{
+    videoURL:'https://www.youtube.com/embed/ozzQsneiQFc',
+    mute: true,
+    showControls: false,
+    useOnMobile: true,
+    quality: 'highres',
+    containment: '#d',
+    loop: true,
+    autoPlay: true,
+    stopMovieOnBlur: false,
+    startAt: 0,
+    opacity: 1,
+  }"></div>
+
+    
 </body>
 
 
