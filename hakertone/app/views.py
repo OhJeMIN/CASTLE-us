@@ -7,7 +7,8 @@ from django.contrib import auth
 
 def index(request):
     return render(request, 'index.html')
-
+def loginPage(request):
+    return render(request, 'login.html')
 def login(request):
     if request.method == 'POST':
             username = request.POST['username']
@@ -66,7 +67,7 @@ def register2(request):
         info.apartment = request.POST['apartment']
         info.address = request.POST['address']
         info.save()
-    return render(request, 'register2.html')
+    return redirect('/main')
     
 
 def register3(request):
