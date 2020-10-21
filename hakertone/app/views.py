@@ -43,14 +43,31 @@ def main(request):
     return render(request, 'main.html',  {'group_buying': randomObjList})
 
 def group_board(request):
-    group_buying = Group_buying.objects
-    group_buying_list = Group_buying.objects.all()
-    group_buying_comment = Group_buying_comment.objects
-    userinfo = User_info.objects
-    paginator = Paginator(group_buying_list, 5)
+    groupQuery = request.GET.get('groupSearch')
+    if groupQuery:
+        group_buying = Group_buying.objects.filter(title__contains = groupQuery)
+        group_buying_list = Group_buying.objects.filter(title__contains =groupQuery).all()
+        paginator2 = Paginator(group_buying_list, 5)
+        page = request.GET.get('page')
+        posts2 = paginator2.get_page(page)
+        return render(request, 'group_board.html', {'group_buying_search': group_buying, 'posts2': posts2, 'groupQuery': groupQuery})
+    else:
+        group_buying = Group_buying.objects
+        group_buying_list = Group_buying.objects.all()
+        group_buying_comment = Group_buying_comment.objects
+        userinfo = User_info.objects
+        paginator = Paginator(group_buying_list, 5)
+        page = request.GET.get('page')
+        posts = paginator.get_page(page)    #페이지 번호 받아 해당 페이지 리턴
+        return render(request, 'group_board.html',{'group_buying':group_buying, 'group_buying_comment':group_buying_comment,'userinfo':userinfo, 'posts': posts})
+
+def group_board_new(request, category):
+    temp = Group_buying.objects.filter(category=category)
+    group_buying_list = Group_buying.objects.filter(category = category).all()
+    paginator3 = Paginator(group_buying_list, 5)
     page = request.GET.get('page')
-    posts = paginator.get_page(page)    #페이지 번호 받아 해당 페이지 리턴
-    return render(request, 'group_board.html',{'group_buying':group_buying, 'group_buying_comment':group_buying_comment,'userinfo':userinfo, 'posts': posts})
+    posts3 = paginator3.get_page(page)
+    return render(request, 'group_board.html', {'group_buying_filter':temp, 'posts3': posts3})
 
 def company_detail (request, id):
     company_detail = get_object_or_404(Company_buying, pk=id)
