@@ -4,6 +4,7 @@ from .forms import Group_buyingPost, Flee_marketPost
 import random
 from django.contrib.auth.models import User
 from django.contrib import auth
+from django.core.paginator import Paginator
 
 def index(request):
     return render(request, 'index.html')
@@ -43,9 +44,13 @@ def main(request):
 
 def group_board(request):
     group_buying = Group_buying.objects
+    group_buying_list = Group_buying.objects.all()
     group_buying_comment = Group_buying_comment.objects
     userinfo = User_info.objects
-    return render(request, 'group_board.html',{'group_buying':group_buying, 'group_buying_comment':group_buying_comment,'userinfo':userinfo})
+    paginator = Paginator(group_buying_list, 5)
+    page = request.GET.get('page')
+    posts = paginator.get_page(page)    #페이지 번호 받아 해당 페이지 리턴
+    return render(request, 'group_board.html',{'group_buying':group_buying, 'group_buying_comment':group_buying_comment,'userinfo':userinfo, 'posts': posts})
 
 def company_detail (request, id):
     company_detail = get_object_or_404(Company_buying, pk=id)
