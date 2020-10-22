@@ -55,7 +55,7 @@ transform: translate(-50%, -50%);
 search-bar
 */
 .pro-1{
-  border-radius:5px 0 0 5px;
+  border-radius:5px;
   border:none;
   background:#84e2e2;
   color:white;
@@ -64,7 +64,7 @@ search-bar
   font-weight:bolder;
 }
 .pro-2{
-  border-radius:5px 0 0 5px;
+  border-radius:5px;
   border:none;
   background:#777775;
   color:white;
@@ -193,4 +193,18 @@ height: 1em;
 }
 .reviewer{
 font-weight: 700;
+}
+
+.href-no{
+  color: black;
+}
+.href-no:hover{
+  color:black;
+}
+
+.href-no:visited{
+  color:black;
+}
+.href-no:before{
+  color:black;
 }
