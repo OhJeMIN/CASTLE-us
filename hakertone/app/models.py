@@ -42,6 +42,7 @@ class Flee_market(models.Model):
 class Company_buying(models.Model):
     company_id = models.IntegerField()
     contract = models.IntegerField()
+    title = models.CharField(max_length=200)
     main_img = models.ImageField(upload_to='images/')
     detail_img1 = models.ImageField(upload_to='images/')
     detail_img2 = models.ImageField(upload_to='images/')

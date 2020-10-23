@@ -27,14 +27,16 @@ urlpatterns = [
     path('logout', app.views.logout, name='logout'),
     path('main',app.views.main, name='main'),
     path('group_board',app.views.group_board, name='group_board'),
+    path('group_board/<int:category>', app.views.group_board_new, name = "group_board_new"),
     path('company_detail/<int:id>', app.views.company_detail, name='company_detail'),
     path('register',app.views.register, name='register'),
     path('register2',app.views.register2, name='register2'),    
     path('register3',app.views.register3, name='register3'),    
     path('Lcompany',app.views.Lcompany, name='Lcompany'),
-    path('companyBuying',app.views.companyBuying, name='companyBuying'),   
+    path('companyBuying',app.views.companyBuying, name='companyBuying'), 
+    path('companyBuying/<int:category>',app.views.companyBuying_new, name='companyBuying_new'),   
     path('fleaMarket',app.views.fleaMarket, name='fleaMarket'),   
-
+    path('fleaMarket/<int:category>',app.views.fleaMarket_new, name='fleaMarket_new'),  
     path('fleaMarket_detail/<int:id>', app.views.fleaMarket_detail, name='fleaMarket_detail'),
     path('groupPurchase_detail/<int:id>', app.views.groupPurchase_detail, name='groupPurchase_detail'),
 

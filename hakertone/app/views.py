@@ -4,6 +4,7 @@ from .forms import Group_buyingPost, Flee_marketPost
 import random
 from django.contrib.auth.models import User
 from django.contrib import auth
+from django.core.paginator import Paginator
 
 def index(request):
     return render(request, 'index.html')
@@ -42,10 +43,31 @@ def main(request):
     return render(request, 'main.html',  {'group_buying': randomObjList})
 
 def group_board(request):
-    group_buying = Group_buying.objects
-    group_buying_comment = Group_buying_comment.objects
-    userinfo = User_info.objects
-    return render(request, 'group_board.html',{'group_buying':group_buying, 'group_buying_comment':group_buying_comment,'userinfo':userinfo})
+    groupQuery = request.GET.get('groupSearch')
+    if groupQuery:
+        group_buying = Group_buying.objects.filter(title__contains = groupQuery)
+        group_buying_list = Group_buying.objects.filter(title__contains =groupQuery).all()
+        paginator2 = Paginator(group_buying_list, 5)
+        page = request.GET.get('page')
+        posts2 = paginator2.get_page(page)
+        return render(request, 'group_board.html', {'group_buying_search': group_buying, 'posts2': posts2, 'groupQuery': groupQuery})
+    else:
+        group_buying = Group_buying.objects
+        group_buying_list = Group_buying.objects.all()
+        group_buying_comment = Group_buying_comment.objects
+        userinfo = User_info.objects
+        paginator = Paginator(group_buying_list, 5)
+        page = request.GET.get('page')
+        posts = paginator.get_page(page)    #페이지 번호 받아 해당 페이지 리턴
+        return render(request, 'group_board.html',{'group_buying':group_buying, 'group_buying_comment':group_buying_comment,'userinfo':userinfo, 'posts': posts})
+
+def group_board_new(request, category):
+    temp = Group_buying.objects.filter(category=category)
+    group_buying_list = Group_buying.objects.filter(category = category).all()
+    paginator3 = Paginator(group_buying_list, 5)
+    page = request.GET.get('page')
+    posts3 = paginator3.get_page(page)
+    return render(request, 'group_board.html', {'group_buying_filter':temp, 'posts3': posts3})
 
 def company_detail (request, id):
     company_detail = get_object_or_404(Company_buying, pk=id)
@@ -77,13 +99,27 @@ def Lcompany(request):
     return render(request, 'Lcompany.html')
 
 def companyBuying(request):
-    companyBuying = Company_buying.objects.all()
-    companyinfo = Company.objects.all()
-    return render(request, 'Company_buying.html', {'companyBuying': companyBuying, 'companyinfo': companyinfo})
+    query2=request.GET.get('search123')
+    if query2:
+        companyBuying = Company_buying.objects.filter(title__contains=query2)
+        companyinfo = Company.objects.all()
+        return render(request, 'Company_buying.html',{'companyBuying':companyBuying, 'companyinfo':companyinfo})
+    else:
+        companyBuying = Company_buying.objects.all()
+        companyinfo = Company.objects.all()
+        return render(request, 'Company_buying.html', {'companyBuying': companyBuying, 'companyinfo': companyinfo})
+
+
+
 
 def fleaMarket(request):
-    fleaMarket = Flee_market.objects.all()
-    return render(request, 'fleaMarket.html',{'fleaMarket':fleaMarket})
+    query=request.GET.get('search')
+    if query:
+        fleaMarket = Flee_market.objects.filter(title__contains=query)
+        return render(request, 'fleaMarket.html',{'fleaMarket':fleaMarket})
+    else:
+        fleaMarket = Flee_market.objects.all()
+        return render(request, 'fleaMarket.html',{'fleaMarket':fleaMarket})
 
 def fleaMarket_detail(request, id):
     fleaMarket = get_object_or_404(Flee_market, pk =id)
@@ -170,3 +206,12 @@ def createUser(request):
     user.email = reuqest.POST['email']
     user.save()
     return redirect()
+
+def fleaMarket_new(request,category):
+    temp=Flee_market.objects.filter(category=category)
+    return render(request, 'fleaMarket.html',{'fleaMarket':temp})
+
+
+def companyBuying_new(request,category):
+    temp=Company_buying.objects.filter(category=category)
+    return render(request, 'Company_buying.html',{'companyBuying':temp})
