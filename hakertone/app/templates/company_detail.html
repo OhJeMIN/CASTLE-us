@@ -33,11 +33,12 @@
             <img src="{{company_detail.detail_img2.url}}" width="600em" height="700em">
         </div>
     </div>
-    <div class="inline-block" style="float: right;">
+    <div class="inline-block" style="float: right; width:30%">
         <div class="block" style="width: 25em; height:12em; padding-top:2em;">
             {%for i in company.all %}
             {% if i.id == company_detail.company_id %}
             <img src="{{i.img.url}}" width="150em;" height="150em;" class="circle">
+            <!--<img src="media/{{i.img}}" width="150em;" height="150em;" class="circle">-->
             {%endif%}
             {%endfor%}
         </div>
