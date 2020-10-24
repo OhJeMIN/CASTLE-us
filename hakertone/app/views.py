@@ -5,6 +5,7 @@ import random
 from django.contrib.auth.models import User
 from django.contrib import auth
 from django.core.paginator import Paginator
+from django.views.decorators.csrf import csrf_exempt
 
 def index(request):
     return render(request, 'index.html')
@@ -38,17 +39,24 @@ def main(request):
         apartment = get_object_or_404(User_info, user_id = user_pk)
         apartment = apartment.apartment
         #메인_공동구매
-        group_buying = Group_buying.objects.all()    
-        randomNum = []
-        for i in range(1, len(group_buying)+1):
-            randomNum.append(i)
-        randomNum = random.sample(randomNum, 4)
-        randomObjList = []
-        for i in range(len(randomNum)):
-            for j in range(group_buying.count()):
-                if randomNum[i] == group_buying[j].id:
-                    randomObjList.append(group_buying[j])
-        return render(request, 'main.html', {'group_buying': randomObjList, 'apartment':apartment})
+        group_buying = Group_buying.objects.all()
+        num=[]
+        for i in group_buying:
+            num+=[i.id]        
+        randomNum = random.sample(num , 4)        
+        randomObjList=[]
+        for i in randomNum:
+            randomObjList += Group_buying.objects.filter(id=i)
+        #company_buying
+        company_buying = Company_buying.objects.all()
+        num=[]
+        for i in company_buying:
+            num+=[i.id]       
+        randomNum1 = random.sample(num , 4)        
+        randomObjList1=[]
+        for i in randomNum1:
+            randomObjList1 += Company_buying.objects.filter(id=i)
+        return render(request, 'main.html',  {'group_buying': randomObjList,'company_buying':randomObjList1, 'apartment':apartment})
     #로그인이 되어있지 않으면?
     else:
         return redirect('/')
@@ -106,7 +114,8 @@ def register(request):
 
 def register2(request):
     if request.method=='POST':
-        user = User.objects.create_user(request.POST['username'], request.POST['password'], request.POST['firstname'])
+        user = User.objects.create_user(request.POST['username'], request.POST['password'])
+        user.first_name = request.POST.get('firstname')
         temp = get_object_or_404(User, username=user.username)
         info = User_info()
         info.user_id = temp.id
@@ -114,11 +123,17 @@ def register2(request):
         info.apartment = request.POST['apartment']
         info.address = request.POST['address']
         info.phone = request.POST['phone']
-        if request.POST['isUser']=='true':
-            info.isUser = True
+        if request.POST['firstname']=='기업':
+            info.isUser=False
+            user.first_name='사업자'
         else:
-            info.isUser = False
+            info.isUser=True
+            user.first_name='개인'
+       
         info.save()
+
+        return redirect('/')
+
         return redirect('/')
     else :
         return render(request, 'register2.html')

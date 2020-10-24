@@ -67,8 +67,106 @@
     a{
       color: black;
     }
+  #first_name
+{
+  border: none;
+  width: 2.3rem;
+  height: 1.5rem;
+  font-size: 1rem;
+}
+span{
+  font-size: 1rem;
+}
+ 
+
+
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
   </style>
 
+
+  <script type="text/javascript">
+    // 선택한 리스트 위로 올리기
+    function listUp(){
+     var sb= document.getElementById("sb");
+     var index = sb.selectedIndex;
+     var total = sb.options.length-1;
+     if(index == -1){
+      return false;
+     }
+     if(index == 0){
+      return false;
+     }
+    
+     var items = new Array;
+     var values = new Array;
+    
+     for(var i = total; i >= 0; i--){
+      items[i] = sb.options[i].text;
+      values[i] = sb.options[i].value;
+     }
+     sb.length = 0;
+    
+     for(var i = 0; i <= total; i++){
+      if(i == index - 1){
+       sb.options[i] = new Option(items[index], values[index]);
+       sb.options[i+1] = new Option(items[i], values[i]);
+       i++;
+      }else{
+       sb.options[i] = new Option(items[i], values[i]);
+      }
+     }
+     sb.selectedIndex = index - 1;
+    }
+    // 선택한 리스트 아래로 내리기
+    function listDown(){
+     var sb= document.getElementById("sb");
+     var index = sb.selectedIndex;
+     var total = sb.options.length-1;
+     if(index == -1){
+      return false;
+     }
+     if(index == total){
+      return false;
+     }
+     var items = new Array;
+     var values = new Array;
+     for (i = total; i >= 0; i--) {
+      items[i] = sb.options[i].text;
+      values[i] = sb.options[i].value;
+     }
+     sb.length=0;
+    
+     for(var i = total; i >= 0; i-- ){
+      if(i == index + 1){
+       sb.options[i]=new Option( items[index], values[index] );
+       sb.options[i - 1] = new Option( items[i], values[i] );
+       i--;
+      }else{
+       sb.options[i]=new Option( items[i], values[i] );
+      }
+     }
+     sb.selectedIndex = index+1;
+    }
+    // 더블 클릭 시 리스트 삭제
+    function delsel(val){
+     for(var j = 0; j < document.getElementById("sb").options.length; j++){
+      if(document.getElementById("regionView").options[j].value == val){
+       document.getElementById("sb").options[j] = null;
+      }
+     }
+    }
+    // 리스트 전체 삭제
+    function clearList(){
+    var sb = document.getElementById("sb");
+    sb.options.length = 0;
+    }
+    </script>
+    
+    
 </head>
 
 <body>
@@ -93,13 +191,17 @@
 <form method="POST" action="{%url 'register2'%}">
   {% csrf_token %} 
   <div class="form-row">
+     <div class="container-fluid p-1" ><input type="text" id="first_name" name="firstname"readonly value="개인"/> <span>회원님 환영합니다</span> 
+    </div> 
+  <!-- <input type="hidden" value"개인w" name="firstname"> -->
+
     <div class="form-group col-md-6">
       <label for="inputEmail4" >이름</label>
-      <input type="text" class="form-control" id="inputEmail4" name="firstname">
+      <input type="text" class="form-control" id="inputEmail1" name="firstname">
     </div>
     <div class="form-group col-md-6">
       <label for="inputEmail4" >전화번호</label>
-      <input type="number" class="form-control" id="inputEmail4" name="phone">
+      <input type="number" class="form-control" id="inputEmail2" name="phone">
     </div>
   </div>
     
@@ -116,9 +218,46 @@
       </div>
     </div>
     
+
+
+
     <div class="form-group">
+
       <label for="inputAddress">주소(아파트)</label>
-      <input type="text" class="form-control" id="inputAddress"  name="apartment" placeholder="상암 올림픽경기장 롯데캐슬">
+      <select class="form-control form-control-sm" id="sb" name="apartment" multiple="multiple" ondblclick="delsel(this.value);">
+        <option>가야 롯데캐슬 골드아너</option>
+        <option>길음역 롯데캐슬 트윈골드</option>
+        <option>남산 롯데캐슬 센트럴스카이</option>
+        <option>노원 롯데캐슬 시그니처</option>
+        <option>대곡역 롯데캐슬 엘클라씨</option>
+        <option>동탄역 롯데캐슬</option>
+        <option>롯데캐슬 리버파크 시그니처</option>
+        <option>롯데캐슬 클라시아</option>
+        <option>르엘 대치</option>
+        <option>르엘 신반포</option>
+        <option>르엘 신반포 센트럴</option>
+        <option>르엘 신반포 파크애비뉴</option>
+        <option>백양산 롯데캐슬 골드센트럴</option>
+        <option>번영로 센트리지</option>
+        <option>상도역 롯데캐슬</option>
+        <option>서면 롯데캐슬 엘루체</option>
+        <option>성복역 롯데캐슬 파크나인</option>
+        <option>성복역 롯데캐슬 파크나인Ⅱ</option>
+        <option>속초 롯데캐슬 인더스카이</option>
+        <option>송파 시그니처 롯데캐슬</option>
+        <option>신동탄 롯데캐슬 나노시티</option>
+        <option>영통 롯데캐슬 엘클래스</option>
+        <option>오산 롯데캐슬 스카이파크</option>
+        <option>웅천 롯데캐슬 마리나</option>
+        <option>의정부 롯데캐슬 골드포레</option>
+        <option>주례 롯데캐슬 골드스마트</option>
+        <option>주안 캐슬&더샵 에듀포레</option>
+        <option>창원 롯데캐슬 프리미어</option>
+        <option>철산역 롯데캐슬&SK VIEW 클래스티지</option>
+        <option>청량리역 롯데캐슬 Sky-L65</option>
+        <option>청량리역 롯데캐슬 Sky-L65 섹션오피스</option>
+      </select>
+
     </div>
     <div class="form-group">
       <label for="inputAddress2">상세 주소</label>
