@@ -285,15 +285,16 @@
       </form>
 
   <div class="container">
+    {% if isCompany%}
     <div class="row d-flex justify-content-end mr-2">
       <div class="form-group m-0">
-        <select class="form-control col-md-auto product_kind border-0"style="font-size: x-small;
+        <button class="btn btn-link "style="font-size: x-small;
         color:rgb(165, 165, 165);" id="exampleFormControlSelect1">
-          <option>인기순</option>
-          <option>최신순</option>
-        </select>
+          글쓰기
+        </button>
       </div>
     </div>
+    {%endif%}
 
   
     <div class="row ">

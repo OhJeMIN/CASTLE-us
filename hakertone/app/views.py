@@ -35,9 +35,16 @@ def main(request):
     #로그인이 되어 있는지?
     user_pk = request.session.get('user')
     if user_pk:
-         #아파트
-        apartment = get_object_or_404(User_info, user_id = user_pk)
-        apartment = apartment.apartment
+        user = get_object_or_404(User, id = user_pk)
+        if user.first_name == '사업자':
+            #사업자명
+            apartment = get_object_or_404(Company, user_id = user_pk)
+            apartment = apartment.name
+        else:
+            #아파트
+            apartment = get_object_or_404(User_info, user_id = user_pk)
+            apartment = apartment.apartment
+
         #메인_공동구매
         group_buying = Group_buying.objects.all()
         num=[]
@@ -67,19 +74,39 @@ def group_board(request):
     #로그인이 되어 있는지?
     user_pk = request.session.get('user')
     if user_pk:
-        #아파트
-        apartment = get_object_or_404(User_info, user_id = user_pk)
-        apartment = apartment.apartment
+        user = get_object_or_404(User, id = user_pk)
+        if user.first_name == '사업자':
+            #사업자명
+            apartment = get_object_or_404(Company, user_id = user_pk)
+            apartment = apartment.name
+        else:
+            #아파트
+            apartment = get_object_or_404(User_info, user_id = user_pk)
+            apartment = apartment.apartment
+
         #메인_공동구매
         group_buying = Group_buying.objects.all()
         groupQuery = request.GET.get('groupSearch')
         if groupQuery:
             group_buying = Group_buying.objects.filter(title__contains = groupQuery)
             group_buying_list = Group_buying.objects.filter(title__contains =groupQuery).all()
-            paginator2 = Paginator(group_buying_list, 5)
+            paginator = Paginator(group_buying, 5)
             page = request.GET.get('page')
-            posts2 = paginator2.get_page(page)
-            return render(request, 'group_board.html', {'group_buying_search': group_buying, 'posts2': posts2, 'groupQuery': groupQuery, 'apartment':apartment})
+            posts = paginator.get_page(page)    #페이지 번호 받아 해당 페이지 리턴
+                    # [2]
+            page_numbers_range = 10
+            
+            # [3]
+            max_index = len(paginator.page_range)
+            current_page = int(page) if page else 1
+            start_index = int((current_page - 1) / page_numbers_range) * page_numbers_range
+            end_index = start_index + page_numbers_range
+            
+            # [4]
+            if end_index >= max_index:
+                end_index = max_index
+            paginator_range = paginator.page_range[start_index:end_index]
+            return render(request, 'group_board.html', {'group_buying_search': group_buying, 'posts': posts, 'groupQuery': groupQuery, 'apartment':apartment, 'paginator_range':paginator_range})
         else:
             group_buying = Group_buying.objects
             group_buying_list = Group_buying.objects.all()
@@ -109,12 +136,39 @@ def group_board(request):
 
     
 def group_board_new(request, category):
-    temp = Group_buying.objects.filter(category=category)
-    group_buying_list = Group_buying.objects.filter(category = category).all()
-    paginator3 = Paginator(group_buying_list, 5)
-    page = request.GET.get('page')
-    posts3 = paginator3.get_page(page)
-    return render(request, 'group_board.html', {'group_buying_filter':temp, 'posts3': posts3})
+    user_pk = request.session.get('user')
+    if user_pk:
+        user = get_object_or_404(User, id = user_pk)
+        if user.first_name == '사업자':
+            #사업자명
+            apartment = get_object_or_404(Company, user_id = user_pk)
+            apartment = apartment.name
+        else:
+            #아파트
+            apartment = get_object_or_404(User_info, user_id = user_pk)
+            apartment = apartment.apartment
+
+        temp = Group_buying.objects.filter(category=category)
+        group_buying_list = Group_buying.objects.filter(category = category).all()
+        paginator = Paginator(temp, 5)
+        page = request.GET.get('page')
+        posts = paginator.get_page(page)    #페이지 번호 받아 해당 페이지 리턴
+                # [2]
+        page_numbers_range = 10
+        
+        # [3]
+        max_index = len(paginator.page_range)
+        current_page = int(page) if page else 1
+        start_index = int((current_page - 1) / page_numbers_range) * page_numbers_range
+        end_index = start_index + page_numbers_range
+        
+        # [4]
+        if end_index >= max_index:
+            end_index = max_index
+        paginator_range = paginator.page_range[start_index:end_index]
+        return render(request, 'group_board.html', {'group_buying_filter':temp, 'posts': posts, 'paginator_range':paginator_range,'apartment':apartment})
+    else:
+        return redirect('/')
 
 def company_detail (request, id):
     company_detail = get_object_or_404(Company_buying, pk=id)
@@ -181,16 +235,31 @@ def Lcompany(request):
     return render(request, 'Lcompany.html')
 
 def companyBuying(request):
-    query2=request.GET.get('search123')
-    if query2:
-        companyBuying = Company_buying.objects.filter(title__contains=query2)
-        companyinfo = Company.objects.all()
-        return render(request, 'Company_buying.html',{'companyBuying':companyBuying, 'companyinfo':companyinfo})
-    else:
-        companyBuying = Company_buying.objects.all()
-        companyinfo = Company.objects.all()
-        return render(request, 'Company_buying.html', {'companyBuying': companyBuying, 'companyinfo': companyinfo})
+    user_pk = request.session.get('user')
+    if user_pk:
+        user = get_object_or_404(User, id = user_pk)
+        if user.first_name == '사업자':
+            #사업자명
+            apartment = get_object_or_404(Company, user_id = user_pk)
+            apartment = apartment.name
+            isCompany = True
+        else:
+            #아파트
+            apartment = get_object_or_404(User_info, user_id = user_pk)
+            apartment = apartment.apartment
+            isCompany = False
 
+        query2=request.GET.get('search123')
+        if query2:
+            companyBuying = Company_buying.objects.filter(title__contains=query2)
+            companyinfo = Company.objects.all()
+            return render(request, 'Company_buying.html',{'apartment':apartment,'companyBuying':companyBuying, 'companyinfo':companyinfo, 'isCompany':isCompany})
+        else:
+            companyBuying = Company_buying.objects.all()
+            companyinfo = Company.objects.all()
+            return render(request, 'Company_buying.html', {'apartment':apartment,'companyBuying': companyBuying, 'companyinfo': companyinfo,'isCompany':isCompany})
+    else:
+        return redirect("/")
 
 
 
@@ -198,9 +267,16 @@ def fleaMarket(request):
     #로그인이 되어 있는지?
     user_pk = request.session.get('user')
     if user_pk:
-        #아파트
-        apartment = get_object_or_404(User_info, user_id = user_pk)
-        apartment = apartment.apartment
+        user = get_object_or_404(User, id = user_pk)
+        if user.first_name == '사업자':
+            #사업자명
+            apartment = get_object_or_404(Company, user_id = user_pk)
+            apartment = apartment.name
+        else:
+            #아파트
+            apartment = get_object_or_404(User_info, user_id = user_pk)
+            apartment = apartment.apartment
+
         query=request.GET.get('search')
         if query:
             fleaMarket = Flee_market.objects.filter(title__contains=query)
