@@ -5,6 +5,7 @@ import random
 from django.contrib.auth.models import User
 from django.contrib import auth
 from django.core.paginator import Paginator
+from django.views.decorators.csrf import csrf_exempt
 
 def index(request):
     return render(request, 'index.html')
