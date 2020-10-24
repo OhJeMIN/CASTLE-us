@@ -35,9 +35,16 @@ def main(request):
     #로그인이 되어 있는지?
     user_pk = request.session.get('user')
     if user_pk:
-         #아파트
-        apartment = get_object_or_404(User_info, user_id = user_pk)
-        apartment = apartment.apartment
+        user = get_object_or_404(User_info, user_id = user_pk)
+        if user.first_name == '사업자':
+            #사업자명
+            apartment = get_object_or_404(Company, user_id = user_pk)
+            apartment = apartment.name
+        else:
+            #아파트
+            apartment = get_object_or_404(User_info, user_id = user_pk)
+            apartment = apartment.apartment
+            
         #메인_공동구매
         group_buying = Group_buying.objects.all()
         num=[]
