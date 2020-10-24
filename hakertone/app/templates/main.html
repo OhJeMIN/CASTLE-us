@@ -69,6 +69,15 @@
       left: 4%;
      
   }
+  .jb-text1 {
+    padding: 5px 10px;
+    background-color: gray;
+    text-align: center;
+    position: absolute;
+    top: 2%;
+    left: 4%;
+   
+}
   
   .img-wrap img {
       width: 100%;
@@ -168,12 +177,14 @@
           <div class="carousel-item">
             <img src="http://www.lottecastle.co.kr/imgViewer.do?fpath=CM0007&fnm=2020062744044751593237202319.jpg" class="d-block w-100" alt="...">
           </div>
+          <div class="carousel-item">
+            <img src="http://www.lottecastle.co.kr/imgViewer.do?fpath=CM0007&fnm=2020101610549651602827124040.jpg" class="d-block w-100" alt="...">
+          </div>
         </div>
       </div>
       <div class="container">
         <div class="row ">
           {% for i in group_buying %}
-          
           <div class="col mt-4 d-flex justify-content-center p-0">
             <a href="/groupPurchase_detail/{{i.id}}">
               <div class="card ml-3 mr-3 border-0 justify-content-center m-0">
@@ -181,12 +192,88 @@
                   <img
                   src="media/{{i.img}}"
                   class="card-img-top FFVAD rounded" alt="...">
-                  <span class="badge jb-text  text-white">6일 남음</span>
+                  {%if i.proceeding == 1 %}
+                  <span class="badge jb-text  text-white">진행중</span>
+                  {% else %}
+                  <span class="badge jb-text1  text-white">진행종료</span>
+                  {% endif %}
               </div>
                 <div class="card-body p-0 pt-1">
-                  <p class="m-0 product_kind ">아이와비</p>
+                  {% if i.category == 1 %}
+                  <p class="m-0 product_kind ">가구</p>
+                  {% elif i.category == 2 %}
+                  <p class="m-0 product_kind ">침구</p>
+                  {% elif i.category == 3 %}
+                  <p class="m-0 product_kind ">패브릭</p>
+                  {% elif i.category == 4 %}
+                  <p class="m-0 product_kind ">조명</p>
+                  {% elif i.category == 5 %}
+                  <p class="m-0 product_kind ">홈데코</p>
+                  {% elif i.category == 6 %}
+                  <p class="m-0 product_kind ">가전</p>
+                  {% elif i.category == 7 %}
+                  <p class="m-0 product_kind ">수납/정리</p>
+                  {% elif i.category == 8 %}
+                  <p class="m-0 product_kind ">생활용품</p>
+                  {% elif i.category == 9 %}
+                  <p class="m-0 product_kind ">주방</p>
+                  {% elif i.category == 10 %}
+                  <p class="m-0 product_kind ">DIY/공부</p>
+                  {% elif i.category == 11 %}
+                  <p class="m-0 product_kind ">인테리어시공</p>
+                  {% elif i.category == 12 %}
+                  <p class="m-0 product_kind ">반려동물</p>
+                  {% endif %}
                   <p class="m-0 company_product_title">{{i.title}}</p>
-                  <p class="m-0 product_kind mt-2"><span>패션 잡화</span> | <span>6일 남음</span></p>
+                  <p class="m-0 product_kind mt-2"><span>{{i.category}}</span> | <span>{{i.date | date:'H:i m/d'}}</span></p>
+                    <p class="m-0 product_grade"><span style="color:#84E2E2">★</span><span class="mr-1">4.8</span><span class="text-muted">리뷰150</span></p>
+                </div>
+            </div>
+            </a>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+      <div class="container">
+        <div class="row ">
+          {% for i in company_buying %}
+          <div class="col mt-4 d-flex justify-content-center p-0">
+            <a href="/groupPurchase_detail/{{i.id}}">
+              <div class="card ml-3 mr-3 border-0 justify-content-center m-0">
+                <div class="jb-wrap">
+                  <img
+                  src="media/{{i.main_img}}"
+                  class="card-img-top FFVAD rounded" alt="...">                  
+                  <span class="badge jb-text  text-white">{{i.date | date:'d'}}일남음</span>                  
+              </div>
+                <div class="card-body p-0 pt-1">
+                  {% if i.category == 1 %}
+                  <p class="m-0 product_kind ">가구</p>
+                  {% elif i.category == 2 %}
+                  <p class="m-0 product_kind ">침구</p>
+                  {% elif i.category == 3 %}
+                  <p class="m-0 product_kind ">패브릭</p>
+                  {% elif i.category == 4 %}
+                  <p class="m-0 product_kind ">조명</p>
+                  {% elif i.category == 5 %}
+                  <p class="m-0 product_kind ">홈데코</p>
+                  {% elif i.category == 6 %}
+                  <p class="m-0 product_kind ">가전</p>
+                  {% elif i.category == 7 %}
+                  <p class="m-0 product_kind ">수납/정리</p>
+                  {% elif i.category == 8 %}
+                  <p class="m-0 product_kind ">생활용품</p>
+                  {% elif i.category == 9 %}
+                  <p class="m-0 product_kind ">주방</p>
+                  {% elif i.category == 10 %}
+                  <p class="m-0 product_kind ">DIY/공부</p>
+                  {% elif i.category == 11 %}
+                  <p class="m-0 product_kind ">인테리어시공</p>
+                  {% elif i.category == 12 %}
+                  <p class="m-0 product_kind ">반려동물</p>
+                  {% endif %}
+                  <p class="m-0 company_product_title">{{i.title}}</p>
+                  <p class="m-0 product_kind mt-2"><span>{{i.category}}</span> | <span>{{i.date | date:'H:i m/d'}}</span></p>
                     <p class="m-0 product_grade"><span style="color:#84E2E2">★</span><span class="mr-1">4.8</span><span class="text-muted">리뷰150</span></p>
                 </div>
             </div>
