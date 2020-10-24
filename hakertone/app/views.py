@@ -88,7 +88,21 @@ def group_board(request):
             paginator = Paginator(group_buying_list, 5)
             page = request.GET.get('page')
             posts = paginator.get_page(page)    #페이지 번호 받아 해당 페이지 리턴
-            return render(request, 'group_board.html',{'group_buying':group_buying, 'group_buying_comment':group_buying_comment,'userinfo':userinfo, 'posts': posts, 'apartment':apartment})
+                    # [2]
+            page_numbers_range = 10
+            
+            # [3]
+            max_index = len(paginator.page_range)
+            current_page = int(page) if page else 1
+            start_index = int((current_page - 1) / page_numbers_range) * page_numbers_range
+            end_index = start_index + page_numbers_range
+            
+            # [4]
+            if end_index >= max_index:
+                end_index = max_index
+            paginator_range = paginator.page_range[start_index:end_index]
+           
+            return render(request, 'group_board.html',{'group_buying':group_buying, 'group_buying_comment':group_buying_comment,'userinfo':userinfo, 'posts': posts, 'apartment':apartment,'paginator_range':paginator_range})
 
     else:
         return redirect('/')
