@@ -188,10 +188,12 @@
           </div>
         </form>
       </div>
+      {%if isUser%}
       <div class="col d-flex justify-content-end">
         <button id="navvv" class="rounded"><a class="nav-link rounded p-1" href="{% url 'groupPurchase_form' %}"
             style="color: #84e2e2; font-weight:bold">글쓰기</a>
       </div>
+      {%endif%}
     </div>
   </div>
 

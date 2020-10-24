@@ -79,10 +79,12 @@ def group_board(request):
             #사업자명
             apartment = get_object_or_404(Company, user_id = user_pk)
             apartment = apartment.name
+            isUser = False
         else:
             #아파트
             apartment = get_object_or_404(User_info, user_id = user_pk)
             apartment = apartment.apartment
+            isUser=True
 
         #메인_공동구매
         group_buying = Group_buying.objects.all()
@@ -106,7 +108,7 @@ def group_board(request):
             if end_index >= max_index:
                 end_index = max_index
             paginator_range = paginator.page_range[start_index:end_index]
-            return render(request, 'group_board.html', {'group_buying_search': group_buying, 'posts': posts, 'groupQuery': groupQuery, 'apartment':apartment, 'paginator_range':paginator_range})
+            return render(request, 'group_board.html', {'group_buying_search': group_buying, 'posts': posts, 'groupQuery': groupQuery, 'apartment':apartment, 'paginator_range':paginator_range, 'isUser':isUser})
         else:
             group_buying = Group_buying.objects
             group_buying_list = Group_buying.objects.all()
@@ -129,7 +131,7 @@ def group_board(request):
                 end_index = max_index
             paginator_range = paginator.page_range[start_index:end_index]
            
-            return render(request, 'group_board.html',{'group_buying':group_buying, 'group_buying_comment':group_buying_comment,'userinfo':userinfo, 'posts': posts, 'apartment':apartment,'paginator_range':paginator_range})
+            return render(request, 'group_board.html',{'group_buying':group_buying, 'group_buying_comment':group_buying_comment,'userinfo':userinfo, 'posts': posts, 'apartment':apartment,'paginator_range':paginator_range, 'isUser':isUser})
 
     else:
         return redirect('/')
@@ -171,11 +173,27 @@ def group_board_new(request, category):
         return redirect('/')
 
 def company_detail (request, id):
-    company_detail = get_object_or_404(Company_buying, pk=id)
-    company = Company.objects
-    userinfo = User_info.objects
-    review = Review.objects
-    return render(request, 'company_detail.html', {'company_detail':company_detail, 'company':company, 'userinfo':userinfo, 'review':review})
+    user_pk = request.session.get('user')
+    if user_pk:
+        user = get_object_or_404(User, id = user_pk)
+        if user.first_name == '사업자':
+            #사업자명
+            apartment = get_object_or_404(Company, user_id = user_pk)
+            apartment = apartment.name
+            isCompany = True
+        else:
+            #아파트
+            apartment = get_object_or_404(User_info, user_id = user_pk)
+            apartment = apartment.apartment
+            isCompany = False
+        company_detail = get_object_or_404(Company_buying, pk=id)
+        company = Company.objects
+        userinfo = User_info.objects
+        review = Review.objects
+        return render(request, 'company_detail.html', {'company_detail':company_detail, 'company':company, 'userinfo':userinfo, 'review':review, 'isCompany':isCompany, "apartment":apartment})
+
+    else:
+        return redirect('/')
 
 def register(request):
     return render(request, 'register1.html')
@@ -272,26 +290,38 @@ def fleaMarket(request):
             #사업자명
             apartment = get_object_or_404(Company, user_id = user_pk)
             apartment = apartment.name
+            isUser = False
         else:
             #아파트
             apartment = get_object_or_404(User_info, user_id = user_pk)
             apartment = apartment.apartment
+            isUser=True
 
         query=request.GET.get('search')
         if query:
             fleaMarket = Flee_market.objects.filter(title__contains=query)
-            return render(request, 'fleaMarket.html',{'fleaMarket':fleaMarket, 'apartment':apartment})
+            return render(request, 'fleaMarket.html',{'fleaMarket':fleaMarket, 'apartment':apartment, 'isUser':isUser})
         else:
             fleaMarket = Flee_market.objects.all()
-            return render(request, 'fleaMarket.html',{'fleaMarket':fleaMarket, 'apartment':apartment})
+            return render(request, 'fleaMarket.html',{'fleaMarket':fleaMarket, 'apartment':apartment, 'isUser':isUser})
     else:
         return redirect('/')
 
 def fleaMarket_detail(request, id):
     user_pk = request.session.get('user')
     if user_pk:
-        apartment = get_object_or_404(User_info, user_id = user_pk)
-        apartment = apartment.apartment
+        user = get_object_or_404(User, id = user_pk)
+        if user.first_name == '사업자':
+            #사업자명
+            apartment = get_object_or_404(Company, user_id = user_pk)
+            apartment = apartment.name
+            isCompany = True
+        else:
+            #아파트
+            apartment = get_object_or_404(User_info, user_id = user_pk)
+            apartment = apartment.apartment
+            isCompany = False
+
         fleaMarket = get_object_or_404(Flee_market, pk =id)
         user_info = User_info.objects.all()
         fleaMarketAll = Flee_market.objects.all()
@@ -311,14 +341,24 @@ def fleaMarket_detail(request, id):
         phone = user_info[fleaMarket.writer].phone
 
 
-    return render(request, 'fleaMarket_detail.html', {'phone': phone, 'randomObjList':randomObjList,'fleaMarket': fleaMarket, 'fleaMarketAll': fleaMarketAll, 'user_info': user_info, 'apartment': apartment})
+    return render(request, 'fleaMarket_detail.html', {'phone': phone, 'randomObjList':randomObjList,'fleaMarket': fleaMarket, 'fleaMarketAll': fleaMarketAll, 'user_info': user_info, 'apartment': apartment,'isCompany':isCompany})
 
 
 def fleaMaket_detail_new(request):
     user_pk = request.session.get('user')
     if user_pk:
-        apartment = get_object_or_404(User_info, user_id = user_pk)
-        apartment = apartment.apartment
+        user = get_object_or_404(User, id = user_pk)
+        if user.first_name == '사업자':
+            #사업자명
+            apartment = get_object_or_404(Company, user_id = user_pk)
+            apartment = apartment.name
+            isCompany = True
+        else:
+            #아파트
+            apartment = get_object_or_404(User_info, user_id = user_pk)
+            apartment = apartment.apartment
+            isCompany = False
+
         fleaMarket = Flee_market()
         category = request.POST['category']
         proceeding = request.POST['proceeding']
@@ -339,8 +379,18 @@ def fleaMaket_detail_new(request):
 def groupPurchase_detail(request, id):
     user_pk = request.session.get('user')
     if user_pk:
-        apartment = get_object_or_404(User_info, user_id = user_pk)
-        apartment = apartment.apartment
+        user = get_object_or_404(User, id = user_pk)
+        if user.first_name == '사업자':
+            #사업자명
+            apartment = get_object_or_404(Company, user_id = user_pk)
+            apartment = apartment.name
+            isCompany = True
+        else:
+            #아파트
+            apartment = get_object_or_404(User_info, user_id = user_pk)
+            apartment = apartment.apartment
+            isCompany = False
+
         groupPurchase = get_object_or_404(Group_buying,pk=id)
         user_info = User_info.objects.all()
         allComments = Group_buying_comment.objects.all()
@@ -356,8 +406,18 @@ def groupPurchase_detail(request, id):
 def groupPurchase_detail_new(request):
     user_pk = request.session.get('user')
     if user_pk:
-        apartment = get_object_or_404(User_info, user_id = user_pk)
-        apartment = apartment.apartment
+        user = get_object_or_404(User, id = user_pk)
+        if user.first_name == '사업자':
+            #사업자명
+            apartment = get_object_or_404(Company, user_id = user_pk)
+            apartment = apartment.name
+            isCompany = True
+        else:
+            #아파트
+            apartment = get_object_or_404(User_info, user_id = user_pk)
+            apartment = apartment.apartment
+            isCompany = False
+
         proceeding = request.POST['proceeding']
         category = request.POST['category']
         groupPurchase = Group_buying()
@@ -383,18 +443,38 @@ def groupPurchase_comment_new(request):
 def fleaMarket_form(request):
     user_pk = request.session.get('user')
     if user_pk:
-        apartment = get_object_or_404(User_info, user_id = user_pk)
-        apartment = apartment.apartment
+        user = get_object_or_404(User, id = user_pk)
+        if user.first_name == '사업자':
+            #사업자명
+            apartment = get_object_or_404(Company, user_id = user_pk)
+            apartment = apartment.name
+            isCompany = True
+        else:
+            #아파트
+            apartment = get_object_or_404(User_info, user_id = user_pk)
+            apartment = apartment.apartment
+            isCompany = False
+
         form = Flee_marketPost()
         return render(request, 'fleaMarket_form.html', {'form': form, 'apartment': apartment})
 
 def groupPurchase_form(request):
     user_pk = request.session.get('user')
     if user_pk:
-        apartment = get_object_or_404(User_info, user_id = user_pk)
-        apartment = apartment.apartment
+        user = get_object_or_404(User, id = user_pk)
+        if user.first_name == '사업자':
+            #사업자명
+            apartment = get_object_or_404(Company, user_id = user_pk)
+            apartment = apartment.name
+            isCompany = True
+        else:
+            #아파트
+            apartment = get_object_or_404(User_info, user_id = user_pk)
+            apartment = apartment.apartment
+            isCompany = False
+
         form = Group_buyingPost()
-        return render(request, 'groupPurchase_form.html', {'form': form, 'apartment':apartment})
+        return render(request, 'groupPurchase_form.html', {'form': form, 'apartment':apartment,})
 
 def createUser(request):
     user = User()
@@ -412,3 +492,25 @@ def fleaMarket_new(request,category):
 def companyBuying_new(request,category):
     temp=Company_buying.objects.filter(category=category)
     return render(request, 'Company_buying.html',{'companyBuying':temp})
+
+def company_buying_form(request):
+    return render(request, 'company_buying_form.html')
+
+def company_buying_form_new(request):
+    companyBuying = Company_buying()
+    companyBuying.company_id = user_pk    
+    category = request.POST['category']
+    proceeding = request.POST['proceeding']
+    companyBuying.title = request.POST['title']
+    companyBuying.main_img = request.FILES['myfile1']
+    companyBuying.detail_img1 = request.FILES['myfile2']
+    companyBuying.detail_img2 = request.FILES['myfile3']
+    companyBuying.contents = request.POST['contents']
+    companyBuying.proceeding = int(proceeding)
+    companyBuying.category = int(category)
+    companyBuying.finish_date = request.POST['date']
+    companyBuying.writer = request.user.id
+    companyBuying.apartment = request.POST['apartment']
+    companyBuying.contract = 0
+    companyBuying.save()
+    return redirect('company_detail/'+str(companyBuying.id))

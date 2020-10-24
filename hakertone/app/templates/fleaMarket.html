@@ -283,15 +283,16 @@
     </div>
   </form>
   <div class="container">
+    {%if isUser%}
     <div class="row d-flex justify-content-end mr-2">
       <div class="form-group m-0">
-        <select class="form-control col-md-auto product_kind border-0"style="font-size: x-small;
-        color:rgb(165, 165, 165);" id="exampleFormControlSelect1">
-          <option>인기순</option>
-          <option>최신순</option>
-        </select>
+        <a class="btn btn-link "style="font-size: x-small;
+        color:rgb(165, 165, 165);" href="{%url 'fleaMarket_form'%}" id="exampleFormControlSelect1">
+          글쓰기
+      </a>
       </div>
     </div>
+    {%endif%}
     <div class="row ">
 
 {%for i in fleaMarket %}

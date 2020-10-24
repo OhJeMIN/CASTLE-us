@@ -42,6 +42,8 @@ urlpatterns = [
     path('groupPurchase_detail/<int:id>', app.views.groupPurchase_detail, name='groupPurchase_detail'),
 
     path('fleaMarket_form', app.views.fleaMarket_form, name='fleaMarket_form'),
+    path('company_buying_form', app.views.company_buying_form, name='company_buying_form'),
+    path('company_buying_form_new', app.views.company_buying_form_new, name="company_buying_form_new"),
     path('groupPurchase_form', app.views.groupPurchase_form, name = 'groupPurchase_form'),
 
     path('fleaMarket_detail_new', app.views.fleaMaket_detail_new, name='fleaMarket_detail_new'),

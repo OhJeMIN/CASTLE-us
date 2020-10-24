@@ -1,0 +1,132 @@
+{%extends 'base.html'%}
+{%block contents%}
+{%load static%}
+<link rel="stylesheet" href="{%static 'fleaMarket_form.css'%}">
+<div class="container" style="padding: 2rem 10rem;">
+    <form method="POST" enctype='multipart/form-data' action = "{%url 'company_buying_form_new'%}">
+        {% csrf_token %}
+        <div class="form-group row">
+            
+            <div class="col">
+                <label for="inputAddress">제목</label>
+                <input type="text" name="title" class="w-100 form-control" id="" >
+            </div>
+            
+        </div>
+        <div class="form-group row">
+            
+            <div class="col">
+                <label for="proceeding">진행사항:</label>
+                <select id="proceeding" class="w-100 form-control" name="proceeding">
+                    <option value="" selected disabled hidden>선택</option>
+                    <option value="1">진행중</option>
+                    <option value="2">종료</option>
+                </select>
+
+            </div>
+            <div class="col">
+                <label for="category">카테고리:</label>
+        <select id="category" name="category" class="w-100 form-control">
+            <option value="" selected disabled hidden>선택</option>
+            <option value="1">가구</option>
+            <option value="2">침구</option>
+            <option value="3">패브릭</option>
+            <option value="4">조명</option>
+            <option value="5">홈데코</option>
+            <option value="6">가전</option>
+            <option value="7">수납/정리</option>
+            <option value="8">생활용품</option>
+            <option value="9">주방</option>
+            <option value="10">DIY/공구</option>
+            <option value="11">인테리어</option>
+            <option value="12">반려동물</option>
+        </select>
+                
+            </div>
+            <div class="col">
+                <label for="inputAddress">마감일시</label>
+                <input type="date" class="w-100 form-control" name="date">
+            </div>
+            
+        </div>
+
+        
+
+        
+        
+        
+        <div class="form-group">
+
+            <label for="inputAddress">주소(아파트)</label>
+            <select class="form-control form-control-sm" id="sb" name="apartment" multiple="multiple" ondblclick="delsel(this.value);">
+              <option>가야 롯데캐슬 골드아너</option>
+              <option>길음역 롯데캐슬 트윈골드</option>
+              <option>남산 롯데캐슬 센트럴스카이</option>
+              <option>노원 롯데캐슬 시그니처</option>
+              <option>대곡역 롯데캐슬 엘클라씨</option>
+              <option>동탄역 롯데캐슬</option>
+              <option>롯데캐슬 리버파크 시그니처</option>
+              <option>롯데캐슬 클라시아</option>
+              <option>르엘 대치</option>
+              <option>르엘 신반포</option>
+              <option>르엘 신반포 센트럴</option>
+              <option>르엘 신반포 파크애비뉴</option>
+              <option>백양산 롯데캐슬 골드센트럴</option>
+              <option>번영로 센트리지</option>
+              <option>상도역 롯데캐슬</option>
+              <option>서면 롯데캐슬 엘루체</option>
+              <option>성복역 롯데캐슬 파크나인</option>
+              <option>성복역 롯데캐슬 파크나인Ⅱ</option>
+              <option>속초 롯데캐슬 인더스카이</option>
+              <option>송파 시그니처 롯데캐슬</option>
+              <option>신동탄 롯데캐슬 나노시티</option>
+              <option>영통 롯데캐슬 엘클래스</option>
+              <option>오산 롯데캐슬 스카이파크</option>
+              <option>웅천 롯데캐슬 마리나</option>
+              <option>의정부 롯데캐슬 골드포레</option>
+              <option>주례 롯데캐슬 골드스마트</option>
+              <option>주안 캐슬&더샵 에듀포레</option>
+              <option>창원 롯데캐슬 프리미어</option>
+              <option>철산역 롯데캐슬&SK VIEW 클래스티지</option>
+              <option>청량리역 롯데캐슬 Sky-L65</option>
+              <option>청량리역 롯데캐슬 Sky-L65 섹션오피스</option>
+            </select>
+      
+          </div>
+
+          <div class="form-group row">
+
+            <div class="col-4">
+                <div style="font-weight: bold;">
+                    사진1: <input type="file" name="myfile1" style="margin-bottom: 1rem;">
+                </div>
+            </div>
+            <div class="col-4">
+                <div style="font-weight: bold;">
+                    사진2: <input type="file" name="myfile2" style="margin-bottom: 1rem;">
+                </div>
+            </div>
+            <div class="col-4">
+                <div style="font-weight: bold;">
+                    사진3: <input type="file" name="myfile3" style="margin-bottom: 1rem;">
+                </div>
+            </div>
+        </div>
+            
+            
+            
+            
+            <div class="form-group">
+
+                <label for="inputAddress">내용</label>
+                <textarea name="contents" id="" class="w-100 form-control" cols="100" rows="10"></textarea>
+            </div>
+            
+            
+        <div class="btnBlock">
+            <input type="submit" class="btn btnSave" value="저장"/>
+        </div>
+        
+    </form>
+</div>
+{%endblock%}
