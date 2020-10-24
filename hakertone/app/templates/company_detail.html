@@ -17,6 +17,13 @@
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 <link rel="stylesheet" href="{% static 'hong.css'%}">
 
+<script>
+    function myFunction() {
+        var popup = document.getElementById("myPopup");
+        popup.classList.toggle("show");
+      }
+</script>
+
 <div class="main mt-5 block mx-auto">
     <div class="inline-block" style="float: left; width:60%">
         <div class="block" style="float: left;">
@@ -68,9 +75,21 @@
 
         </div>
         <div class="block mb-3" style="width: 25em; height:3em; clear:both">
-            <div class="purchase block">
+           
+            <div class="popup" onclick="myFunction()"><div class="purchase block" style="width: 21em; border-radius:5px;">
                 <span>구매하기</span>
             </div>
+            {%for i in company.all %}
+            {% if i.id == company_detail.company_id %}
+                <span class="popuptext" id="myPopup">0{{i.phone}}</span>
+            {%endif%}
+            {%endfor%}
+              </div>
+
+           
+
+            
+        
         </div>
         <div class="block" style="width: 27em; height:4em; padding-left:0.2em;">
             <div class="inline-block fakebtn" style="margin-left: 0.2em;">
@@ -102,14 +121,7 @@
              </div>
         </div>
         <div class="block review mt-5" style="width: 25em; height:30em;clear:both; ">
-            <div class="block">
-                <div class="inline-block title-review" style="float: left;">
-                    <span>고객들의 리뷰</span>
-                </div>
-                <div class="inline-block whole" style="float: right;">
-                    <span>전체보기</span>
-                </div>
-            </div>
+            
             <div class="block pt-3" style="width: 25em; clear:both;">
                 {%for i in review.all %}
                 {% if i.company_id == company_detail.id %}
