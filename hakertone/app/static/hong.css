@@ -62,15 +62,18 @@ search-bar
   width:120%;
   text-align:center;
   font-weight:bolder;
+  font-size: small;
+  ,
 }
 .pro-2{
   border-radius:5px;
   border:none;
-  background:#777775;
+  background:#929292;
   color:white;
   width:120%;
   text-align:center;
   font-weight:bolder;
+  font-size: small;
 }
 
 

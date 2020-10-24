@@ -68,6 +68,9 @@
     font-weight: bold;
     text-decoration: none;
   }
+  p{
+    margin: 0;
+  }
 </style>
 <div class="main mt-5 block mx-auto">
   <div class="category block" style="margin-left:-4em;">
@@ -163,81 +166,94 @@
   </div>
 </a>
 
-  <div class="search-main block mt-5">
-    <div class="search-container block mt-2" style="float: left; width:100%">
-      <form action="/group_board" , method="GET">
-        <!-- {%csrf_token%} -->
-        <div>
-          <div class="search block" style="width: 20%;">
-            <input type="text" class="searchTerm" name = "groupSearch" placeholder=" " style="height: 2.25em; ">
-            <button type="submit" class="searchButton">
-              <i class="fa fa-search"></i>
-            </button>
+
+  <div class="container mb-3 mt-5 p-0">
+    <div class="row">
+      <div class="col-3">
+        <form action="/group_board" class="m-0" method="GET">
+          <!-- {%csrf_token%} -->
+          <div>
+            <div class="search block" style="">
+              <input type="text" class="searchTerm border border-right-0" name = "groupSearch" placeholder=" " style="height: 2.25em; ">
+              <button type="submit" class="searchButton border border-left-0">
+                <i class="fa fa-search text-muted"></i>
+              </button>
+            </div>
           </div>
-        </div>
-      </form>
+        </form>
+      </div>
+      <div class="col d-flex justify-content-end">
+        <button  id="navvv" class="rounded"><a class="nav-link rounded p-1"  href="{% url 'groupPurchase_form' %}" style="color: #84e2e2; font-weight:bold">글쓰기</a>
+      </div>
     </div>
+  </div>
+  
     
 
  
 
 
-    <div class="main-board block">
-      <div class="block" style="height:71em;">
+    <div class="container ">
+      <div>
         <!-- 필터 없이 그냥 -->
         {%if group_buying_search is None and group_buying_filter is None%}
         {%for i in posts%}
         <a href="/groupPurchase_detail/{{i.id}}" class="href_delete">
-          <div class="block mt-5" style="width:100%;height:11em;">
-            <div class="inline-block mt-2" style="width:70%; height:100%; float:left;">
-              <hr width="140%">
-              <div class="title block" style="width: 100%; height: 30%; float:left; text-align:left;">
-                <h4 style="font-weight: bolder;">{{i.title}}</h4>
+        <div class="row border-top">
+           
+          <div class="col-10 mt-4 mb-4">
+            <div class="row">
+              <h5 style="font-weight: bolder;">{{i.title}}</h5>
+            </div>
+            <div class="row">
+              <p class="m-0">{{i.contents|safe}}</p>
+            </div>
+            <div class="row mt-3">
+              <div class="col-md-auto p-0">
+                {% for j in userinfo.all %}
+              {%if i.writer == j.id %}
+              <p class="m-0">{{j.nickname}}</p>
+              {%endif%}
+              {%endfor%}
               </div>
-              <div class="contentss block"
-                style="width: 100%; height:28%;float:left; text-align:left; overflow:hidden;">
-
-                <p>{{i.contents|safe}}</p>
+              <div class="col-md-auto p-0 pl-2">
+                <p class="m-0">{{i.date}}</p>
               </div>
-              <div class="infogonggu block mt-3" style="width:100%; height:30%; float:left; text-align:left;">
-                <div class="writer inline-block" style="float: left; font-weight:bold">
-                  {% for j in userinfo.all %}
-                  {%if i.writer == j.id %}
-                  <p>{{j.nickname}}</p>
-                  {%endif%}
-                  {%endfor%}
+              <div class="col-md-auto p-0 pl-2">
+                {%if i.proceeding == 1 %}
+                <div class="pro-1 rounded-0 mt-1">
+                  <span>공구중</span>
                 </div>
-                <div class="time inline-block ml-3" style="float: left; font-weight:light;">
-                  <p>{{i.date}}</p>
+                {% else %}
+                <div class="pro-2 rounded-0 mt-1">
+                  <span>공구종료</span>
                 </div>
-                <div class="comment inline-block ml-3" style="float: left; font-weight:light;">
-                  {% for j in group_buying_comment.all %}
-                  {% if j.group_buying_id == i.id %}
-                  <p>댓글 {{j.id}}</p>
-                  {%endif%}
-                  {% endfor %}
-                </div>
-                <div class="proceeding inline-block ml-3" style="float: left; font-weight:light;">
-                  {%if i.proceeding == 1 %}
-                  <div class="pro-1">
-                    <span>공구중</span>
-                  </div>
-                  {% else %}
-                  <div class="pro-2">
-                    <span>공구종료</span>
-                  </div>
-                  {% endif %}
-                </div>
-
+                {% endif %}
               </div>
             </div>
+            <div class="row">
 
-            <div class="inline-block" style="width:30%; float:right; ">
-              <img src="{{i.img.url}}" width="200em;" height="90%;" style="vertical-align: center; margin-top:2.4em;">
             </div>
 
           </div>
-        </a>
+
+          
+          <div class="col-2 pb-2 pt-2 p-0">
+            <div >
+              <img src="{{i.img.url}}"  class="w-100" height="100%">
+            </div>
+          </div>
+        
+        
+          
+
+            
+
+          
+        
+      </div>
+    </a>
+   
         {% endfor %}
         {%endif%}
 
@@ -274,13 +290,13 @@
                   {%endif%}
                   {% endfor %}
                 </div>
-                <div class="proceeding inline-block ml-3" style="float: left; font-weight:light;">
+                <div class=" ml-3 rounded-0" >
                   {%if i.proceeding == 1 %}
-                  <div class="pro-1">
+                  <div class="rounded-0">
                     <span>공구중</span>
                   </div>
                   {% else %}
-                  <div class="pro-2">
+                  <div class="rounded-0">
                     <span>공구종료</span>
                   </div>
                   {% endif %}
@@ -356,7 +372,7 @@
         {%endfor%}
         {%endif%}
       </div>
-      <hr>
+      
 
     </div>
    <!-- 필터 없이 그냥 -->

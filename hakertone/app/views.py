@@ -17,6 +17,7 @@ def login(request):
             user = auth.authenticate(request, username=username, password=password)
             if user is not None:
                 auth.login(request, user)
+                request.session['user'] = user.id
                 return redirect('/main')
             else:
                 return render(request, 'login.html', {'error': 'username or password is incorrect.'})
@@ -30,37 +31,61 @@ def logout(request):
     return render(request, 'login.html')
 
 def main(request):
-    group_buying = Group_buying.objects.all()    
-    randomNum = []
-    for i in range(1, len(group_buying)+1):
-        randomNum.append(i)
-    randomNum = random.sample(randomNum, 4)
-    randomObjList = []
-    for i in range(len(randomNum)):
-        for j in range(group_buying.count()):
-            if randomNum[i] == group_buying[j].id:
-                randomObjList.append(group_buying[j])
-    return render(request, 'main.html',  {'group_buying': randomObjList})
+    #로그인이 되어 있는지?
+    user_pk = request.session.get('user')
+    if user_pk:
+         #아파트
+        apartment = get_object_or_404(User_info, user_id = user_pk)
+        apartment = apartment.apartment
+        #메인_공동구매
+        group_buying = Group_buying.objects.all()    
+        randomNum = []
+        for i in range(1, len(group_buying)+1):
+            randomNum.append(i)
+        randomNum = random.sample(randomNum, 4)
+        randomObjList = []
+        for i in range(len(randomNum)):
+            for j in range(group_buying.count()):
+                if randomNum[i] == group_buying[j].id:
+                    randomObjList.append(group_buying[j])
+        return render(request, 'main.html',  {'group_buying': randomObjList, 'apartment':apartment})
+    #로그인이 되어있지 않으면?
+    else:
+        return redirect('/')
+
+    
 
 def group_board(request):
-    groupQuery = request.GET.get('groupSearch')
-    if groupQuery:
-        group_buying = Group_buying.objects.filter(title__contains = groupQuery)
-        group_buying_list = Group_buying.objects.filter(title__contains =groupQuery).all()
-        paginator2 = Paginator(group_buying_list, 5)
-        page = request.GET.get('page')
-        posts2 = paginator2.get_page(page)
-        return render(request, 'group_board.html', {'group_buying_search': group_buying, 'posts2': posts2, 'groupQuery': groupQuery})
-    else:
-        group_buying = Group_buying.objects
-        group_buying_list = Group_buying.objects.all()
-        group_buying_comment = Group_buying_comment.objects
-        userinfo = User_info.objects
-        paginator = Paginator(group_buying_list, 5)
-        page = request.GET.get('page')
-        posts = paginator.get_page(page)    #페이지 번호 받아 해당 페이지 리턴
-        return render(request, 'group_board.html',{'group_buying':group_buying, 'group_buying_comment':group_buying_comment,'userinfo':userinfo, 'posts': posts})
+    #로그인이 되어 있는지?
+    user_pk = request.session.get('user')
+    if user_pk:
+        #아파트
+        apartment = get_object_or_404(User_info, user_id = user_pk)
+        apartment = apartment.apartment
+        #메인_공동구매
+        group_buying = Group_buying.objects.all()
+        groupQuery = request.GET.get('groupSearch')
+        if groupQuery:
+            group_buying = Group_buying.objects.filter(title__contains = groupQuery)
+            group_buying_list = Group_buying.objects.filter(title__contains =groupQuery).all()
+            paginator2 = Paginator(group_buying_list, 5)
+            page = request.GET.get('page')
+            posts2 = paginator2.get_page(page)
+            return render(request, 'group_board.html', {'group_buying_search': group_buying, 'posts2': posts2, 'groupQuery': groupQuery, 'apartment':apartment})
+        else:
+            group_buying = Group_buying.objects
+            group_buying_list = Group_buying.objects.all()
+            group_buying_comment = Group_buying_comment.objects
+            userinfo = User_info.objects
+            paginator = Paginator(group_buying_list, 5)
+            page = request.GET.get('page')
+            posts = paginator.get_page(page)    #페이지 번호 받아 해당 페이지 리턴
+            return render(request, 'group_board.html',{'group_buying':group_buying, 'group_buying_comment':group_buying_comment,'userinfo':userinfo, 'posts': posts, 'apartment':apartment})
 
+    else:
+        return redirect('/')
+
+    
 def group_board_new(request, category):
     temp = Group_buying.objects.filter(category=category)
     group_buying_list = Group_buying.objects.filter(category = category).all()
@@ -89,7 +114,9 @@ def register2(request):
         info.apartment = request.POST['apartment']
         info.address = request.POST['address']
         info.save()
-    return redirect('/main')
+        return redirect('/main')
+    else :
+        return render(request, 'register2.html')
     
 
 def register3(request):
@@ -113,13 +140,21 @@ def companyBuying(request):
 
 
 def fleaMarket(request):
-    query=request.GET.get('search')
-    if query:
-        fleaMarket = Flee_market.objects.filter(title__contains=query)
-        return render(request, 'fleaMarket.html',{'fleaMarket':fleaMarket})
+    #로그인이 되어 있는지?
+    user_pk = request.session.get('user')
+    if user_pk:
+        #아파트
+        apartment = get_object_or_404(User_info, user_id = user_pk)
+        apartment = apartment.apartment
+        query=request.GET.get('search')
+        if query:
+            fleaMarket = Flee_market.objects.filter(title__contains=query)
+            return render(request, 'fleaMarket.html',{'fleaMarket':fleaMarket, 'apartment':apartment})
+        else:
+            fleaMarket = Flee_market.objects.all()
+            return render(request, 'fleaMarket.html',{'fleaMarket':fleaMarket, 'apartment':apartment})
     else:
-        fleaMarket = Flee_market.objects.all()
-        return render(request, 'fleaMarket.html',{'fleaMarket':fleaMarket})
+        return redirect('/')
 
 def fleaMarket_detail(request, id):
     fleaMarket = get_object_or_404(Flee_market, pk =id)
