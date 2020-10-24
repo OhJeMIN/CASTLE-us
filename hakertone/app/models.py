@@ -5,8 +5,11 @@ class User_info(models.Model):
    nickname = models.CharField(max_length=100)
    apartment = models.CharField(max_length=100)
    address = models.CharField(max_length=100)
+   phone = models.IntegerField()
+   isUser = models.BooleanField()
 
 class Company(models.Model):
+    user_id = models.IntegerField() 
     name = models.CharField(max_length=100)
     phone = models.IntegerField()
     img = models.ImageField(upload_to='images/', null=True)
