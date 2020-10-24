@@ -43,7 +43,7 @@
 
             <h1 class="detail-title">{{groupPurchase.title}}</h1>
 
-            {%for i in user_info%}
+            {%for i in user_info.all%}
                 {%if i.user_id == groupPurchase.writer%}
                 <span class="user">{{i.nickname}}</span>
                 {%endif%}

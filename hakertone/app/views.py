@@ -6,6 +6,7 @@ from django.contrib.auth.models import User
 from django.contrib import auth
 from django.core.paginator import Paginator
 from django.views.decorators.csrf import csrf_exempt
+from datetime import datetime
 
 def index(request):
     return render(request, 'index.html')
@@ -34,8 +35,10 @@ def logout(request):
 def main(request):
     #로그인이 되어 있는지?
     user_pk = request.session.get('user')
+    now = datetime.now()
     if user_pk:
         user = get_object_or_404(User, id = user_pk)
+        user_info = User_info.objects.all()
         if user.first_name == '사업자':
             #사업자명
             apartment = get_object_or_404(Company, user_id = user_pk)
@@ -63,7 +66,15 @@ def main(request):
         randomObjList1=[]
         for i in randomNum1:
             randomObjList1 += Company_buying.objects.filter(id=i)
-        return render(request, 'main.html',  {'group_buying': randomObjList,'company_buying':randomObjList1, 'apartment':apartment})
+
+
+        date = []
+        for i in randomObjList1:
+            date.append(i.finish_date)
+        
+        company = Company.objects.all()
+
+        return render(request, 'main.html',  {'company': company, 'date': date, 'now': now, 'user_info': user_info, 'group_buying': randomObjList,'company_buying':randomObjList1, 'apartment':apartment})
     #로그인이 되어있지 않으면?
     else:
         return redirect('/')
@@ -338,10 +349,11 @@ def fleaMarket_detail(request, id):
                 if randomNum[i] == fleaMarketAll[j].id:
                     randomObjList.append(fleaMarketAll[j])
         
-        phone = user_info[fleaMarket.writer].phone
+
+        # phone = user_info[fleaMarket.writer].phone
 
 
-    return render(request, 'fleaMarket_detail.html', {'phone': phone, 'randomObjList':randomObjList,'fleaMarket': fleaMarket, 'fleaMarketAll': fleaMarketAll, 'user_info': user_info, 'apartment': apartment,'isCompany':isCompany})
+    return render(request, 'fleaMarket_detail.html', { 'randomObjList':randomObjList,'fleaMarket': fleaMarket, 'fleaMarketAll': fleaMarketAll, 'user_info': user_info, 'apartment': apartment,'isCompany':isCompany})
 
 
 def fleaMaket_detail_new(request):

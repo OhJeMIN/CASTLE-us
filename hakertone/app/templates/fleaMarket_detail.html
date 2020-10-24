@@ -41,7 +41,8 @@
             {%endif%}
 
             <h1 class="detail-title">{{fleaMarket.title}}</h1>
-            {%for i in user_info%}
+
+            {%for i in user_info.all%}
             {%if i.user_id == fleaMarket.writer%}
             <span class="user">{{i.nickname}}</span>
             {%endif%}
@@ -126,7 +127,7 @@
                             <span>원</span>
                         </div>
                         {%for j in user_info.all%}
-                        {%if j.id == i.writer%}
+                        {%if j.user_id == i.writer%}
                         <div class="product-write" style="text-align: right; color: gray">{{j.nickname}}</div>
                         {%endif%}
                         {%endfor%}

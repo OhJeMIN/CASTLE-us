@@ -218,7 +218,7 @@
             <div class="row mt-3">
               <div class="col-md-auto p-0">
                 {% for j in userinfo.all %}
-                {%if i.writer == j.id %}
+                {%if i.writer == j.user_id %}
                 <p class="m-0">{{j.nickname}}</p>
                 {%endif%}
                 {%endfor%}
@@ -278,7 +278,7 @@
             <div class="row mt-3">
               <div class="col-md-auto p-0">
                 {% for j in userinfo.all %}
-                {%if i.writer == j.id %}
+                {%if i.writer == j.user_id %}
                 <p class="m-0">{{j.nickname}}</p>
                 {%endif%}
                 {%endfor%}
@@ -338,7 +338,7 @@
             <div class="row mt-3">
               <div class="col-md-auto p-0">
                 {% for j in userinfo.all %}
-                {%if i.writer == j.id %}
+                {%if i.writer == j.user_id %}
                 <p class="m-0">{{j.nickname}}</p>
                 {%endif%}
                 {%endfor%}
