@@ -196,10 +196,7 @@ input[type="number"]::-webkit-inner-spin-button {
   <!-- <input type="hidden" value"개인w" name="firstname"> -->
 
 
-    <div class="form-group col-md-6">
-      <label for="inputEmail4" >전화번호</label>
-      <input type="number" class="form-control" id="inputEmail2" name="phone">
-    </div>
+ 
   </div>
     
     <div class="form-row">
@@ -218,64 +215,38 @@ input[type="number"]::-webkit-inner-spin-button {
 
 
 
-    <div class="form-group">
 
-      <label for="inputAddress">주소(아파트)</label>
-      <select class="form-control form-control-sm" id="sb" name="apartment" multiple="multiple" ondblclick="delsel(this.value);">
-        <option>가야 롯데캐슬 골드아너</option>
-        <option>길음역 롯데캐슬 트윈골드</option>
-        <option>남산 롯데캐슬 센트럴스카이</option>
-        <option>노원 롯데캐슬 시그니처</option>
-        <option>대곡역 롯데캐슬 엘클라씨</option>
-        <option>동탄역 롯데캐슬</option>
-        <option>롯데캐슬 리버파크 시그니처</option>
-        <option>롯데캐슬 클라시아</option>
-        <option>르엘 대치</option>
-        <option>르엘 신반포</option>
-        <option>르엘 신반포 센트럴</option>
-        <option>르엘 신반포 파크애비뉴</option>
-        <option>백양산 롯데캐슬 골드센트럴</option>
-        <option>번영로 센트리지</option>
-        <option>상도역 롯데캐슬</option>
-        <option>서면 롯데캐슬 엘루체</option>
-        <option>성복역 롯데캐슬 파크나인</option>
-        <option>성복역 롯데캐슬 파크나인Ⅱ</option>
-        <option>속초 롯데캐슬 인더스카이</option>
-        <option>송파 시그니처 롯데캐슬</option>
-        <option>신동탄 롯데캐슬 나노시티</option>
-        <option>영통 롯데캐슬 엘클래스</option>
-        <option>오산 롯데캐슬 스카이파크</option>
-        <option>웅천 롯데캐슬 마리나</option>
-        <option>의정부 롯데캐슬 골드포레</option>
-        <option>주례 롯데캐슬 골드스마트</option>
-        <option>주안 캐슬&더샵 에듀포레</option>
-        <option>창원 롯데캐슬 프리미어</option>
-        <option>철산역 롯데캐슬&SK VIEW 클래스티지</option>
-        <option>청량리역 롯데캐슬 Sky-L65</option>
-        <option>청량리역 롯데캐슬 Sky-L65 섹션오피스</option>
-      </select>
 
-    </div>
-    <div class="form-group">
-      <label for="inputAddress2">상세 주소</label>
-      <input type="text" class="form-control" id="inputAddress2"name="address" placeholder="20동 305호">
-    </div>
     <div class="form-row">
-      <!-- <div class="form-group col-md-6">
-        <label for="inputCity">City</label>
-        <input type="text" class="form-control" id="inputCity">
-      </div> -->
-      <!-- <div class="form-group col-md-4">
-        <label for="inputState">State</label>
-        <select id="inputState" class="form-control">
-          <option selected>Choose...</option>
-          <option>...</option>
-        </select>
-      </div> -->
-      <!-- <div class="form-group col-md-2">
-        <label for="inputZip">우편번호</label>
-        <input type="text" class="form-control" id="inputZip">
-      </div> -->
+
+      <div class="form-group col">
+        <label for="inputEmail4" >회사전화번호 (-없이)</label>
+        <input type="number" class="form-control" id="inputEmail2" name="phone" placeholder="01012341234">
+      </div>
+
+
+     
+      <div class="form-group col">
+        <label for="inputEmail4" >사업자 이름</label>
+        <input type="text" class="form-control" id="inputEmail2" name="cname" placeholder="롯데">
+      </div>
+      </div>
+    <div class="form-row">
+
+
+      <div class="form-group col">
+        <label for="inputEmail4" >사업자 대표 사진</label>
+        <input type="file" class="form-control" id="cimg" name="cimg" accept="image/gif,image/jpeg,imege/png">
+      </div>
+
+    </div>
+
+
+    <div class="form-group">
+      <label for="exampleFormControlTextarea1">사업자를 소개할 문구를 적어주세요</label>
+      <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="ctex"></textarea>
+    </div>
+
     </div>
     <!-- <div class="form-group">
       <div class="form-check">

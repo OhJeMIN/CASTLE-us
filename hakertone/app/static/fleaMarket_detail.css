@@ -194,6 +194,20 @@ a:hover {
   margin-top: 1rem;
 }
 
+/* modal */
+.modal-dialog {
+  margin-top: 17rem !important;
+}
+.close-btn {
+  background-color: #42cfcf !important;
+  border-color: #42cfcf !important;
+}
+.close-btn:focus,
+.close-btn:active {
+  border-color: #42cfcf;
+  box-shadow: 0 0 0 0 0.2rem #42cfcf !important;
+}
+
 @media screen and (max-width: 1200px) {
   .container {
     padding: 0 10rem !important;

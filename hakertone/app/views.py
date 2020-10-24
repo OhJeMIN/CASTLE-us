@@ -114,7 +114,7 @@ def register(request):
 
 def register2(request):
     if request.method=='POST':
-        user = User.objects.create_user(request.POST['username'], request.POST['password'])
+        user = User.objects.create_user(request.POST['username'],request.POST['username'] ,request.POST['password'])
         user.first_name = request.POST.get('firstname')
         temp = get_object_or_404(User, username=user.username)
         info = User_info()
@@ -139,15 +139,16 @@ def register2(request):
 
 def registerc(request):
     if request.method=='POST':
-        user = User.objects.create_user(request.POST['username'], request.POST['password'])
+        user = User.objects.create_user(request.POST['username'],request.POST['username'] ,request.POST['password'])
         user.first_name = request.POST.get('firstname')
         temp = get_object_or_404(User, username=user.username)
         info = User_info()
+        cinfo = Company()
         info.user_id = temp.id
-        info.nickname = temp.username
-        info.apartment = request.POST['apartment']
-        info.address = request.POST['address']
-        info.phone = request.POST['phone']
+        Cinfo.user_id=temp.id
+        cinfo.contents = request.POST['ctext']
+        cinfo.img = request.POST['cimg']
+        cinfo.phone = request.POST['phone']
         if request.POST['firstname']=='사업자':
             info.isUser=False
             user.first_name='사업자'
@@ -201,66 +202,89 @@ def fleaMarket(request):
         return redirect('/')
 
 def fleaMarket_detail(request, id):
-    fleaMarket = get_object_or_404(Flee_market, pk =id)
-    user_info = User_info.objects.all()
-    fleaMarketAll = Flee_market.objects.all()
-    randomNum = []
-    randomObjList = []
-    for i in range(1, len(fleaMarketAll)+1):
-        randomNum.append(i)
+    user_pk = request.session.get('user')
+    if user_pk:
+        apartment = get_object_or_404(User_info, user_id = user_pk)
+        apartment = apartment.apartment
+        fleaMarket = get_object_or_404(Flee_market, pk =id)
+        user_info = User_info.objects.all()
+        fleaMarketAll = Flee_market.objects.all()
+        randomNum = []
+        randomObjList = []
+        for i in range(1, len(fleaMarketAll)+1):
+            randomNum.append(i)
 
-    if(len(randomNum) > 4):
-        randomNum = random.sample(randomNum, 4)
+        if(len(randomNum) > 4):
+            randomNum = random.sample(randomNum, 4)
 
-    for i in range(len(randomNum)):
-        for j in range(fleaMarketAll.count()):
-            if randomNum[i] == fleaMarketAll[j].id:
-                randomObjList.append(fleaMarketAll[j])
-    return render(request, 'fleaMarket_detail.html', {'randomObjList':randomObjList,'fleaMarket': fleaMarket, 'fleaMarketAll': fleaMarketAll, 'user_info': user_info})
+        for i in range(len(randomNum)):
+            for j in range(fleaMarketAll.count()):
+                if randomNum[i] == fleaMarketAll[j].id:
+                    randomObjList.append(fleaMarketAll[j])
+        
+        phone = user_info[fleaMarket.writer].phone
+
+
+    return render(request, 'fleaMarket_detail.html', {'phone': phone, 'randomObjList':randomObjList,'fleaMarket': fleaMarket, 'fleaMarketAll': fleaMarketAll, 'user_info': user_info, 'apartment': apartment})
 
 
 def fleaMaket_detail_new(request):
-    fleaMarket = Flee_market()
-    category = request.POST['category']
-    proceeding = request.POST['proceeding']
-    fleaMarket.title = request.POST['title']
-    fleaMarket.img = request.FILES['myfile1']
-    fleaMarket.img1 = request.FILES['myfile2']
-    fleaMarket.img2 = request.FILES['myfile3']
-    fleaMarket.contents = request.POST['contents']
-    fleaMarket.proceeding = int(proceeding)
-    fleaMarket.category = int(category)
-    fleaMarket.price = request.POST['price']
-    fleaMarket.writer = request.user.id
-    fleaMarket.save()
+    user_pk = request.session.get('user')
+    if user_pk:
+        apartment = get_object_or_404(User_info, user_id = user_pk)
+        apartment = apartment.apartment
+        fleaMarket = Flee_market()
+        category = request.POST['category']
+        proceeding = request.POST['proceeding']
+        fleaMarket.title = request.POST['title']
+        fleaMarket.img = request.FILES['myfile1']
+        fleaMarket.img1 = request.FILES['myfile2']
+        fleaMarket.img2 = request.FILES['myfile3']
+        fleaMarket.contents = request.POST['contents']
+        fleaMarket.proceeding = int(proceeding)
+        fleaMarket.category = int(category)
+        fleaMarket.price = request.POST['price']
+        fleaMarket.writer = request.user.id
+        fleaMarket.apartment = apartment
+        fleaMarket.save()
     return redirect('/fleaMarket_detail/'+str(fleaMarket.id))
 
 
 def groupPurchase_detail(request, id):
-    groupPurchase = get_object_or_404(Group_buying,pk=id)
-    user_info = User_info.objects.all()
-    allComments = Group_buying_comment.objects.all()
-    count  = 0
-    if(len(allComments) == 0):
-        count = 0
-    else:
-        for i in range(len(allComments)):
-            if(allComments[i].Group_buying_id == id):
-                count = count + 1
-    return render(request, 'groupPurchase_detail.html', {'count': count,'groupPurchase': groupPurchase, 'allComments': allComments, 'user_info': user_info})
+    user_pk = request.session.get('user')
+    if user_pk:
+        apartment = get_object_or_404(User_info, user_id = user_pk)
+        apartment = apartment.apartment
+        groupPurchase = get_object_or_404(Group_buying,pk=id)
+        user_info = User_info.objects.all()
+        allComments = Group_buying_comment.objects.all()
+        count  = 0
+        if(len(allComments) == 0):
+            count = 0
+        else:
+            for i in range(len(allComments)):
+                if(allComments[i].Group_buying_id == id):
+                    count = count + 1
+    return render(request, 'groupPurchase_detail.html', {'count': count,'groupPurchase': groupPurchase, 'allComments': allComments, 'user_info': user_info, 'apartment': apartment})
 
 def groupPurchase_detail_new(request):
-    proceeding = request.POST['proceeding']
-    category = request.POST['category']
-    groupPurchase = Group_buying()
-    groupPurchase.title = request.POST['title']
-    groupPurchase.img = request.FILES['myfile']
-    groupPurchase.proceeding = int(proceeding)
-    groupPurchase.contents = request.POST['contents']
-    groupPurchase.writer = request.user.id #로그인 한 id
-    groupPurchase.category = int(category)
-    groupPurchase.save()
-    return redirect('/groupPurchase_detail/'+ str(groupPurchase.id))
+    user_pk = request.session.get('user')
+    if user_pk:
+        apartment = get_object_or_404(User_info, user_id = user_pk)
+        apartment = apartment.apartment
+        proceeding = request.POST['proceeding']
+        category = request.POST['category']
+        groupPurchase = Group_buying()
+        groupPurchase.title = request.POST['title']
+        groupPurchase.img = request.FILES['myfile']
+        groupPurchase.proceeding = int(proceeding)
+        groupPurchase.contents = request.POST['contents']
+        groupPurchase.writer = request.user.id #로그인 한 id
+        groupPurchase.category = int(category)
+        #아파트값 넣기
+        groupPurchase.apartment = apartment
+        groupPurchase.save()
+        return redirect('/groupPurchase_detail/'+ str(groupPurchase.id))
 
 def groupPurchase_comment_new(request):
     groupPurchaseComment = Group_buying_comment()
@@ -271,12 +295,20 @@ def groupPurchase_comment_new(request):
     return redirect('/groupPurchase_detail/'+ str(groupPurchaseComment.Group_buying_id))
 
 def fleaMarket_form(request):
-    form = Flee_marketPost()
-    return render(request, 'fleaMarket_form.html', {'form': form})
+    user_pk = request.session.get('user')
+    if user_pk:
+        apartment = get_object_or_404(User_info, user_id = user_pk)
+        apartment = apartment.apartment
+        form = Flee_marketPost()
+        return render(request, 'fleaMarket_form.html', {'form': form, 'apartment': apartment})
 
 def groupPurchase_form(request):
-    form = Group_buyingPost()
-    return render(request, 'groupPurchase_form.html', {'form': form})
+    user_pk = request.session.get('user')
+    if user_pk:
+        apartment = get_object_or_404(User_info, user_id = user_pk)
+        apartment = apartment.apartment
+        form = Group_buyingPost()
+        return render(request, 'groupPurchase_form.html', {'form': form, 'apartment':apartment})
 
 def createUser(request):
     user = User()
