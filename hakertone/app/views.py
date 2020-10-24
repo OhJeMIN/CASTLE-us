@@ -119,7 +119,7 @@ def register2(request):
         else:
             info.isUser = False
         info.save()
-        return redirect('/main')
+        return redirect('/')
     else :
         return render(request, 'register2.html')
     
