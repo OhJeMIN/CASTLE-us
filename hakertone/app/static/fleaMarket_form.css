@@ -41,3 +41,14 @@ select {
   border: 1px solid rgb(207, 207, 207);
   padding: 0.2rem 0;
 }
+
+#id_contents {
+  width: 100% !important;
+  border-radius: 5px;
+  border: 1px solid rgb(207, 207, 207);
+}
+
+#id_contents:focus {
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+  outline: none !important;
+}
