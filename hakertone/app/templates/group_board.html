@@ -452,4 +452,54 @@
 </div>
 
 
+<nav aria-label="Page navigation example">
+  <ul class="pagination" style="display:block;">
+    <!-- 이전 페이지 -->
+   
+    
+    
+    
+    
+   
+
+
+
+
+    
+    
+    
+  </ul>
+</nav>
+
+
+<nav aria-label="Page navigation example">
+  <ul class="pagination" style="display:block;">
+    {% if posts.has_previous %}
+    
+    <li class="page-item"><a class="page-link" href="?page={{ posts.previous_page_number }}">&lt;</a></li>
+    
+  {% endif %}
+
+  <!-- 페이지 범위 및 현재 페이지 -->
+  {% for page in paginator_range %}
+  {% if posts.number == page %}
+  <li class="page-item active"><a class="page-link">{{ page }}</a></li>
+  {% else %}
+  <li class="page-item"><a class="page-link" href="?page={{ page }}">{{ page }}</a></li>
+  {% endif %}
+  {% endfor %}
+
+   <!-- 다음 페이지 -->
+   {% if posts.has_next %}
+   <li class="page-item"><a class="page-link" href="?page={{ posts.next_page_number }}">&gt;</a></li>
+   
+   {% endif %}
+    
+    
+    
+    
+    
+  </ul>
+</nav>
+
 {%endblock%}

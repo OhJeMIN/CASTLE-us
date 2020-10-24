@@ -51,33 +51,12 @@
 
             <span class="time"><i class="far fa-clock"></i>{{groupPurchase.date}}</span>
         </div>
-        <!-- carousel -->
-        <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-            <ol class="carousel-indicators">
-                <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-                <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-                <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-            </ol>
-            <div class="carousel-inner">
-                <div class="carousel-item active">
-                    <img src="../media/{{groupPurchase.img}}" class="d-block w-100" alt="...">
-                </div>
-                <div class="carousel-item">
-                    <img src="../media/{{groupPurchase.img}}" class="d-block w-100" alt="...">
-                </div>
-                <div class="carousel-item">
-                    <img src="../media/{{groupPurchase.img}}" class="d-block w-100" alt="...">
-                </div>
-            </div>
-            <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="sr-only">Previous</span>
-            </a>
-            <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="sr-only">Next</span>
-            </a>
-        </div>
+        
+
+
+        <img src="../media/{{groupPurchase.img}}" class="d-block w-100 h-50" alt="..." style="margin-top:2rem">
+
+
         <!-- detail-content -->
         <p class="detail-content">
             {{groupPurchase.contents|safe}}
@@ -119,40 +98,14 @@
                     </p>
                     <div class="comment-etc">
                         <span class="write-time">{{groupPurchase.date}}</span>
-                        <div class="comment-etc2">
-                            <span class="like"><a><i class="fas fa-heart"></i>좋아요</a></span>
-                        <span class="create-comments"><a>답글 달기</a></span>
-                        <span class="report"><a>신고</a></span>
-                        </div>
+                        
                     </div>
-                    <div class="user-comment-add" style="margin: 1rem 0;">
-                        <form class="input-group" method="GET" id="createComment2">
-                            <i class="far fa-arrow-alt-circle-right"></i>
-                            <input class="form-control" type="text" placeholder="댓글을 남겨 보세요." name="contents">
-                            <button type="submit" class="btn saveBtn" form="createComment2">등록</button>
-                        </form>
-                    </div>
+                    
                 </div>
             </div>
             {%endif%}
         {%endfor%}
     </div>
 </div>
-<script>
-    const heart = document.querySelectorAll('.fa-heart');
-        const like = document.querySelectorAll('.like');
-        for(let i =0; i < like.length; i++){
-            like[i].addEventListener('click', (e)=>{
-                e.target.classList.toggle('toggle-like');
-            })};
 
-    const userCommentAdd = document.querySelectorAll('.user-comment-add');
-    const createComment = document.querySelectorAll('.create-comments');
-    for(let i=0; i< createComment.length; i++){
-        console.log(createComment[i]);
-        createComment[i].addEventListener('click', () => {
-            userCommentAdd[i].classList.toggle('openComment');
-        })
-    }
-</script>
 {%endblock%}
