@@ -113,6 +113,11 @@ def register2(request):
         info.nickname = temp.username
         info.apartment = request.POST['apartment']
         info.address = request.POST['address']
+        info.phone = request.POST['phone']
+        if request.POST['isUser']=='true':
+            info.isUser = True
+        else:
+            info.isUser = False
         info.save()
         return redirect('/main')
     else :
