@@ -39,17 +39,24 @@ def main(request):
         apartment = get_object_or_404(User_info, user_id = user_pk)
         apartment = apartment.apartment
         #메인_공동구매
-        group_buying = Group_buying.objects.all()    
-        randomNum = []
-        for i in range(1, len(group_buying)+1):
-            randomNum.append(i)
-        randomNum = random.sample(randomNum, 4)
-        randomObjList = []
-        for i in range(len(randomNum)):
-            for j in range(group_buying.count()):
-                if randomNum[i] == group_buying[j].id:
-                    randomObjList.append(group_buying[j])
-        return render(request, 'main.html',  {'group_buying': randomObjList, 'apartment':apartment})
+        group_buying = Group_buying.objects.all()
+        num=[]
+        for i in group_buying:
+            num+=[i.id]        
+        randomNum = random.sample(num , 4)        
+        randomObjList=[]
+        for i in randomNum:
+            randomObjList += Group_buying.objects.filter(id=i)
+        #company_buying
+        company_buying = Company_buying.objects.all()
+        num=[]
+        for i in company_buying:
+            num+=[i.id]       
+        randomNum1 = random.sample(num , 4)        
+        randomObjList1=[]
+        for i in randomNum1:
+            randomObjList1 += Company_buying.objects.filter(id=i)
+        return render(request, 'main.html',  {'group_buying': randomObjList,'company_buying':randomObjList1, 'apartment':apartment})
     #로그인이 되어있지 않으면?
     else:
         return redirect('/')
