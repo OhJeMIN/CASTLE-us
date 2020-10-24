@@ -123,7 +123,7 @@ def register2(request):
         info.apartment = request.POST['apartment']
         info.address = request.POST['address']
         info.phone = request.POST['phone']
-        if request.POST['firstname']=='기업':
+        if request.POST['firstname']=='사업자':
             info.isUser=False
             user.first_name='사업자'
         else:
@@ -131,14 +131,36 @@ def register2(request):
             user.first_name='개인'
        
         info.save()
-<<<<<<< HEAD
         user.save()
         return redirect('/main')
-=======
-        return redirect('/')
->>>>>>> ff9dad29439387e15b7092fa4cbbb7e0e456b66f
     else :
         return render(request, 'register2.html')
+
+
+def registerc(request):
+    if request.method=='POST':
+        user = User.objects.create_user(request.POST['username'], request.POST['password'])
+        user.first_name = request.POST.get('firstname')
+        temp = get_object_or_404(User, username=user.username)
+        info = User_info()
+        info.user_id = temp.id
+        info.nickname = temp.username
+        info.apartment = request.POST['apartment']
+        info.address = request.POST['address']
+        info.phone = request.POST['phone']
+        if request.POST['firstname']=='사업자':
+            info.isUser=False
+            user.first_name='사업자'
+        else:
+            info.isUser=True
+            user.first_name='개인'
+       
+        info.save()
+        user.save()
+        return redirect('/main')
+    else :
+        return render(request, 'registerc.html')
+    
     
 
 def register3(request):

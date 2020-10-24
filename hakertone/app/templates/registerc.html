@@ -70,7 +70,7 @@
   #first_name
 {
   border: none;
-  width: 2.3rem;
+  width: 3.2rem;
   height: 1.5rem;
   font-size: 1rem;
 }
@@ -191,11 +191,11 @@ input[type="number"]::-webkit-inner-spin-button {
 <form method="POST" action="{%url 'register2'%}">
   {% csrf_token %} 
   <div class="form-row">
-     <div class="container-fluid p-1" ><input type="text" id="first_name" name="firstname"readonly value="개인"/> <span>회원님 환영합니다</span> 
+     <div class="container-fluid p-1" ><input type="text" id="first_name" name="firstname"readonly value="사업자"/> <span>회원님 환영합니다</span> 
     </div> 
   <!-- <input type="hidden" value"개인w" name="firstname"> -->
 
-  
+
     <div class="form-group col-md-6">
       <label for="inputEmail4" >전화번호</label>
       <input type="number" class="form-control" id="inputEmail2" name="phone">
