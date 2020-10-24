@@ -83,10 +83,32 @@
         </p>
         <!-- buttons -->
         <div class="buttons">
-            <button type="button" class="btn btn-primary enquire-btn">문의하기</button>
+            <button type="button" class="btn btn-primary enquire-btn" data-toggle = "modal" data-target="#exampleModal">문의하기</button>
             <button type="button" class="btn btn-primary purchase-btn">바로구매</button>
         </div>
     </div>
+  
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">문의하기</h5>
+          <button type="button" class="close" data-dismiss="modal">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+           폰번호: {{phone}}
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary close-btn" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
 </div>
 <div class="container container2" style="padding: 0 5rem">
     <!-- recommendation -->
@@ -98,7 +120,7 @@
                 <div class="card product-card" style="width: 13rem;">
                     <img src="../media/{{i.img}}" class="card-img-top" alt="..." style="height: 10rem;">
                     <div class="card-body">
-                        <h5 class="product-name">제목{{i.title}}</h5>
+                        <h5 class="product-name">{{i.title}}</h5>
                         <div style="text-align: right; margin-right: .3rem">
                             <strong class="product-price">{{i.price}}</strong>
                             <span>원</span>
@@ -116,4 +138,7 @@
         </div>
     </div>
 </div>
+<script>
+
+</script>
 {%endblock%}

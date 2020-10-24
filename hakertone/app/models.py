@@ -6,7 +6,6 @@ class User_info(models.Model):
    apartment = models.CharField(max_length=100)
    address = models.CharField(max_length=100)
    phone = models.IntegerField()
-   isUser = models.BooleanField()
 
 class Company(models.Model):
     user_id = models.IntegerField() 
@@ -28,7 +27,7 @@ class Group_buying(models.Model):
 class Group_buying_comment(models.Model):
     Group_buying_id = models.IntegerField()
     user_info_id =  models.IntegerField()
-    contents = models.TextField()
+    contents = models.TextField(null = True)
     date = models.DateTimeField(auto_now_add=True)
     
 class Flee_market(models.Model):
@@ -36,7 +35,7 @@ class Flee_market(models.Model):
     img = models.ImageField(upload_to='images/', null=True)
     img1 = models.ImageField(upload_to='images/', null=True)
     img2 = models.ImageField(upload_to='images/', null=True)
-    contents = RichTextUploadingField(blank=True, null=True)
+    contents = models.TextField(null = True)
     proceeding = models.IntegerField()
     date = models.DateTimeField(auto_now_add=True)
     price = models.IntegerField()
