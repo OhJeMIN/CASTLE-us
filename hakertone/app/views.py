@@ -141,22 +141,18 @@ def registerc(request):
     if request.method=='POST':
         user = User.objects.create_user(request.POST['username'],request.POST['username'] ,request.POST['password'])
         user.first_name = request.POST.get('firstname')
-        temp = get_object_or_404(User, username=user.username)
-        info = User_info()
         cinfo = Company()
-        info.user_id = temp.id
-        Cinfo.user_id=temp.id
+        cinfo.user_id=user.id
         cinfo.contents = request.POST['ctext']
         cinfo.img = request.POST['cimg']
         cinfo.phone = request.POST['phone']
+        cinfo.name = request.POST['cname']
         if request.POST['firstname']=='사업자':
-            info.isUser=False
             user.first_name='사업자'
         else:
-            info.isUser=True
             user.first_name='개인'
        
-        info.save()
+        cinfo.save()
         user.save()
         return redirect('/main')
     else :

@@ -188,7 +188,7 @@ input[type="number"]::-webkit-inner-spin-button {
     <p class="mt-1">거의다 되었습니다 *^^*</p>
     <hr class="bhr">
 <!---->
-<form method="POST" action="{%url 'register2'%}">
+<form method="POST" action="{%url 'registerc'%}">
   {% csrf_token %} 
   <div class="form-row">
      <div class="container-fluid p-1" ><input type="text" id="first_name" name="firstname"readonly value="사업자"/> <span>회원님 환영합니다</span> 
@@ -244,7 +244,7 @@ input[type="number"]::-webkit-inner-spin-button {
 
     <div class="form-group">
       <label for="exampleFormControlTextarea1">사업자를 소개할 문구를 적어주세요</label>
-      <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="ctex"></textarea>
+      <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="ctext"></textarea>
     </div>
 
     </div>
