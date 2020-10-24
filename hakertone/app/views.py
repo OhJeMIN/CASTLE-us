@@ -114,7 +114,7 @@ def register(request):
 
 def register2(request):
     if request.method=='POST':
-        user = User.objects.create_user(request.POST['username'], request.POST['password'])
+        user = User.objects.create_user(request.POST['username'],request.POST['username'] ,request.POST['password'])
         user.first_name = request.POST.get('firstname')
         temp = get_object_or_404(User, username=user.username)
         info = User_info()
