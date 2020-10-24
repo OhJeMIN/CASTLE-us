@@ -103,7 +103,7 @@
       <div class="col"></div>
       <div class="col"></div>
     </div>
-    <p class="mt-1">약관</p>
+    <p class="mt-1">회원 소개</p>
     <hr class="bhr">
 
     <div class="container row  mx-auto">
@@ -130,7 +130,7 @@
        
 
      <div class="mx-auto"> 
-      <button type="button" class="btn btn-success" style="background-color: black;">가입하기</button>
+      <a href="{%url 'register2'%}"><button type="button" class="btn btn-success" style="background-color:  #00C4C3;">가입하기</button></a>
      </div>
      <div class="container" style="height: 1rem;"></div>
      </div>
@@ -150,7 +150,7 @@
            <h4 stlye="bold; ">사업자 회원</h4>
                 </div>
     
-          <div class="container">
+          <div class="container" style="text-align:center;">
           <span style="font-weight:bold">기업회원:</span> <span style="font-size: small;">대량 판매 목적인 기업회원</span>
          <br>
           <span style="font-weight:bold">일반 기업회원:</span> <span style="font-size: small;">개인 사업자로써 판매하려는 개인판매 회원</span>
@@ -160,7 +160,7 @@
            
     
          <div class="mx-auto"> 
-         <input type="checkbox" > <button type="button" class="btn btn-success" style="background-color: black;">가입하기</button>
+        <a href="{%url 'registerc'%}"><button type="button" class="btn btn-success" style="background-color: #00C4C3;">가입하기</button></a>
           
          </div>
          <div class="container" style="height: 1rem;"></div>
@@ -185,7 +185,7 @@
 <div class="row">
 <div class="col"></div>
 <div class="col"></div>
-<div class="col"><a href="{%url 'login'%}"><button type="button" class="lbtn btn-lg">뒤로가기</button></div></a>
+<div class="col mx-auto" style="text-align: center;"><a href="{%url 'login'%}"><button type="button" class="lbtn btn-lg">뒤로가기</button></div></a>
 
 <div class="col"></div>
 <div class="col"></div>
