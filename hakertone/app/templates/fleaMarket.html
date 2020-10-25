@@ -178,7 +178,7 @@
 
   <!-- <div class="container-fluid m-5" style="border: solid black 1px;"> sub nav</div> -->
   <div class="container">
-    <div class="category block mx-auto">
+    <div class="category block mx-auto mt-4">
       <a href="/fleaMarket/1"><div class="가구 inline-block">
         <img class="block"
           src="https://post-phinf.pstatic.net/MjAxNzA1MTlfMjgg/MDAxNDk1MTU2MjAzMjE5.-CM5r2I5YV7prXMUws56JN19oi8hvbpEjRDveJyPknMg.8v11m8_dBBoq2jBvN1IBn-7UyexOTIemgT5fwblEQdYg.PNG/mug_obj_14951562072673908.png?type=w1080"
@@ -295,7 +295,7 @@
     {%endif%}
     <div class="row ">
 
-{%for i in fleaMarket %}
+{%for i in posts %}
 
     
       <div class="col mt-4 d-flex justify-content-center p-0">
@@ -322,7 +322,9 @@
           <p class="m-0 product_price">판매가 <span style="color:#84E2E2">{{i.price}}</span>원</p>
       </div>
           <ul class="list-group list-group-flush p-0">
-            <li class="list-group-item scardf3 product_kind">{{i.date}}</li>
+
+            
+            <li class="list-group-item scardf3 product_kind">{{i.date | date:'H:i m/d'}}</li>
             <!-- <li class="list-group-item">Dapibus ac facilisis in</li>
               <li class="list-group-item">Vestibulum at eros</li> -->
           </ul>
@@ -337,6 +339,41 @@
     </div>
     
    
+  </div>
+
+  <div class="row mt-5 d-flex justify-content-center">
+    <nav aria-label="Page navigation example" class="">
+      <ul class="pagination" style="display:flex">
+        {% if posts.has_previous %}
+  
+        <li class="page-item border-0"><a class="page-link border-0 text-body" href="?page={{ posts.previous_page_number }}">&lt;</a></li>
+        {%else%}
+        <li class="page-item border-0"><a class="page-link border-0 text-body" href="">&lt;</a></li>
+        {% endif %}
+  
+        <!-- 페이지 범위 및 현재 페이지 -->
+        {% for page in paginator_range %}
+        {% if posts.number == page %}
+        <li class="page-item border-0"><a class="page-link border-0" style="color:#84e2e2">{{ page }}</a></li>
+        {% else %}
+        <li class="page-item border-0"><a class="page-link border-0" href="?page={{ page }}">{{ page }}</a></li>
+        {% endif %}
+        {% endfor %}
+  
+        <!-- 다음 페이지 -->
+        {% if posts.has_next %}
+        <li class="page-item border-0"><a class="page-link border-0 text-body" href="?page={{ posts.next_page_number }}">&gt;</a></li>
+
+        {%else%}
+        <li class="page-item border-0"><a class="page-link border-0 text-body" href="">&gt;</a></li>
+        {% endif %}
+  
+  
+  
+  
+  
+      </ul>
+    </nav>
   </div>
 
 {%endblock%}

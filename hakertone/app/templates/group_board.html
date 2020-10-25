@@ -76,7 +76,7 @@
     margin: 0;
   }
 </style>
-<div class="main mt-5 block mx-auto">
+<div class="main mt-4 block mx-auto">
   <div class="category block" style="margin-left:-4em;">
     <a href="/group_board/1" class="href-no">
       <div class="가구 inline-block">
@@ -178,7 +178,7 @@
         <form action="/group_boards" class="m-0" method="GET">
           <!-- {%csrf_token%} -->
           <div>
-            <div class="search block" style="">
+            <div class="search block">
               <input type="text" class="searchTerm border border-right-0" name="groupSearch" placeholder=" "
                 style="height: 2.25em; ">
               <button type="submit" class="searchButton border border-left-0">
@@ -389,105 +389,123 @@
   <!-- 필터 없이 그냥 -->
   {%if group_buying_search is None and group_buying_filter is None%}
 
-  <nav aria-label="Page navigation example">
-    <ul class="pagination" style="display:block;">
-      {% if posts.has_previous %}
+    <div class="row mt-5 d-flex justify-content-center">
+      <nav aria-label="Page navigation example" class="">
+        <ul class="pagination" style="display:flex">
+          {% if posts.has_previous %}
+    
+          <li class="page-item border-0"><a class="page-link border-0" href="?page={{ posts.previous_page_number }}">&lt;</a></li>
+          {%else%}
+          <li class="page-item border-0"><a class="page-link border-0" href="">&lt;</a></li>
+          {% endif %}
+    
+          <!-- 페이지 범위 및 현재 페이지 -->
+          {% for page in paginator_range %}
+          {% if posts.number == page %}
+          <li class="page-item border-0"><a class="page-link border-0" style="color:#84e2e2">{{ page }}</a></li>
+          {% else %}
+          <li class="page-item border-0"><a class="page-link border-0" href="?page={{ page }}">{{ page }}</a></li>
+          {% endif %}
+          {% endfor %}
+    
+          <!-- 다음 페이지 -->
+          {% if posts.has_next %}
+          <li class="page-item border-0"><a class="page-link border-0" href="?page={{ posts.next_page_number }}">&gt;</a></li>
 
-      <li class="page-item"><a class="page-link" href="?page={{ posts.previous_page_number }}">&lt;</a></li>
-
-      {% endif %}
-
-      <!-- 페이지 범위 및 현재 페이지 -->
-      {% for page in paginator_range %}
-      {% if posts.number == page %}
-      <li class="page-item active"><a class="page-link">{{ page }}</a></li>
-      {% else %}
-      <li class="page-item"><a class="page-link" href="?page={{ page }}">{{ page }}</a></li>
-      {% endif %}
-      {% endfor %}
-
-      <!-- 다음 페이지 -->
-      {% if posts.has_next %}
-      <li class="page-item"><a class="page-link" href="?page={{ posts.next_page_number }}">&gt;</a></li>
-
-      {% endif %}
-
-
-
-
-
-    </ul>
-  </nav>
+          {%else%}
+          <li class="page-item border-0"><a class="page-link border-0" href="">&gt;</a></li>
+          {% endif %}
+    
+    
+    
+    
+    
+        </ul>
+      </nav>
+    </div>
 
   {%endif%}
 
   <!-- 검색했을 경우 -->
   {%if group_buying_search%}
 
-  <nav aria-label="Page navigation example">
-    <ul class="pagination" style="display:block;">
-      {% if posts.has_previous %}
+  
+  <div class="row mt-5 d-flex justify-content-center">
+    <nav aria-label="Page navigation example" class="">
+      <ul class="pagination" style="display:flex">
+        {% if posts.has_previous %}
+  
+        <li class="page-item border-0"><a class="page-link border-0" href="?page={{ posts.previous_page_number }}">&lt;</a></li>
+        {%else%}
+        <li class="page-item border-0"><a class="page-link border-0" href="">&lt;</a></li>
+        {% endif %}
+  
+        <!-- 페이지 범위 및 현재 페이지 -->
+        {% for page in paginator_range %}
+        {% if posts.number == page %}
+        <li class="page-item border-0"><a class="page-link border-0" style="color:#84e2e2">{{ page }}</a></li>
+        {% else %}
+        <li class="page-item border-0"><a class="page-link border-0" href="?page={{ page }}">{{ page }}</a></li>
+        {% endif %}
+        {% endfor %}
+  
+        <!-- 다음 페이지 -->
+        {% if posts.has_next %}
+        <li class="page-item border-0"><a class="page-link border-0" href="?page={{ posts.next_page_number }}">&gt;</a></li>
 
-      <li class="page-item"><a class="page-link" href="?page={{ posts.previous_page_number }}">&lt;</a></li>
+        {%else%}
+        <li class="page-item border-0"><a class="page-link border-0" href="">&gt;</a></li>
+        {% endif %}
+  
+  
+  
+  
+  
+      </ul>
+    </nav>
+  </div>
 
-      {% endif %}
-
-      <!-- 페이지 범위 및 현재 페이지 -->
-      {% for page in paginator_range %}
-      {% if posts.number == page %}
-      <li class="page-item active"><a class="page-link">{{ page }}</a></li>
-      {% else %}
-      <li class="page-item"><a class="page-link" href="?page={{ page }}">{{ page }}</a></li>
-      {% endif %}
-      {% endfor %}
-
-      <!-- 다음 페이지 -->
-      {% if posts.has_next %}
-      <li class="page-item"><a class="page-link" href="?page={{ posts.next_page_number }}">&gt;</a></li>
-
-      {% endif %}
-
-
-
-
-
-    </ul>
-  </nav>
 
   {%endif%}
 
   <!-- 필터 사용 -->
   {%if group_buying_filter%}
 
-  <nav aria-label="Page navigation example">
-    <ul class="pagination" style="display:block;">
-      {% if posts.has_previous %}
+  <div class="row mt-5 d-flex justify-content-center">
+    <nav aria-label="Page navigation example" class="">
+      <ul class="pagination" style="display:flex">
+        {% if posts.has_previous %}
+  
+        <li class="page-item border-0"><a class="page-link border-0" href="?page={{ posts.previous_page_number }}">&lt;</a></li>
+        {%else%}
+        <li class="page-item border-0"><a class="page-link border-0" href="">&lt;</a></li>
+        {% endif %}
+  
+        <!-- 페이지 범위 및 현재 페이지 -->
+        {% for page in paginator_range %}
+        {% if posts.number == page %}
+        <li class="page-item border-0"><a class="page-link border-0" style="color:#84e2e2">{{ page }}</a></li>
+        {% else %}
+        <li class="page-item border-0"><a class="page-link border-0" href="?page={{ page }}">{{ page }}</a></li>
+        {% endif %}
+        {% endfor %}
+  
+        <!-- 다음 페이지 -->
+        {% if posts.has_next %}
+        <li class="page-item border-0"><a class="page-link border-0" href="?page={{ posts.next_page_number }}">&gt;</a></li>
 
-      <li class="page-item"><a class="page-link" href="?page={{ posts.previous_page_number }}">&lt;</a></li>
+        {%else%}
+        <li class="page-item border-0"><a class="page-link border-0" href="">&gt;</a></li>
+        {% endif %}
+  
+  
+  
+  
+  
+      </ul>
+    </nav>
+  </div>
 
-      {% endif %}
-
-      <!-- 페이지 범위 및 현재 페이지 -->
-      {% for page in paginator_range %}
-      {% if posts.number == page %}
-      <li class="page-item active"><a class="page-link">{{ page }}</a></li>
-      {% else %}
-      <li class="page-item"><a class="page-link" href="?page={{ page }}">{{ page }}</a></li>
-      {% endif %}
-      {% endfor %}
-
-      <!-- 다음 페이지 -->
-      {% if posts.has_next %}
-      <li class="page-item"><a class="page-link" href="?page={{ posts.next_page_number }}">&gt;</a></li>
-
-      {% endif %}
-
-
-
-
-
-    </ul>
-  </nav>
   {%endif%}
 
 

@@ -21,10 +21,10 @@
     function myFunction() {
         var popup = document.getElementById("myPopup");
         popup.classList.toggle("show");
-      }
+    }
 </script>
 
-<div class="main mt-5 block mx-auto">
+<div class="main mt-5 block mx-auto" style="margin:0; min-height:250%; " >
     <div class="inline-block" style="float: left; width:60%">
         <div class="block" style="float: left;">
             <img src="{{company_detail.main_img.url}}" width="600em" height="350em">
@@ -75,53 +75,57 @@
 
         </div>
         <div class="block mb-3" style="width: 25em; height:3em; clear:both">
-           
-            <div class="popup" onclick="myFunction()"><div class="purchase block" style="width: 21em; border-radius:5px;">
-                <span>구매하기</span>
-            </div>
-            {%for i in company.all %}
-            {% if i.id == company_detail.company_id %}
+
+            <div class="popup" onclick="myFunction()">
+                <div class="purchase block" style="width: 21em; border-radius:5px;">
+                    <span>구매하기</span>
+                </div>
+                {%for i in company.all %}
+                {% if i.id == company_detail.company_id %}
                 <span class="popuptext" id="myPopup">0{{i.phone}}</span>
-            {%endif%}
-            {%endfor%}
-              </div>
+                {%endif%}
+                {%endfor%}
+            </div>
 
-           
 
-            
-        
+
+
+
         </div>
         <div class="block" style="width: 27em; height:4em; padding-left:0.2em;">
             <div class="inline-block fakebtn" style="margin-left: 0.2em;">
                 <span>
-                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRXkynyzIr5nQpyAnnsyGaTv1LvK_nuqFe5Yw&usqp=CAU" width="25em;" height="25em;">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRXkynyzIr5nQpyAnnsyGaTv1LvK_nuqFe5Yw&usqp=CAU"
+                        width="25em;" height="25em;">
                 </span>
                 <span>85</span>
             </div>
             <div class="inline-block fakebtn">
                 <span>
-                    <img src="https://toloshny.com/blog/wp-content/uploads/2019/08/three-dots-redirect.png.png" width="25em;" height="25em;">
+                    <img src="https://toloshny.com/blog/wp-content/uploads/2019/08/three-dots-redirect.png.png"
+                        width="25em;" height="25em;">
                 </span>
                 <span>문의</span>
             </div>
             <div class="inline-block fakebtn">
-                
+
                 <span>공유하기</span>
             </div>
         </div>
         <div class="block fakebtn2">
             <div class="inline-block" style="margin-left: -1em;  margin-right:0.5em;padding-top:-3em;">
-                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTvpIhRw0eGeDydfNeOGjYxVsqxitSL7KPFvA&usqp=CAU" width="25em;" height="25em;" style="padding-bottom: 0.3em;;">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTvpIhRw0eGeDydfNeOGjYxVsqxitSL7KPFvA&usqp=CAU"
+                    width="25em;" height="25em;" style="padding-bottom: 0.3em;;">
             </div>
-            <div class="inline-block ml-2" >
-               <span>프로젝트에 문제가 있나요?</span>
+            <div class="inline-block ml-2">
+                <span>프로젝트에 문제가 있나요?</span>
             </div>
             <div class="inline-block mr-4" style="float: right;">
                 <span>신고하기></span>
-             </div>
+            </div>
         </div>
         <div class="block review mt-5" style="width: 25em; height:30em;clear:both; ">
-            
+
             <div class="block pt-3" style="width: 25em; clear:both;">
                 {%for i in review.all %}
                 {% if i.company_id == company_detail.id %}
@@ -129,18 +133,20 @@
                     <div class="block mt-2 mb-3" style="clear: both;">
                         <p class="review-contents">{{i.contents}}</p>
                     </div>
-                    <div class="block" >
+                    <div class="block">
                         <div class="inline-block" style="float: left;">
                             <span style="margin-bottom: 1em;">
-                                <img style="border-radius: 50%;" src="https://i.pinimg.com/474x/83/fc/4c/83fc4c6dca8298dc8e03ba63d35a9cae.jpg" width="25em;" height="25em;">
+                                <img style="border-radius: 50%;"
+                                    src="https://i.pinimg.com/474x/83/fc/4c/83fc4c6dca8298dc8e03ba63d35a9cae.jpg"
+                                    width="25em;" height="25em;">
                             </span>
 
                             {%for j in userinfo.all%}
-                                {%if j.id == i.writer%}
-                                    <span class="reviewer">{{j.nickname}} 고객님</span>
-                                {%endif%}
+                            {%if j.id == i.writer%}
+                            <span class="reviewer">{{j.nickname}} 고객님</span>
+                            {%endif%}
                             {%endfor%}
-                            
+
                         </div>
                         <div class="inline-block grade ml-3" style="float: left;">
                             <span>{{i.grade}}/5.0</span>
@@ -152,9 +158,9 @@
             </div>
 
 
-    </div>
+        </div>
 
-</div>
+    </div>
 
 </div>
 
