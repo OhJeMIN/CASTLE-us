@@ -305,11 +305,46 @@ def companyBuying(request):
         if query2:
             companyBuying = Company_buying.objects.filter(title__contains=query2)
             companyinfo = Company.objects.all()
-            return render(request, 'Company_buying.html',{'apartment':apartment,'companyBuying':companyBuying, 'companyinfo':companyinfo, 'isCompany':isCompany})
+            paginator = Paginator(companyBuying, 5)
+            page = request.GET.get('page')
+            posts = paginator.get_page(page)    #페이지 번호 받아 해당 페이지 리턴
+                    # [2]
+            page_numbers_range = 10
+            
+            # [3]
+            max_index = len(paginator.page_range)
+            current_page = int(page) if page else 1
+            start_index = int((current_page - 1) / page_numbers_range) * page_numbers_range
+            end_index = start_index + page_numbers_range
+            
+            # [4]
+            if end_index >= max_index:
+                end_index = max_index
+            paginator_range = paginator.page_range[start_index:end_index]
+           
+            return render(request, 'Company_buying.html',{'apartment':apartment,'companyBuying':companyBuying, 'companyinfo':companyinfo, 'isCompany':isCompany, 'posts': posts, 'apartment':apartment,'paginator_range':paginator_range})
         else:
             companyBuying = Company_buying.objects.all()
             companyinfo = Company.objects.all()
-            return render(request, 'Company_buying.html', {'apartment':apartment,'companyBuying': companyBuying, 'companyinfo': companyinfo,'isCompany':isCompany})
+            paginator = Paginator(companyBuying, 5)
+            page = request.GET.get('page')
+            posts = paginator.get_page(page)    #페이지 번호 받아 해당 페이지 리턴
+                    # [2]
+            page_numbers_range = 10
+            
+            # [3]
+            max_index = len(paginator.page_range)
+            current_page = int(page) if page else 1
+            start_index = int((current_page - 1) / page_numbers_range) * page_numbers_range
+            end_index = start_index + page_numbers_range
+            
+            # [4]
+            if end_index >= max_index:
+                end_index = max_index
+            paginator_range = paginator.page_range[start_index:end_index]
+           
+            return render(request, 'Company_buying.html',{'apartment':apartment,'companyBuying':companyBuying, 'companyinfo':companyinfo, 'isCompany':isCompany, 'posts': posts, 'apartment':apartment,'paginator_range':paginator_range})
+        
     else:
         return redirect("/")
 
@@ -334,10 +369,43 @@ def fleaMarket(request):
         query=request.GET.get('search')
         if query:
             fleaMarket = Flee_market.objects.filter(title__contains=query)
-            return render(request, 'fleaMarket.html',{'fleaMarket':fleaMarket, 'apartment':apartment, 'isUser':isUser})
+            paginator = Paginator(fleaMarket, 15)
+            page = request.GET.get('page')
+            posts = paginator.get_page(page)    #페이지 번호 받아 해당 페이지 리턴
+                    # [2]
+            page_numbers_range = 10
+            
+            # [3]
+            max_index = len(paginator.page_range)
+            current_page = int(page) if page else 1
+            start_index = int((current_page - 1) / page_numbers_range) * page_numbers_range
+            end_index = start_index + page_numbers_range
+            
+            # [4]
+            if end_index >= max_index:
+                end_index = max_index
+            paginator_range = paginator.page_range[start_index:end_index]
+            return render(request, 'fleaMarket.html', {'fleaMarket':fleaMarket, 'posts': posts, 'apartment':apartment, 'paginator_range':paginator_range, 'isUser':isUser})
         else:
             fleaMarket = Flee_market.objects.all()
-            return render(request, 'fleaMarket.html',{'fleaMarket':fleaMarket, 'apartment':apartment, 'isUser':isUser})
+            paginator = Paginator(fleaMarket, 15)
+            page = request.GET.get('page')
+            posts = paginator.get_page(page)    #페이지 번호 받아 해당 페이지 리턴
+                    # [2]
+            page_numbers_range = 10
+            
+            # [3]
+            max_index = len(paginator.page_range)
+            current_page = int(page) if page else 1
+            start_index = int((current_page - 1) / page_numbers_range) * page_numbers_range
+            end_index = start_index + page_numbers_range
+            
+            # [4]
+            if end_index >= max_index:
+                end_index = max_index
+            paginator_range = paginator.page_range[start_index:end_index]
+           
+            return render(request, 'fleaMarket.html', {'fleaMarket':fleaMarket, 'posts': posts, 'apartment':apartment,'paginator_range':paginator_range, 'isUser':isUser})
     else:
         return redirect('/')
 
@@ -517,13 +585,80 @@ def createUser(request):
     return redirect()
 
 def fleaMarket_new(request,category):
-    temp=Flee_market.objects.filter(category=category)
-    return render(request, 'fleaMarket.html',{'fleaMarket':temp})
+    user_pk = request.session.get('user')
+    if user_pk:
+        user = get_object_or_404(User, id = user_pk)
+        if user.first_name == '사업자':
+            #사업자명
+            apartment = get_object_or_404(Company, user_id = user_pk)
+            apartment = apartment.name
+            isUser= False
+        else:
+            #아파트
+            apartment = get_object_or_404(User_info, user_id = user_pk)
+            apartment = apartment.apartment
+            isUser = True
 
+        temp=Flee_market.objects.filter(category=category)
+        paginator = Paginator(temp, 15)
+        page = request.GET.get('page')
+        posts = paginator.get_page(page)    #페이지 번호 받아 해당 페이지 리턴
+                # [2]
+        page_numbers_range = 10
+        
+        # [3]
+        max_index = len(paginator.page_range)
+        current_page = int(page) if page else 1
+        start_index = int((current_page - 1) / page_numbers_range) * page_numbers_range
+        end_index = start_index + page_numbers_range
+        
+        # [4]
+        if end_index >= max_index:
+            end_index = max_index
+        paginator_range = paginator.page_range[start_index:end_index]
+            
+        return render(request, 'fleaMarket.html', {'fleaMarket':temp, 'posts': posts, 'apartment':apartment,'paginator_range':paginator_range, 'isUser':isUser})
+    else:
+        return redirect('/')
 
 def companyBuying_new(request,category):
-    temp=Company_buying.objects.filter(category=category)
-    return render(request, 'Company_buying.html',{'companyBuying':temp})
+    user_pk = request.session.get('user')
+    if user_pk:
+        user = get_object_or_404(User, id = user_pk)
+        if user.first_name == '사업자':
+            #사업자명
+            apartment = get_object_or_404(Company, user_id = user_pk)
+            apartment = apartment.name
+            isUser= False
+        else:
+            #아파트
+            apartment = get_object_or_404(User_info, user_id = user_pk)
+            apartment = apartment.apartment
+            isUser = True
+        temp=Company_buying.objects.filter(category=category)
+        paginator = Paginator(temp, 5)
+        page = request.GET.get('page')
+        posts = paginator.get_page(page)    #페이지 번호 받아 해당 페이지 리턴
+                # [2]
+        page_numbers_range = 10
+        
+        # [3]
+        max_index = len(paginator.page_range)
+        current_page = int(page) if page else 1
+        start_index = int((current_page - 1) / page_numbers_range) * page_numbers_range
+        end_index = start_index + page_numbers_range
+        
+        # [4]
+        if end_index >= max_index:
+            end_index = max_index
+        paginator_range = paginator.page_range[start_index:end_index]
+        
+        return render(request, 'Company_buying.html',{'companyBuying':temp, 'posts': posts, 'apartment':apartment,'paginator_range':paginator_range, 'isUser':isUser})
+
+
+    else:
+        return redirect('/')
+
 
 def company_buying_form(request):
     return render(request, 'company_buying_form.html')
