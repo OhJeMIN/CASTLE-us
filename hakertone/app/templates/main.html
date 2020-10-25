@@ -4,7 +4,6 @@
 {% load static %}
 <head>
   <style>
-   
 
     
     .sicon {
@@ -98,7 +97,7 @@
       background-color: white;
   }
   .product_kind{
-      font-size: x-small;
+      font-size: 1rem;
       color:rgb(165, 165, 165);
   }
   .product_price{
@@ -149,6 +148,7 @@
     display: block;
     float: center;
   }
+ 
   </style>
 </head>
 <body>
@@ -182,16 +182,17 @@
           </div>
         </div>
       </div>
-      <div class="container">
+      <div class="container" style="margin-top:2rem">
+        <div style="font-weight: bold; font-size: 1.5rem; margin-bottom: 1.7rem">오늘의 추천상품</div>
         <div class="row ">
           {% for i in group_buying %}
           <div class="col mt-4 d-flex justify-content-center p-0">
-            <a href="/groupPurchase_detail/{{i.id}}">
+            <a href="/groupPurchase_detail/{{i.id}}" style="text-decoration: none;">
               <div class="card ml-3 mr-3 border-0 justify-content-center m-0">
                 <div class="jb-wrap">
                   <img
                   src="media/{{i.img}}"
-                  class="card-img-top FFVAD rounded" alt="...">
+                  class="card-img-top FFVAD rounded" alt="..." style="height: 12rem;">
                   {%if i.proceeding == 1 %}
                   <span class="badge jb-text  text-white">진행중</span>
                   {% else %}
@@ -224,7 +225,7 @@
                   {% elif i.category == 12 %}
                   <p class="m-0 product_kind ">반려동물</p>
                   {% endif %}
-                  <p class="m-0 company_product_title">{{i.title}}</p>
+                  <p class="m-0 company_product_title" style="font-size: 1.2rem">{{i.title}}</p>
 
 
                   
@@ -244,56 +245,56 @@
       </div>
       <div class="container">
         <div class="row ">
-          <!-- {{d_day.0.days}}
-          {{d_day.1.days}}
-          {{d_day.2.days}}
-          {{d_day.3.days}} -->
-
           {% for i in company_buying %}
           <div class="col mt-4 d-flex justify-content-center p-0">
-            <a href="/company_detail/{{i.id}}">
+            <a href="/company_detail/{{i.0.id}}" style="text-decoration: none;">
               <div class="card ml-3 mr-3 border-0 justify-content-center m-0">
                 <div class="jb-wrap">
                   <img
-                  src="media/{{i.main_img}}"
-                  class="card-img-top FFVAD rounded" alt="...">
-                  
-                  <span class="badge jb-text  text-white">{{d_day.0.days}}일남음</span>
-            
+                  src="media/{{i.0.main_img}}"
+                  class="card-img-top FFVAD rounded" alt="..." style="height: 12rem;">
                 
                   
+                {%if i.1 < 0 %}
+                <span class="badge jb-text  text-white" style="background-color: gray; padding:0.32rem .6rem">진행종료</span>
+                {%else%}
+                <span class="badge jb-text  text-white">{{i.1}}일남음</span>
+                {%endif%}
+            
+                      
+              
               </div>
                 <div class="card-body p-0 pt-1">
-                  {% if i.category == 1 %}
+                  {% if i.0.category == 1 %}
                   <p class="m-0 product_kind ">가구</p>
-                  {% elif i.category == 2 %}
+                  {% elif i.0.category == 2 %}
                   <p class="m-0 product_kind ">침구</p>
-                  {% elif i.category == 3 %}
+                  {% elif i.0.category == 3 %}
                   <p class="m-0 product_kind ">패브릭</p>
-                  {% elif i.category == 4 %}
+                  {% elif i.0.category == 4 %}
                   <p class="m-0 product_kind ">조명</p>
-                  {% elif i.category == 5 %}
+                  {% elif i.0.category == 5 %}
                   <p class="m-0 product_kind ">홈데코</p>
-                  {% elif i.category == 6 %}
+                  {% elif i.0.category == 6 %}
                   <p class="m-0 product_kind ">가전</p>
-                  {% elif i.category == 7 %}
+                  {% elif i.0.category == 7 %}
                   <p class="m-0 product_kind ">수납/정리</p>
-                  {% elif i.category == 8 %}
+                  {% elif i.0.category == 8 %}
                   <p class="m-0 product_kind ">생활용품</p>
-                  {% elif i.category == 9 %}
+                  {% elif i.0.category == 9 %}
                   <p class="m-0 product_kind ">주방</p>
-                  {% elif i.category == 10 %}
+                  {% elif i.0.category == 10 %}
                   <p class="m-0 product_kind ">DIY/공부</p>
-                  {% elif i.category == 11 %}
+                  {% elif i.0.category == 11 %}
                   <p class="m-0 product_kind ">인테리어시공</p>
-                  {% elif i.category == 12 %}
+                  {% elif i.0.category == 12 %}
                   <p class="m-0 product_kind ">반려동물</p>
                   {% endif %}
-                  <p class="m-0 company_product_title">{{i.title}}</p>
+                  <p class="m-0 company_product_title" style="font-size: 1.1rem">{{i.0.title}}</p>
 
 
                   {%for k in company%}
-                    {%if k.id == i.company_id%}
+                    {%if k.id == i.0.company_id%}
                     <p class="m-0 product_kind mt-2"><span>{{k.name}}</span>
                       {%endif%}
                   {%endfor%}
@@ -301,13 +302,16 @@
                     
                     
                     
-                    | <span>{{i.date | date:'H:i m/d'}}</span></p>
-                    <p class="m-0 product_grade"><span style="color:#84E2E2">★</span><span class="mr-1">4.8</span><span class="text-muted">리뷰150</span></p>
+                    | <span>{{i.0.date | date:'H:i m/d'}}</span></p>
+                    
                 </div>
             </div>
             </a>
           </div>
+          
+          
           {% endfor %}
+          
         </div>
       </div>
 </body>
