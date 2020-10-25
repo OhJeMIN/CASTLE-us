@@ -2,8 +2,8 @@
 {%block contents%}
 {% load static %}
 <link rel="stylesheet" href="{% static 'fleaMarket_detail.css' %}">
-<div class="container-fluid row"     style="margin-left:5rem; margin-right:5rem;">
-    
+<div class="container-fluid row pt-5" style="margin-left:5rem; margin-right:5rem;">
+
     <div class="col-2"></div>
     <div class="col">
         <!-- carousel -->
@@ -39,99 +39,131 @@
     <div class=" m-5"></div>
 
 
-    <div class="col" >
-    <!-- detail-body -->
+    <div class="col p-0">
+        <!-- detail-body -->
 
-    <div class="detaody">
-        <!-- detail-info -->
-        <div class="detail-info">
-            {%if fleaMarket.proceeding == 1 %}
-            <span class="process">진행중</span>
-            {%else%}
-            <span class="process" style="background: gray;">진행종료</span>
-            {%endif%}
+        <div class="detaody">
+            <!-- detail-info -->
+            <div class="detail-info ">
+                <div class="row">
+                    <div class="col-md-auto p-0 pr-1">
+                        {%if fleaMarket.proceeding == 1 %}
+                        <span class="proceeding">진행중</span>
+                        {%else%}
+                        <span class="proceeding" style="background: gray;">진행종료</span>
+                        {%endif%}
+                    </div>
+                    <div class="col-md-auto p-0 ">
+                        {%if fleaMarket.category == 1%}
+                        <span class="proceeding">가구</span>
+                        {%elif fleaMarket.category == 2%}
+                        <span class="proceeding">침구</span>
+                        {%elif fleaMarket.category == 3%}
+                        <span class="proceeding">패브릭</span>
+                        {%elif fleaMarket.category == 4%}
+                        <span class="proceeding">조명</span>
+                        {%elif fleaMarket.category == 5%}
+                        <span class="proceeding">홈데코</span>
+                        {%elif fleaMarket.category == 6%}
+                        <span class="proceeding">가전</span>
+                        {%elif fleaMarket.category == 7%}
+                        <span class="proceeding">수납/정리</span>
+                        {%elif fleaMarket.category == 8%}
+                        <span class="proceeding">생활용품</span>
+                        {%elif fleaMarket.category == 9%}
+                        <span class="proceeding">주방</span>
+                        {%elif fleaMarket.category == 10%}
+                        <span class="proceeding">DIY/공구</span>
+                        {%elif fleaMarket.category == 11%}
+                        <span class="proceeding">인테리어</span>
+                        {%else%}
+                        <span class="proceeding">반려동물</span>
+                        {%endif%}
+                    </div>
+                </div>
+                <div class="row">
+                    <h1 class="detail-title">{{fleaMarket.title}}</h1>
+                </div>
+                <div class="row border-bottom pb-3">
+                    <div class="col-md-auto p-0">
 
-            <br>
-            {%if fleaMarket.category == 1%}
-                <span class="proceeding">가구</span>
-            {%elif fleaMarket.category == 2%}
-                <span class="proceeding">침구</span>
-            {%elif fleaMarket.category == 3%}
-                <span class="proceeding">패브릭</span>
-            {%elif fleaMarket.category == 4%}
-                <span class="proceeding">조명</span>
-            {%elif fleaMarket.category == 5%}
-                <span class="proceeding">홈데코</span>
-            {%elif fleaMarket.category == 6%}
-                <span class="proceeding">가전</span>
-            {%elif fleaMarket.category == 7%}
-                <span class="proceeding">수납/정리</span>
-            {%elif fleaMarket.category == 8%}
-                <span class="proceeding">생활용품</span>
-            {%elif fleaMarket.category == 9%}
-                <span class="proceeding">주방</span>
-            {%elif fleaMarket.category == 10%}
-                <span class="proceeding">DIY/공구</span>
-            {%elif fleaMarket.category == 11%}
-                <span class="proceeding">인테리어</span>
-            {%else%}
-                <span class="proceeding">반려동물</span>
-            {%endif%}
+                        {%for i in user_info.all%}
+                        {%if i.user_id == fleaMarket.writer%}
+                        <span class="p-0">{{i.nickname}}</span>
+                        {%endif%}
+                        {%endfor%}
 
-            <h1 class="detail-title">{{fleaMarket.title}}</h1>
 
-            {%for i in user_info.all%}
-            {%if i.user_id == fleaMarket.writer%}
-            <span class="user">{{i.nickname}}</span>
-            {%endif%}
-            {%endfor%}
+                    </div>
+                    <div class="col-md-auto">
+                        <div class=""><i class="far fa-clock"></i>{{fleaMarket.date}}</div>
+                    </div>
+                </div>
+                <div class="row">
+                    <p class="detail-content">
+                        {{fleaMarket.contents|safe}}
+                    </p>
+                </div>
+                <div class="row d-flex justify-content-end">
+                    <div class="price-info ">판매가<strong class="price">{{fleaMarket.price}}</strong>원</div>
+                </div>
+                <div class="row mt-3">
+                    <div class="col p-0">
+                        <button type="button" class="btn btn-primary enquire-btn p-0 w-100 p-2" data-toggle="modal"
+                        data-target="#exampleModal">문의하기</button>
+                    
+                    </div>
+                    <div class="col p-0">
+                        <button type="button" class="btn btn-primary purchase-btn p-0 w-100 p-2">바로구매</button>
+                    </div>
+                </div>
+                
+
+
 
 
 
                 <!-- detail-content -->
-        <p class="detail-content">
-            {{fleaMarket.contents|safe}}
-        </p>
-        </div>
-        <div class="mt-5"></div>
-        <hr>
-
-     
-        <div class="price-info row">판매가<strong class="price">{{fleaMarket.price}}</strong>원</div>
-
-        <div class="time"><i class="far fa-clock"></i>{{fleaMarket.date}}</div>
-    
-        <!-- buttons -->
-        <div class="buttons" style="text-align: right;">
-            <button type="button" class="btn btn-primary enquire-btn " data-toggle = "modal" data-target="#exampleModal">문의하기</button>
-            <button type="button" class="btn btn-primary purchase-btn">바로구매</button>
-        </div>
-    </div>
-  
-  <!-- Modal -->
-  <div class="modal fade" id="exampleModal" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">문의하기</h5>
-          <button type="button" class="close" data-dismiss="modal">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-            {%for i in user_info.all%}
-            {%if i.user_id == fleaMarket.writer%}
-                <span class="user">0{{i.phone}}로 연락해주세요</span>
-            {%endif%}
-            {%endfor%}
+                
+            </div>
+            <div class="mt-5"></div>
            
+
+
+           
+
+
+
+            <!-- buttons -->
+            <div class="buttons" style="text-align: right;">
+                
+            </div>
         </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary close-btn" data-dismiss="modal">Close</button>
+
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">문의하기</h5>
+                        <button type="button" class="close" data-dismiss="modal">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        {%for i in user_info.all%}
+                        {%if i.user_id == fleaMarket.writer%}
+                        <span class="user">0{{i.phone}}로 연락해주세요</span>
+                        {%endif%}
+                        {%endfor%}
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary close-btn" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
-  </div>
 
 
     </div>
@@ -154,7 +186,7 @@
                 <div class="card product-card" style="width: 13rem;">
                     <img src="../media/{{i.img}}" class="card-img-top" alt="..." style="height: 10rem;">
                     <div class="card-body">
-                        
+
                         <h5 class="product-name">{{i.title}}</h5>
                         <div style="text-align: right; margin-right: .3rem">
                             <hr>
@@ -163,10 +195,10 @@
                         </div>
                         {%for j in user_info.all%}
                         {%if j.user_id == i.writer%}
-                        
+
                         {%endif%}
                         {%endfor%}
-                        
+
                     </div>
                 </div>
             </a>
