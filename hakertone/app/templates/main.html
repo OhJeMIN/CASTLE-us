@@ -293,8 +293,10 @@
                   <p class="m-0 company_product_title" >{{i.0.title}}</p>
 
                   <p class="m-0 product_kind mt-2">
+
+                   
                   {%for k in company%}
-                    {%if k.id == i.0.company_id%}
+                    {%if k.user_id == i.0.company_id%}
                     <span>{{k.name}}</span>
                       {%endif%}
                   {%endfor%}
