@@ -171,12 +171,11 @@ input[type="number"]::-webkit-inner-spin-button {
 
 <body>
 
-  <div class="nav"></div>
+  
 
-  <hr>
-  <div class="container">
+  <div class="container mt-5">
     <h1>회원가입</h1>
-    <div class="row">
+    <div class="row mt-3">
       <div class="col">
         <div class="progress">
           <div class="progress-bar" style="width:90%;  background-color: #00C4C3;"></div>
@@ -185,13 +184,13 @@ input[type="number"]::-webkit-inner-spin-button {
       <div class="col"></div>
       <div class="col"></div>
     </div>
-    <p class="mt-1">거의다 되었습니다 *^^*</p>
-    <hr class="bhr">
+    
+ 
 <!---->
 <form method="POST" action="{%url 'register2'%}">
   {% csrf_token %} 
   <div class="form-row">
-     <div class="container-fluid p-1" ><input type="text" id="first_name" name="firstname"readonly value="개인"/> <span>회원님 환영합니다</span> 
+     <div class="container-fluid p-1" ><input type="text" id="first_name" name="firstname"readonly value="개인" class="text-white"/>
     </div> 
   <!-- <input type="hidden" value"개인w" name="firstname"> -->
 
@@ -292,7 +291,7 @@ input[type="number"]::-webkit-inner-spin-button {
 
 <!---->
 
-<div class="row">
+<div class="row mt-5">
 <div class="col"></div>
 <div class="col"></div>
 <div class="col"><a href="{%url 'register'%}"><button type="button" class="lbtn btn-lg">뒤로가기</button></div></a>
