@@ -75,7 +75,7 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'hakertone.wsgi.application'
-
+DATA_UPLOAD_MAX_MEMORY_SIZE = 52429900
 
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
