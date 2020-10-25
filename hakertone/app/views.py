@@ -745,6 +745,7 @@ def company_buying_form(request):
     return render(request, 'company_buying_form.html')
 
 def company_buying_form_new(request):
+    user_pk = request.session.get('user')
     companyBuying = Company_buying()
     companyBuying.company_id = user_pk    
     category = request.POST['category']
