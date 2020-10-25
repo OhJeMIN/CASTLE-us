@@ -348,12 +348,17 @@
               {% elif i.0.category == 12 %}
               <span>반려동물</span>
               {% endif %} | 
-                
-              {%if i.1 < 0 %}
+
+              {%for c in companyinfo%}
+                {%if i.0.company_id == c.user_id%}
+                  <span>{{c.name}}</span>
+                {%endif%}
+                {%endfor%}
+              <!-- {%if i.1 < 0 %}
               <span>진행종료</span>
               {%else%}
               <span>{{i.1}}</span>
-              {%endif%}
+              {%endif%} -->
             </p>
               
           </div>
