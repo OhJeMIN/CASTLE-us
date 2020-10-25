@@ -292,10 +292,10 @@
                   {% endif %}
                   <p class="m-0 company_product_title" style="font-size: 1.1rem">{{i.0.title}}</p>
 
-
+                  <p class="m-0 product_kind mt-2">
                   {%for k in company%}
                     {%if k.id == i.0.company_id%}
-                    <p class="m-0 product_kind mt-2"><span>{{k.name}}</span>
+                    <span>{{k.name}}</span>
                       {%endif%}
                   {%endfor%}
                     
