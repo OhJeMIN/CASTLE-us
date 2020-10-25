@@ -749,13 +749,11 @@ def company_buying_form_new(request):
     companyBuying = Company_buying()
     companyBuying.company_id = user_pk    
     category = request.POST['category']
-    proceeding = request.POST['proceeding']
     companyBuying.title = request.POST['title']
     companyBuying.main_img = request.FILES['myfile1']
     companyBuying.detail_img1 = request.FILES['myfile2']
     companyBuying.detail_img2 = request.FILES['myfile3']
     companyBuying.contents = request.POST['contents']
-    companyBuying.proceeding = int(proceeding)
     companyBuying.category = int(category)
     companyBuying.finish_date = request.POST['date']
     companyBuying.writer = request.user.id
