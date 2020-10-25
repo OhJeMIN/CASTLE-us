@@ -35,6 +35,7 @@ a:hover {
   color: white;
   padding: 0 0.5rem;
   font-size: 1.3rem;
+  border-radius: 10%;
 }
 .detail-title {
   font-size: 2rem;
@@ -49,6 +50,8 @@ a:hover {
 .time {
   font-size: 1rem;
   color: gray;
+  position: relative;
+  bottom: 0px;
 }
 .fa-clock {
   margin-right: 0.2rem;
@@ -164,7 +167,7 @@ a:hover {
   margin-right: 0.2rem;
 }
 .icon-rotate {
-  -webkit-transform: rotate(90deg);
+  -moz-webkit-transform: rotate(90deg);
   color: gray;
   margin-right: 1rem;
 }
@@ -191,7 +194,7 @@ a:hover {
   display: inline-block;
   background-color: #b5ecec;
   color: white;
-  border-radius: 50%;
+  border-radius: 10%;
   padding: 0.1rem 0.6rem;
   font-weight: bold;
   margin-top: 1rem;
