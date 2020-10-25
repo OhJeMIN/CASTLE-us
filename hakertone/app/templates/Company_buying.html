@@ -307,7 +307,7 @@
             src="..\media\{{i.0.main_img}}"
             class="card-img-top FFVAD rounded" alt="...">
             
-              {%if i.0.remark == 1 and i.1 > 0%}
+              {%if i.1 >= 0 %}
               <span class="badge jb-text    text-white">{{i.1}}일 남음</span>
               {%else%}
               <span class="badge jb-text    text-white" style="background-color: grey;">진행종료</span>
