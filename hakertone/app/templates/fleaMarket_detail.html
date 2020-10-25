@@ -99,7 +99,7 @@
      
         <div class="price-info row">판매가<strong class="price">{{fleaMarket.price}}</strong>원</div>
 
-        <div class="time row"><i class="far fa-clock"></i>{{fleaMarket.date}}</div>
+        <div class="time"><i class="far fa-clock"></i>{{fleaMarket.date}}</div>
     
         <!-- buttons -->
         <div class="buttons" style="text-align: right;">
@@ -147,23 +147,26 @@
     <!-- recommendation -->
     <div class="recommendation">
         <h3 class="recommendation-title">이 상품을 추천합니다</h3>
+        <hr>
         <div class="recommendation-product">
             {%for i in randomObjList%}
             <a href="/fleaMarket_detail/{{i.id}}">
                 <div class="card product-card" style="width: 13rem;">
                     <img src="../media/{{i.img}}" class="card-img-top" alt="..." style="height: 10rem;">
                     <div class="card-body">
+                        
                         <h5 class="product-name">{{i.title}}</h5>
                         <div style="text-align: right; margin-right: .3rem">
+                            <hr>
                             <strong class="product-price">{{i.price}}</strong>
                             <span>원</span>
                         </div>
                         {%for j in user_info.all%}
                         {%if j.user_id == i.writer%}
-                        <div class="product-write" style="text-align: right; color: gray">{{j.nickname}}</div>
+                        
                         {%endif%}
                         {%endfor%}
-                        <span class="time product-time"><i class="far fa-clock"></i>{{i.date}}</span>
+                        
                     </div>
                 </div>
             </a>

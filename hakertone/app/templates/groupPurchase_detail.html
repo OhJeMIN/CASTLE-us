@@ -1,9 +1,39 @@
+<head>
+    <style>
+        .proceeding{
+            border-radius: 10%;
+        }
+
+        .time {
+            font-size: 1rem;
+            color: gray;
+            position:absolute;
+            top:14rem;
+            left: 6rem;
+          }
+          .user{
+            position:absolute;
+            top:23rem;
+            left: 17rem;
+          }
+    </style>
+</head>
+
+
 <!-- 댓글 수 가져오기 -->
 {%extends 'base.html'%}
 {%block contents%}
 {%load static%}
 <link rel="stylesheet" href="{%static 'groupPurchase_detail.css'%}">
-<div class="container">
+<div class="container-fluid row">
+
+    <div class="col-3"></div>
+<div class="col-2">
+    <img src="../media/{{groupPurchase.img}}" class="d-block" alt="..." style="margin-top:2rem; width:25rem; height:28rem;">
+
+</div>
+<div class="col "></div>
+<div class="col-2 mt-5">
     <!-- detail-body -->
     <div class="detail-body">
         <!-- detail-info -->
@@ -13,7 +43,7 @@
             {%else%}
                 <span class="process">진행종료</span>
             {%endif%}
-            <br>
+        
             {%if groupPurchase.category == 1%}
                 <span class="proceeding">가구</span>
             {%elif groupPurchase.category == 2%}
@@ -42,31 +72,41 @@
 
 
             <h1 class="detail-title">{{groupPurchase.title}}</h1>
+            <hr>
+           
 
-            {%for i in user_info.all%}
-                {%if i.user_id == groupPurchase.writer%}
-                <span class="user">{{i.nickname}}</span>
-                {%endif%}
-            {%endfor%}
-
-            <span class="time"><i class="far fa-clock"></i>{{groupPurchase.date}}</span>
+            
         </div>
         
 
 
-        <img src="../media/{{groupPurchase.img}}" class="d-block w-100 h-50" alt="..." style="margin-top:2rem">
-
+        
+   
 
         <!-- detail-content -->
         <p class="detail-content">
             {{groupPurchase.contents|safe}}
         </p>
+
+
+        {%for i in user_info.all%}
+        {%if i.user_id == groupPurchase.writer%}
+        <span class="user">{{i.nickname}}</span>
+        {%endif%}
+    {%endfor%}
+        <span class="time"><i class="far fa-clock"></i>{{groupPurchase.date}}</span>
     </div>
+
 </div>
+
+<div class="col-3"></div>
+
+</div>     <hr>
 <div class="container container2">
     <!-- comments-part -->
-    <div class="comments-part">
+    <div class="comments-prt">
         <div class="comments-head">
+       
             <h1 class="comments-title">댓글</h1>
             
             <span class="count-comments">{{count}}</span>
@@ -96,7 +136,7 @@
                     <p class="comment-content">
                         {{i.contents}}
                     </p>
-                    <div class="comment-etc">
+                    <div class="comment-etc" style="text-align: right;">
                         <span class="write-time">{{groupPurchase.date}}</span>
                         
                     </div>

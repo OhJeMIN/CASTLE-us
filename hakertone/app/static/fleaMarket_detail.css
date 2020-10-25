@@ -174,16 +174,13 @@ a:hover {
   border-color: white;
   display: inline-block;
   margin: 1rem 0;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  border:solid rgba(0, 0, 0, 0.445) 1px;
   transition: 0.3s;
   margin-right: 2rem;
 }
 
 .product-card .card-body {
   padding: 0.3rem;
-}
-.product-card:hover {
-  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
 }
 .proceeding {
   display: inline-block;
@@ -206,7 +203,7 @@ a:hover {
 .close-btn:focus,
 .close-btn:active {
   border-color: #42cfcf;
-  box-shadow: 0 0 0 0 0.2rem #42cfcf !important;
+
 }
 
 @media screen and (max-width: 1200px) {
