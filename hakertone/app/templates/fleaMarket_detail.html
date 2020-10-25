@@ -102,7 +102,7 @@
         <div class="modal-body">
             {%for i in user_info.all%}
             {%if i.user_id == fleaMarket.writer%}
-                <span class="user">{{i.phone}}로 연락해주세요</span>
+                <span class="user">0{{i.phone}}로 연락해주세요</span>
             {%endif%}
             {%endfor%}
            

@@ -70,31 +70,34 @@ def main(request):
         randomNum1 = random.sample(num , 4)
         randomObjList1=[]
         for i in randomNum1:
-            randomObjList1 += Company_buying.objects.filter(id=i)
+            randomObjList1.append(list(Company_buying.objects.filter(id=i)))
 
         year = []
         for i in randomObjList1:
-            year.append(i.finish_date.year)
+            year.append(i[0].finish_date.year)
 
         month = []
         for i in randomObjList1:
-            month.append(i.finish_date.month)
+            month.append(i[0].finish_date.month)
 
         day = []
         for i in randomObjList1:
-            day.append(i.finish_date.day)
+            day.append(i[0].finish_date.day)
+
         
-        d_day = []
-
+        d_day = {}
         for i in range(len(year)):
-            d_day.append(relativedelta(datetime(year[i], month[i], day[i]), now))
+            d_day[i]=int(relativedelta(datetime(year[i], month[i], day[i]), now).days)
+        
+            # d_day.insert(randomObjList[i].id, relativedelta(datetime(year[i], month[i], day[i]), now).days)
+        for i in range(len(year)):
+            print(randomObjList1[i])
+            randomObjList1[i] += [d_day[i]]
+            print()
+        num = [0, 1]
 
-        num= []
-        for i in range(4):
-            num.append(i)
 
-
-        return render(request, 'main.html',  {'num': num,'d_day': d_day,'company': company, 'date': date, 'user_info': user_info, 'group_buying': randomObjList,'company_buying':randomObjList1, 'apartment':apartment})
+        return render(request, 'main.html',  {'num': num, 'd_day': d_day,'company': company, 'date': date, 'user_info': user_info, 'group_buying': randomObjList,'company_buying':randomObjList1, 'apartment':apartment})
     #로그인이 되어있지 않으면?
     else:
         return redirect('/')
