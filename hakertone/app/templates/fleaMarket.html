@@ -295,7 +295,7 @@
     {%endif%}
     <div class="row ">
 
-{%for i in fleaMarket %}
+{%for i in posts %}
 
     
       <div class="col mt-4 d-flex justify-content-center p-0">
@@ -339,6 +339,41 @@
     </div>
     
    
+  </div>
+
+  <div class="row mt-5 d-flex justify-content-center">
+    <nav aria-label="Page navigation example" class="">
+      <ul class="pagination" style="display:flex">
+        {% if posts.has_previous %}
+  
+        <li class="page-item border-0"><a class="page-link border-0 text-body" href="?page={{ posts.previous_page_number }}">&lt;</a></li>
+        {%else%}
+        <li class="page-item border-0"><a class="page-link border-0 text-body" href="">&lt;</a></li>
+        {% endif %}
+  
+        <!-- 페이지 범위 및 현재 페이지 -->
+        {% for page in paginator_range %}
+        {% if posts.number == page %}
+        <li class="page-item border-0"><a class="page-link border-0" style="color:#84e2e2">{{ page }}</a></li>
+        {% else %}
+        <li class="page-item border-0"><a class="page-link border-0" href="?page={{ page }}">{{ page }}</a></li>
+        {% endif %}
+        {% endfor %}
+  
+        <!-- 다음 페이지 -->
+        {% if posts.has_next %}
+        <li class="page-item border-0"><a class="page-link border-0 text-body" href="?page={{ posts.next_page_number }}">&gt;</a></li>
+
+        {%else%}
+        <li class="page-item border-0"><a class="page-link border-0 text-body" href="">&gt;</a></li>
+        {% endif %}
+  
+  
+  
+  
+  
+      </ul>
+    </nav>
   </div>
 
 {%endblock%}
