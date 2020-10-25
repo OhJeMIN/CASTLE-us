@@ -44,7 +44,7 @@
         <div class="block" style="width: 25em; height:12em; padding-top:2em;">
             {%for i in company.all %}
             {% if i.user_id == company_detail.company_id %}
-            <img src="{{i.img.url}}" width="150em;" height="150em;" class="circle">
+            <img src="media/{{i.img}}" width="150em;" height="150em;" class="circle">
             <!--<img src="media/{{i.img}}" width="150em;" height="150em;" class="circle">-->
             {%endif%}
             {%endfor%}

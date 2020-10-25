@@ -91,9 +91,7 @@ def main(request):
         
             # d_day.insert(randomObjList[i].id, relativedelta(datetime(year[i], month[i], day[i]), now).days)
         for i in range(len(year)):
-            print(randomObjList1[i])
             randomObjList1[i] += [d_day[i]]
-            print()
         num = [0, 1]
 
 
@@ -345,9 +343,7 @@ def companyBuying(request):
                 post.append([i])
             
             for i in range(len(year)):
-                print(post[i])
                 post[i] += [d_day[i]]
-                print(post[i])
             
             return render(request, 'Company_buying.html',{'posts':posts,'apartment':apartment,'companyBuying':companyBuying, 'companyinfo':companyinfo, 'isCompany':isCompany, 'post': post, 'apartment':apartment,'paginator_range':paginator_range})
         else:
@@ -392,9 +388,8 @@ def companyBuying(request):
                 post.append([i])
             
             for i in range(len(year)):
-                print(post[i])
                 post[i] += [d_day[i]]
-                print(post[i])
+        
                 
             return render(request, 'Company_buying.html',{'apartment':apartment,'companyBuying':companyBuying, 'companyinfo':companyinfo, 'isCompany':isCompany,'post':post, 'posts': posts, 'apartment':apartment,'paginator_range':paginator_range})
         
@@ -730,9 +725,7 @@ def companyBuying_new(request,category):
             post.append([i])
         
         for i in range(len(year)):
-            print(post[i])
             post[i] += [d_day[i]]
-            print(post[i])
         
         return render(request, 'Company_buying.html',{'companyBuying':temp, 'companyinfo':companyinfo,'post':post,'posts': posts, 'apartment':apartment,'paginator_range':paginator_range, 'isUser':isUser})
 
