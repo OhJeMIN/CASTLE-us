@@ -100,7 +100,12 @@
           </button>
         </div>
         <div class="modal-body">
-           폰번호: {{phone}}
+            {%for i in user_info.all%}
+            {%if i.user_id == fleaMarket.writer%}
+                <span class="user">{{i.phone}}로 연락해주세요</span>
+            {%endif%}
+            {%endfor%}
+           
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary close-btn" data-dismiss="modal">Close</button>

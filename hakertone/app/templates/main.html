@@ -244,6 +244,11 @@
       </div>
       <div class="container">
         <div class="row ">
+          <!-- {{d_day.0.days}}
+          {{d_day.1.days}}
+          {{d_day.2.days}}
+          {{d_day.3.days}} -->
+
           {% for i in company_buying %}
           <div class="col mt-4 d-flex justify-content-center p-0">
             <a href="/company_detail/{{i.id}}">
@@ -251,8 +256,12 @@
                 <div class="jb-wrap">
                   <img
                   src="media/{{i.main_img}}"
-                  class="card-img-top FFVAD rounded" alt="...">                  
-                  <span class="badge jb-text  text-white">{{i.date | date:'d'}}일남음</span>                  
+                  class="card-img-top FFVAD rounded" alt="...">
+                  
+                  <span class="badge jb-text  text-white">{{d_day.0.days}}일남음</span>
+            
+                
+                  
               </div>
                 <div class="card-body p-0 pt-1">
                   {% if i.category == 1 %}

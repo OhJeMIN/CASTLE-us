@@ -7,6 +7,9 @@ from django.contrib import auth
 from django.core.paginator import Paginator
 from django.views.decorators.csrf import csrf_exempt
 from datetime import datetime
+from datetime import date
+
+from dateutil.relativedelta import *
 
 def index(request):
     return render(request, 'index.html')
@@ -36,6 +39,8 @@ def main(request):
     #로그인이 되어 있는지?
     user_pk = request.session.get('user')
     now = datetime.now()
+    company = Company.objects.all()
+    # now = now.strftime('%Y-%m-%d')
     if user_pk:
         user = get_object_or_404(User, id = user_pk)
         user_info = User_info.objects.all()
@@ -62,19 +67,34 @@ def main(request):
         num=[]
         for i in company_buying:
             num+=[i.id]       
-        randomNum1 = random.sample(num , 4)        
+        randomNum1 = random.sample(num , 4)
         randomObjList1=[]
         for i in randomNum1:
             randomObjList1 += Company_buying.objects.filter(id=i)
 
-
-        date = []
+        year = []
         for i in randomObjList1:
-            date.append(i.finish_date)
-        
-        company = Company.objects.all()
+            year.append(i.finish_date.year)
 
-        return render(request, 'main.html',  {'company': company, 'date': date, 'now': now, 'user_info': user_info, 'group_buying': randomObjList,'company_buying':randomObjList1, 'apartment':apartment})
+        month = []
+        for i in randomObjList1:
+            month.append(i.finish_date.month)
+
+        day = []
+        for i in randomObjList1:
+            day.append(i.finish_date.day)
+        
+        d_day = []
+
+        for i in range(len(year)):
+            d_day.append(relativedelta(datetime(year[i], month[i], day[i]), now))
+
+        num= []
+        for i in range(4):
+            num.append(i)
+
+
+        return render(request, 'main.html',  {'num': num,'d_day': d_day,'company': company, 'date': date, 'user_info': user_info, 'group_buying': randomObjList,'company_buying':randomObjList1, 'apartment':apartment})
     #로그인이 되어있지 않으면?
     else:
         return redirect('/')
@@ -348,9 +368,6 @@ def fleaMarket_detail(request, id):
             for j in range(fleaMarketAll.count()):
                 if randomNum[i] == fleaMarketAll[j].id:
                     randomObjList.append(fleaMarketAll[j])
-        
-
-        # phone = user_info[fleaMarket.writer].phone
 
 
     return render(request, 'fleaMarket_detail.html', { 'randomObjList':randomObjList,'fleaMarket': fleaMarket, 'fleaMarketAll': fleaMarketAll, 'user_info': user_info, 'apartment': apartment,'isCompany':isCompany})
