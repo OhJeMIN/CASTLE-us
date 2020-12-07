@@ -1,6 +1,13 @@
 # 🦅CASTLE-us🦅
 ##### 롯데 캐슬 입주자 전용 공동구매 서비스
 
+#### 사용 기술
+```
+python3
+Django
+html css jquery bootstrap
+CKEditor
+```
 
 #### 🦁멋쟁이 사자처럼 가천대학교🦁
 [문서희](https://github.com/MunSeoHee)
@@ -8,7 +15,6 @@
 [홍인표](https://github.com/Inpyo-Hong)
 [오제민](https://github.com/jasonoh22)
 [최예진](https://github.com/chldppwls12)
-문서희 박상현 홍인표 오제민 최예진
  
 
 ### 💡 공동구매
