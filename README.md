@@ -7,6 +7,7 @@ python3
 Django
 html css jquery bootstrap
 CKEditor
+AWS EC2, Linux Ubuntu
 ```
 
 #### 🦁멋쟁이 사자처럼 가천대학교🦁
